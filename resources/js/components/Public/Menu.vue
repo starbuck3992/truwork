@@ -149,11 +149,8 @@
 <script>
 import { Popover, PopoverButton, PopoverGroup, PopoverPanel } from '@headlessui/vue'
 import {
-  AnnotationIcon,
-  ChatAlt2Icon,
-  InboxIcon,
+  CheckIcon,
   MenuIcon,
-  QuestionMarkCircleIcon,
   XIcon,
 } from '@heroicons/vue/outline'
 import { ChevronDownIcon } from '@heroicons/vue/solid'
@@ -163,20 +160,24 @@ const solutions = [
     name: 'Kuchyně',
     description: 'Kuchyně na míru.',
     href: '#',
-    icon: InboxIcon,
+    icon: CheckIcon,
   },
   {
     name: 'Vestavěné skříně',
     description: 'Vestavěné skříně na míru.',
     href: '#',
-    icon: AnnotationIcon,
+    icon: CheckIcon,
   },
-  { name: 'Komerční prostory', description: "Vybavíme školy, školky, obecní úřády, restaurace, a další.", href: '#', icon: ChatAlt2Icon },
+  { 
+    name: 'Komerční prostory', 
+    description: "Vybavíme školy, školky, obecní úřády, restaurace, a další.", 
+    href: '#', 
+    icon: CheckIcon },
   {
     name: 'Ostatní',
     description: "Pergoly, dveře, přistřešky.",
     href: '#',
-    icon: QuestionMarkCircleIcon,
+    icon: CheckIcon,
   },
 ]
 const navigation = [

@@ -4,11 +4,11 @@
       <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
         <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
           <div>
-            <div>
+            <!-- <div>
               <span class="h-12 w-12 rounded-md flex items-center justify-center bg-indigo-600">
                 <InboxIcon class="h-6 w-6 text-white" aria-hidden="true" />
               </span>
-            </div>
+            </div> -->
             <div class="mt-6">
               <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">
                 Kuchyně na míru
@@ -26,7 +26,7 @@
         </div>
         <div class="mt-12 sm:mt-16 lg:mt-0">
           <div class="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
-            <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none" src="https://cdn.pixabay.com/photo/2016/04/18/08/50/kitchen-1336160_960_720.jpg" alt="Inbox user interface" />
+            <img class="w-full rounded-xl shadow-2xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none" src="https://cdn.pixabay.com/photo/2016/04/18/08/50/kitchen-1336160_960_720.jpg" alt="Inbox user interface" />
           </div>
         </div>
       </div>
@@ -35,11 +35,11 @@
       <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
         <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-32 lg:max-w-none lg:mx-0 lg:px-0 lg:col-start-2">
           <div>
-            <div>
+            <!-- <div>
               <span class="h-12 w-12 rounded-md flex items-center justify-center bg-indigo-600">
                 <SparklesIcon class="h-6 w-6 text-white" aria-hidden="true" />
               </span>
-            </div>
+            </div> -->
             <div class="mt-6">
               <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">
                 Vestavěnné skříně
@@ -66,11 +66,11 @@
       <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
         <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
           <div>
-            <div>
+            <!-- <div>
               <span class="h-12 w-12 rounded-md flex items-center justify-center bg-indigo-600">
                 <InboxIcon class="h-6 w-6 text-white" aria-hidden="true" />
               </span>
-            </div>
+            </div> -->
             <div class="mt-6">
               <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">
                 Komeční prostory
