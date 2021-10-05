@@ -54,11 +54,14 @@
 <script>
 import {reactive} from 'vue'
 import {useStore} from 'vuex'
-import Form from "../../../utilities/form"
+import {useRouter} from 'vue-router';
+
+import Form from "../../utilities/form"
 
 export default {
     setup() {
         const store = useStore()
+        const router = useRouter()
         const form =
             reactive(new Form({
                 email: "",
@@ -70,6 +73,7 @@ export default {
             await store.dispatch('login', form.data())
                 .then(() => {
                     form.onSuccess()
+                    router.push({ path: 'admin' })
                 }).catch(error => {
                     form.onFail(error.response.data.errors)
                 });

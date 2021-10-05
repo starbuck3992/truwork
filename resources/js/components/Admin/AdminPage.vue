@@ -2,7 +2,6 @@
     <div>
         <Menu></Menu>
         <router-view></router-view>
-        <Footer></Footer>
     </div>
 </template>
 

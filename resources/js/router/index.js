@@ -26,10 +26,11 @@ const routes = [
     {
         path: '/login',
         name: 'authLogin',
-        component: () => import('../components/Public/Auth/Login'),
+        component: () => import('../components/Auth/Login'),
     },
     {
         path: '/admin',
+        name: 'admin',
         component: () => import('../components/Admin/AdminPage'),
         children: [
             {
