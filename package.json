@@ -9,26 +9,23 @@
         "prod": "npm run production",
         "production": "mix --production"
     },
-    "devDependencies": {
-        "@tailwindcss/forms": "^0.3.3",
-        "@vue/compiler-sfc": "^3.2.13",
-        "axios": "^0.21",
-        "laravel-mix": "^6.0.0-beta.17",
-        "lodash": "^4.17.19",
-        "postcss": "^8.1.14",
-        "resolve-url-loader": "^3.1.0",
-        "sass": "^1.42.1",
-        "sass-loader": "^8.0.2",
-        "vue": "^3.2.13",
-        "vue-loader": "^16.7.1",
-        "vue-router": "^4.0.11"
-    },
     "dependencies": {
         "@headlessui/vue": "^1.4.1",
         "@heroicons/vue": "^1.0.4",
         "@tailwindcss/aspect-ratio": "^0.2.1",
+        "@tailwindcss/forms": "^0.3.3",
+        "animejs": "^3.2.1",
+        "axios": "^0.22.0",
+        "laravel-mix": "^6.0.31",
+        "lodash": "^4.17.21",
+        "resolve-url-loader": "^4.0.0",
+        "sass": "^1.42.1",
+        "sass-loader": "^12.1.0",
         "tailwindcss": "^2.2.16",
-        "vuex": "^4.0.2",
-        "vuex-persistedstate": "^4.1.0"
+        "vue": "^3.2.19",
+        "vue-loader": "^16.8.1",
+        "vue-router": "^4.0.11",
+        "vue-template-compiler": "^2.6.14",
+        "vuex": "^4.0.2"
     }
 }

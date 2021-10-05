@@ -12,6 +12,9 @@
           &copy; 2021 Truwork, Inc. All rights reserved.
         </p>
       </div>
+        <div class="mt-8 md:mt-0 md:order-1">
+            <router-link :to="{ name: 'authLogin' }">Přihlásit se</router-link>
+        </div>
     </div>
   </footer>
 </template>

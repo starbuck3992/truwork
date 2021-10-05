@@ -8,7 +8,7 @@ const routes = [
         children: [
             {
                 path: '',
-                name: 'home',
+                name: 'homeIndex',
                 component: () => import('../components/Public/Home/Index'),
             },
             {
@@ -20,6 +20,22 @@ const routes = [
                 path: '/show',
                 name: 'show',
                 component: () => import('../components/Public/Gallery/Show'),
+            }
+        ]
+    },
+    {
+        path: '/login',
+        name: 'authLogin',
+        component: () => import('../components/Public/Auth/Login'),
+    },
+    {
+        path: '/admin',
+        component: () => import('../components/Admin/AdminPage'),
+        children: [
+            {
+                path: '',
+                name: 'dashboardIndex',
+                component: () => import('../components/Admin/Dashboard/Index'),
             }
         ]
     },
