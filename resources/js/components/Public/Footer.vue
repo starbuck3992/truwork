@@ -15,9 +15,8 @@
             </div>
             <div v-if="loggedIn">
                 Přihlášen uživatel {{ user.name }}
-                <div class="text-center">
-                    <Logout/>
-                </div>
+                <router-link :to="{ name: 'dashboardIndex' }">Admin rozhraní</router-link>
+                <Logout></Logout>
             </div>
             <div v-else class="mt-8 md:mt-0 md:order-1">
                 <router-link :to="{ name: 'authLogin' }">Přihlásit se</router-link>

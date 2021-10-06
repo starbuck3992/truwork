@@ -73,7 +73,7 @@ export default {
             await store.dispatch('login', form.data())
                 .then(() => {
                     form.onSuccess()
-                    router.push({ path: 'admin' })
+                    router.push({ name: 'dashboardIndex' })
                 }).catch(error => {
                     form.onFail(error.response.data.errors)
                 });

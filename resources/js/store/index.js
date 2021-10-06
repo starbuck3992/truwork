@@ -1,6 +1,7 @@
 import {createStore} from 'vuex'
 import createPersistedState from 'vuex-persistedstate';
-import api from "../services/api";
+import api from '../services/api';
+import router from '../router';
 
 const store = createStore(
     {
@@ -33,6 +34,9 @@ const store = createStore(
                 return api.logout()
                     .then(() => {
                         commit('destroySession');
+                    })
+                    .finally(() => {
+                        router.push({name: 'homeIndex'})
                     })
             },
         }

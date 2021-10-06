@@ -1,55 +1,88 @@
-import { createWebHistory, createRouter } from "vue-router";
+import { createWebHistory, createRouter } from 'vue-router';
+import store from '../store';
+
+//Components
+import LandingPage from '../components/Public/LandingPage';
+import HomeIndex from '../components/Public/Home/Index';
+import GalleryIndex from '../components/Public/Gallery/Index';
+import GalleryShow from '../components/Public/Gallery/Show';
+
+import Login from '../components/Auth/Login';
+
+import AdminPage from '../components/Admin/AdminPage';
+import DashboardIndex from '../components/Admin/Dashboard/Index'
 
 //Routes
 const routes = [
     {
         path: '/',
-        component: () => import('../components/Public/LandingPage'),
+        component: LandingPage,
         children: [
             {
                 path: '',
                 name: 'homeIndex',
-                component: () => import('../components/Public/Home/Index'),
+                component: HomeIndex,
             },
             {
                 path: '/gallery',
                 name: 'gallery',
-                component: () => import('../components/Public/Gallery/Index'),
+                component: GalleryIndex
             },
             {
                 path: '/show',
                 name: 'show',
-                component: () => import('../components/Public/Gallery/Show'),
+                component: GalleryShow
             }
         ]
     },
     {
         path: '/login',
         name: 'authLogin',
-        component: () => import('../components/Auth/Login'),
+        component: Login,
+        meta: {
+            guest: true
+        }
     },
     {
         path: '/admin',
-        name: 'admin',
-        component: () => import('../components/Admin/AdminPage'),
+        component: AdminPage,
+        meta: {
+            requiresAuth: true
+        },
         children: [
             {
                 path: '',
                 name: 'dashboardIndex',
-                component: () => import('../components/Admin/Dashboard/Index'),
+                component: DashboardIndex,
             }
         ]
     },
     {
         path: '/:pathMatch(.*)*',
-        component:{template: '<div>404</div>'}
+        redirect: '/'
     },
 ];
-
 
 const router = createRouter({
     history: createWebHistory(),
     routes
+})
+
+router.beforeEach((to, from, next) => {
+    const loggedIn = store.getters['loggedIn']
+
+    const canNavigate = to.matched.some(() => {
+        if (!loggedIn && to.meta.requiresAuth) {
+            return false
+        }
+        else return !(loggedIn && to.meta.guest);
+    })
+
+    if (!canNavigate) {
+        return next('/')
+    } else {
+        next()
+    }
 })
 
 export default router;
