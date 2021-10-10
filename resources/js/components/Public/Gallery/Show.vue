@@ -43,9 +43,9 @@
                                  leave-from="opacity-100 translate-y-0 sm:scale-100"
                                  leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                     <div class="inline-block align-middle overflow-hidden transform transition-all m-auto w-full max-h-screen pointer-events: none;">
-                        <ChevronLeftIcon @click="prev()" class="absolute left-10 top-1/2 bg-white sm:w-10 sm:h-10 h-3 w-3 z-10"></ChevronLeftIcon>
-                        <ChevronRightIcon @click="next()" class="absolute right-10 top-1/2 bg-white sm:w-10 sm:h-10 h-3 w-3 z-10"></ChevronRightIcon>
-                        <div class="m-auto height-slide w-full flex justify-center inline-block align-middle">
+                        <ChevronLeftIcon @click="prev()" class="hidden sm:block absolute left-10 top-1/2 bg-white sm:w-10 sm:h-10 h-3 w-3 z-10"></ChevronLeftIcon>
+                        <ChevronRightIcon @click="next()" class="hidden sm:block absolute right-10 top-1/2 bg-white sm:w-10 sm:h-10 h-3 w-3 z-10"></ChevronRightIcon>
+                        <div v-touch:swipe="onSwipeItem()" class="m-auto height-slide w-full flex justify-center inline-block align-middle">
                             <img class="active h-auto w-auto object-cpver inline-block align-middle" :src="showImage"
                                  alt="People working on laptops">
                         </div>
@@ -164,6 +164,18 @@ export default {
             showImage.value = files[index.value].source;
         }
 
+        function onSwipeItem() {
+		return function (direction, mouseEvent) {
+			console.log(direction);
+                if ( direction === "left" || direction === "top" ){
+                    next();
+                }
+                if ( direction === "right" || direction === "bottom"){
+                    prev();
+                }
+            };
+        }
+
         return {
             image,
             open,
@@ -171,7 +183,8 @@ export default {
             showImage,
             openSlider,
             next,
-            prev
+            prev,
+            onSwipeItem,
         }
     }
 }
