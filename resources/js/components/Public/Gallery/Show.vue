@@ -29,24 +29,24 @@
 
                 <!-- This element is to trick the browser into centering the modal contents. -->
                 <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-                <div class="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
-                    <button type="button"
-                            class="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                            @click="open = false">
-                        <span class="sr-only">Close</span>
-                        <XIcon class="h-8 w-8" aria-hidden="true"/>
-                    </button>
-                </div>
+                <div class="hidden sm:block absolute w-10 h-10 top-5 right-10 pt-4 pr-4 z-10">
+                            <button type="button"
+                                    class="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    @click="open = false">
+                                <span class="sr-only">Close</span>
+                                <XIcon class="h-8 w-8" aria-hidden="true"/>
+                            </button>
+                        </div>
                 <TransitionChild as="template" enter="ease-out duration-300"
                                  enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                                  enter-to="opacity-100 translate-y-0 sm:scale-100" leave="ease-in duration-200"
                                  leave-from="opacity-100 translate-y-0 sm:scale-100"
                                  leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                    <div class="inline-block align-middle overflow-hidden transform transition-all w-full max-h-screen">
-                        <div @click="prev()" class="absolute left-10 top-1/2 bg-white"><p>Prev</p></div>
-                        <div @click="next()" class="absolute right-10 top-1/2 bg-white"><p>Next</p></div>
-                        <div class="m-auto height-slide w-3/4 flex justify-center inline-block align-middle">
-                            <img class="active h-full w-full object-cover inline-block align-middle" :src="showImage"
+                    <div class="inline-block align-middle overflow-hidden transform transition-all m-auto w-full max-h-screen pointer-events: none;">
+                        <ChevronLeftIcon @click="prev()" class="absolute left-10 top-1/2 bg-white sm:w-10 sm:h-10 h-3 w-3 z-10"></ChevronLeftIcon>
+                        <ChevronRightIcon @click="next()" class="absolute right-10 top-1/2 bg-white sm:w-10 sm:h-10 h-3 w-3 z-10"></ChevronRightIcon>
+                        <div class="m-auto height-slide w-full flex justify-center inline-block align-middle">
+                            <img class="active h-auto w-auto object-cpver inline-block align-middle" :src="showImage"
                                  alt="People working on laptops">
                         </div>
                     </div>
@@ -60,7 +60,7 @@
 import anime from 'animejs/lib/anime.es.js';
 import {ref} from 'vue'
 import {Dialog, DialogOverlay, DialogTitle, TransitionChild, TransitionRoot} from '@headlessui/vue'
-import {CheckIcon, XIcon} from '@heroicons/vue/outline'
+import {CheckIcon, XIcon, ChevronRightIcon, ChevronLeftIcon} from '@heroicons/vue/outline'
 
 const files = [
     {
@@ -73,7 +73,7 @@ const files = [
         title: 'img2',
         size: '3.9 MB',
         source:
-            'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
+            'http://kitchenremodelingsavannah.com/wp-content/uploads/2017/10/iStock-542686440.jpg',
     },
     {
         title: 'img3',
@@ -114,6 +114,14 @@ const files = [
     // More files...
 ]
 
+const animation = anime({
+  targets: '.active',
+  translateX: 250,
+  direction: 'alternate',
+  loop: false,
+  easing: 'linear'
+});
+
 export default {
     components: {
         Dialog,
@@ -123,32 +131,19 @@ export default {
         TransitionRoot,
         CheckIcon,
         XIcon,
+        ChevronRightIcon, 
+        ChevronLeftIcon,
     },
     setup() {
         const open = ref(false);
         const showImage = ref(null);
         const index = ref(null);
-        const image = ref(null)
+        const image = ref(null);
 
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
-
-        async function openSlider(image, key, event) {
+        function openSlider(image, key, event) {
             open.value = true;
             showImage.value = image;
             index.value = key;
-
-            await sleep(1000);
-
-            anime({
-                targets: '.active',
-                scale: [
-                    {value: .1, easing: 'easeOutSine', duration: 500},
-                    {value: 1, easing: 'easeInOutQuad', duration: 1200}
-                ],
-                delay: anime.stagger(200, {grid: [14, 5], from: 'center'})
-            });
         }
 
         function next(){
@@ -161,6 +156,7 @@ export default {
         }
 
         function prev(){
+            let lastIndex = _.findLastIndex(files);
             index.value --;
             if ( 0 > index.value ){
                 index.value = lastIndex;

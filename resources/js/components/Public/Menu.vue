@@ -6,11 +6,11 @@
           <div class="flex justify-start lg:w-0 lg:flex-1">
             <a href="#">
               <span class="sr-only">Workflow</span>
-              <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="" />
+              <img class="h-8 w-auto sm:h-10 m-5" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="" />
             </a>
           </div>
           <div class="-mr-2 -my-2 md:hidden">
-            <PopoverButton class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+            <PopoverButton class="bg-white rounded-md p-2 m-5 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
               <span class="sr-only">Open menu</span>
               <MenuIcon class="h-6 w-6" aria-hidden="true" />
             </PopoverButton>
@@ -65,10 +65,10 @@
               <div class="pt-5 pb-6">
                 <div class="flex items-center justify-between">
                   <div>
-                    <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow" />
+                    <img class="h-8 w-auto m-5" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow" />
                   </div>
                   <div class="-mr-2">
-                    <PopoverButton class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                    <PopoverButton class="bg-white rounded-md m-5 p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                       <span class="sr-only">Close menu</span>
                       <XIcon class="h-6 w-6" aria-hidden="true" />
                     </PopoverButton>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="mt-6">
                   <nav class="grid grid-cols-1 gap-7">
-                    <a v-for="item in solutions" :key="item.name" :href="item.href" class="-m-3 p-3 flex items-center rounded-lg hover:bg-gray-50">
+                    <a v-for="item in solutions" :key="item.name" :href="item.href" class="-my-3 mx-3 p-3 flex items-center rounded-lg hover:bg-gray-50">
                       <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-600 text-white">
                         <component :is="item.icon" class="h-6 w-6" aria-hidden="true" />
                       </div>
@@ -85,24 +85,6 @@
                       </div>
                     </a>
                   </nav>
-                </div>
-              </div>
-              <div class="py-6 px-5">
-                <div class="grid grid-cols-2 gap-4">
-                  <a v-for="item in navigation" :key="item.name" :href="item.href" class="text-base font-medium text-gray-900 hover:text-gray-700">
-                    {{ item.name }}
-                  </a>
-                </div>
-                <div class="mt-6">
-                  <a href="#" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                    Sign up
-                  </a>
-                  <p class="mt-6 text-center text-base font-medium text-gray-500">
-                    Existing customer?
-                    <a href="#" class="text-gray-900">
-                      Sign in
-                    </a>
-                  </p>
                 </div>
               </div>
             </div>
@@ -130,8 +112,8 @@
                 <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
                     Kuchyně, vestavěné skříně, nábytek na míru, a mnoho dalšího.
                 </p>
-                <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
-                    <a href="#" class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-white hover:bg-indigo-50 sm:px-8">
+                <div class="mt-10 mx-5 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
+                    <a href="#" class="flex items-center justify-center px-2 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-white hover:bg-indigo-50 sm:px-8">
                       Kontaktujte nás
                     </a>
                 </div>
