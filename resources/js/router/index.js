@@ -10,7 +10,9 @@ import GalleryShow from '../components/Public/Gallery/Show';
 import Login from '../components/Auth/Login';
 
 import AdminPage from '../components/Admin/AdminPage';
-import DashboardIndex from '../components/Admin/Dashboard/Index'
+import DashboardIndex from '../components/Admin/Dashboard/Index';
+import Edit from '../components/Admin/Dashboard/Edit';
+import Create from '../components/Admin/Dashboard/Create';
 
 //Routes
 const routes = [
@@ -54,6 +56,16 @@ const routes = [
                 path: '',
                 name: 'dashboardIndex',
                 component: DashboardIndex,
+            },
+            {
+                path: '/admin/edit',
+                name: 'edit',
+                component: Edit,
+            },
+            {
+                path: '/admin/create',
+                name: 'create',
+                component: Create,
             }
         ]
     },
