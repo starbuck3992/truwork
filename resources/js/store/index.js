@@ -7,14 +7,18 @@ const store = createStore(
     {
         plugins: [createPersistedState()],
         state: {
-            user: null
+            user: null,
+            loading: false
         },
         getters: {
             user(state) {
-                return state.user;
+                return state.user
             },
             loggedIn(state) {
-                return !!state.user;
+                return !!state.user
+            },
+            loading(state) {
+                return state.loading
             }
         },
         mutations: {
@@ -23,6 +27,9 @@ const store = createStore(
             },
             destroySession(state) {
                 state.user = null
+            },
+            setLoading(state,newLoadingStatus) {
+                state.loading = newLoadingStatus
             }
         },
         actions: {
@@ -39,6 +46,9 @@ const store = createStore(
                         router.push({name: 'homeIndex'})
                     })
             },
+            loading({commit},payload){
+                commit('setLoading', payload)
+            }
         }
     }
 )

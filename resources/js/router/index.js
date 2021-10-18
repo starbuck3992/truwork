@@ -11,8 +11,9 @@ import Login from '../components/Auth/Login';
 
 import AdminPage from '../components/Admin/AdminPage';
 import DashboardIndex from '../components/Admin/Dashboard/Index';
-import Edit from '../components/Admin/Dashboard/Edit';
-import Create from '../components/Admin/Dashboard/Create';
+import AdminGalleryIndex from '../components/Admin/Gallery/Index';
+import AdminGalleryEdit from '../components/Admin/Gallery/Edit';
+import AdminGalleryCreate from '../components/Admin/Gallery/Create';
 
 //Routes
 const routes = [
@@ -58,14 +59,19 @@ const routes = [
                 component: DashboardIndex,
             },
             {
-                path: '/admin/edit',
-                name: 'edit',
-                component: Edit,
+                path: 'gallery',
+                name: 'adminGalleryIndex',
+                component: AdminGalleryIndex,
             },
             {
-                path: '/admin/create',
-                name: 'create',
-                component: Create,
+                path: 'gallery/create',
+                name: 'adminGalleryCreate',
+                component: AdminGalleryCreate,
+            },
+            {
+                path: 'gallery/edit',
+                name: 'adminGalleryEdit',
+                component: AdminGalleryEdit,
             }
         ]
     },
@@ -81,6 +87,9 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+
+    //store.dispatch('loading', true);
+
     const loggedIn = store.getters['loggedIn']
 
     const canNavigate = to.matched.some(() => {
@@ -93,8 +102,12 @@ router.beforeEach((to, from, next) => {
     if (!canNavigate) {
         return next('/')
     } else {
-        next()
+            next();
     }
 })
+
+// router.afterEach(() => {
+//     store.dispatch('loading', false);
+// })
 
 export default router;

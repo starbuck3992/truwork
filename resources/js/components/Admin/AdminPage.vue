@@ -1,7 +1,6 @@
 <template>
     <div>
         <Menu></Menu>
-        <!-- <router-view></router-view> -->
     </div>
 </template>
 

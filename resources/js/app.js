@@ -1,3 +1,5 @@
+import Loading from "./components/Loading";
+
 window._ = require('lodash');
 window.Vue = require('vue');
 window.axios = require('axios');
@@ -10,10 +12,15 @@ import Vue3TouchEvents from "vue3-touch-events";
 const app = Vue.createApp({
     el: '#app',
     components: {
-        'App': { template: '<router-view></router-view>' },
+        'App': {
+            template:
+                '<loading></loading>' +
+                '<router-view></router-view>'
+        },
     }
 })
 
+app.component('loading',Loading)
 app.use(router);
 app.use(store);
 app.use(Vue3TouchEvents);

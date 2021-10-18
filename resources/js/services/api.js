@@ -30,5 +30,10 @@ export default {
     },
     getUser() {
         return api.get("api/user");
+    },
+    postGallery(payload) {
+        return api.post("api/admin/galleries",payload, {
+            headers: {'Content-Type': 'multipart/form-data'}
+        });
     }
 };

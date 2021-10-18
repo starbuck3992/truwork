@@ -21,7 +21,7 @@
               </div>
               <nav class="mt-5 px-2 space-y-1">
                 <router-link :to="{ name: 'homeIndex' }" class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"><HomeIcon class="h-6 w-6 mr-3"></HomeIcon>Home</router-link>
-                <router-link :to="{ name: 'dashboardIndex' }" class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"><FolderIcon class="h-6 w-6 mr-3"></FolderIcon>Galerie</router-link>
+                <router-link :to="{ name: 'adminGalleryIndex' }" class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"><FolderIcon class="h-6 w-6 mr-3"></FolderIcon>Galerie</router-link>
               </nav>
             </div>
           </div>
@@ -43,7 +43,7 @@
             </div>
             <nav class="mt-5 flex-1 px-2 bg-white space-y-1">
               <router-link :to="{ name: 'homeIndex' }" class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"><HomeIcon class="h-6 w-6 mr-3"></HomeIcon>Home</router-link>
-              <router-link :to="{ name: 'dashboardIndex' }" class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"><FolderIcon class="h-6 w-6 mr-3"></FolderIcon>Galerie</router-link>
+              <router-link :to="{ name: 'adminGalleryIndex' }" class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"><FolderIcon class="h-6 w-6 mr-3"></FolderIcon>Galerie</router-link>
             </nav>
           </div>
         </div>

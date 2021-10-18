@@ -66,11 +66,10 @@ export default {
             reactive(new Form({
                 email: "",
                 password: "",
-                remember: true
             }))
 
         async function login() {
-            await store.dispatch('login', form.data())
+            await store.dispatch('login', form.objectToFormData())
                 .then(() => {
                     form.onSuccess()
                     router.push({ name: 'dashboardIndex' })

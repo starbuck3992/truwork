@@ -58,9 +58,10 @@
 
 <script>
 import anime from 'animejs/lib/anime.es.js';
-import {ref} from 'vue'
+import {onMounted, ref} from 'vue'
 import {Dialog, DialogOverlay, DialogTitle, TransitionChild, TransitionRoot} from '@headlessui/vue'
 import {CheckIcon, XIcon, ChevronRightIcon, ChevronLeftIcon} from '@heroicons/vue/outline'
+import api from "../../../services/api";
 
 const files = [
     {
@@ -131,7 +132,7 @@ export default {
         TransitionRoot,
         CheckIcon,
         XIcon,
-        ChevronRightIcon, 
+        ChevronRightIcon,
         ChevronLeftIcon,
     },
     setup() {

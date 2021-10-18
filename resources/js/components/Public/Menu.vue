@@ -1,6 +1,8 @@
 <template>
   <div class="min-h-full w-full bg-white">
     <header>
+        <router-link :to="{name: 'show'}">Chat</router-link>
+        <router-link :to="{name: 'homeIndex'}">Home</router-link>
       <Popover class="relative bg-white">
         <div class="flex justify-between items-center max-w-7xl mx-auto py-6 md:justify-start">
           <div class="flex justify-start lg:w-0 lg:flex-1">
@@ -150,10 +152,10 @@ const solutions = [
     href: '#',
     icon: CheckIcon,
   },
-  { 
-    name: 'Komerční prostory', 
-    description: "Vybavíme školy, školky, obecní úřády, restaurace, a další.", 
-    href: '#', 
+  {
+    name: 'Komerční prostory',
+    description: "Vybavíme školy, školky, obecní úřády, restaurace, a další.",
+    href: '#',
     icon: CheckIcon },
   {
     name: 'Ostatní',
