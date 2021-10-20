@@ -30,11 +30,16 @@
 
             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
               <label for="about" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                Popisek
+                Kategorie
               </label>
               <div class="mt-1 sm:mt-0 sm:col-span-2">
-                <textarea id="about" name="about" rows="3" class="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md" />
-                <p class="mt-2 text-sm text-gray-500">Popisek u fotek</p>
+                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                  <select id="kategory" name="kategory" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+                    <option>Kuchyně</option>
+                    <option>Vestavěnné skříně</option>
+                    <option>Pergoly</option>
+                  </select>
+                </div>
               </div>
             </div>
 

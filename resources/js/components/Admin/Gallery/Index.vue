@@ -3,8 +3,22 @@
     <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 md:px-8">
         <h1 class="text-2xl font-semibold text-gray-900">Galerie - Seznam</h1>
     </div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-        <div class="flex flex-col">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mt-2">
+         <div class="border-b border-gray-200">
+            <div class="sm:flex sm:items-baseline">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                Galerie
+            </h3>
+            <div class="mt-4 sm:mt-0 sm:ml-10">
+                <nav class="-mb-px flex space-x-8">
+                <a v-for="tab in tabs" :key="tab.name" @click="tabs.current=!tab.current" :href="tab.href" :class="[tab.current ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300', 'whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm']" :aria-current="tab.current ? 'page' : undefined">
+                    {{ tab.name }}
+                </a>
+                </nav>
+            </div>
+            </div>
+        </div>
+        <div class="flex flex-col mt-10">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -172,6 +186,12 @@ const galeries = [
     },
 
 ]
+const tabs = [
+  { name: 'Kuchyně', href: '#', current: true },
+  { name: 'Vestavěnné skříně', href: '#', current: false },
+  { name: 'Ostatní', href: '#', current: false },
+]
+
 export default {
     components: {
         Dialog,
@@ -186,6 +206,7 @@ export default {
         return{
             galeries,
             open,
+            tabs,
         }
     }
 }
