@@ -2,6 +2,7 @@ import axios from "axios";
 import store from "../store/index";
 
 export const api = axios.create({
+    baseURL: process.env.VUE_APP_API_URL,
     withCredentials: true,
 });
 
@@ -32,7 +33,7 @@ export default {
         return api.get("api/user");
     },
     postGallery(payload) {
-        return api.post("api/admin/galleries",payload, {
+        return api.post("/api/admin/galleries",payload, {
             headers: {'Content-Type': 'multipart/form-data'}
         });
     }

@@ -21,6 +21,7 @@ class CreateImagesTable extends Migration
             $table->string('path');
             $table->string('extension');
             $table->integer('size');
+            $table->boolean('thumbnail');
             $table->timestamps();
         });
     }

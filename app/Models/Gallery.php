@@ -26,6 +26,11 @@ class Gallery extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function thumbnail()
+    {
+        return $this->belongsTo(Image::class);
+    }
+
     public function images()
     {
         return $this->hasMany(Image::class);
