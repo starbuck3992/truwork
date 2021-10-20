@@ -11,7 +11,7 @@
             </h3>
             <div class="mt-4 sm:mt-0 sm:ml-10">
                 <nav class="-mb-px flex space-x-8">
-                <a v-for="tab in tabs" :key="tab.name" @click="tabs.current=!tab.current" :href="tab.href" :class="[tab.current ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300', 'whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm']" :aria-current="tab.current ? 'page' : undefined">
+                <a v-for="tab in tabs" :key="tab.name" @click="tab.current=!tab.current" :href="tab.href" :class="[tab.current ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300', 'whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm']" :aria-current="tab.current ? 'page' : undefined">
                     {{ tab.name }}
                 </a>
                 </nav>
@@ -35,10 +35,10 @@
                                     Autor
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Možnosti
+                                    Datum
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Datum
+                                    Možnosti
                                 </th>
                             </tr>
                             <tr>
@@ -52,9 +52,9 @@
                                     <input type="athor" name="author" id="author" required="" class="appearance-none min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400 sm:max-w-xs" placeholder="Zadej autora" />
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <input type="date" name="date" id="date" required="" class="appearance-none min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400 sm:max-w-xs"/>
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    <input type="date" name="date" id="date" required="" class="appearance-none min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400 sm:max-w-xs" placeholder="Zadej autora" />
                                 </th>
                             </tr>
                             </thead>
@@ -75,13 +75,13 @@
                                     {{ gallery.role }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <div class="text-sm text-gray-900">{{ gallery.date }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold bg-red-300 text-red-900 mr-3">
                                     <a @click="open=true" href="#"> Smazat </a>
                                 </span>
                                     <a href="#" class="text-indigo-600 hover:text-indigo-900">Editovat</a>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <div class="text-sm text-gray-900">{{ gallery.date }}</div>
                                 </td>
                             </tr>
                             </tbody>
