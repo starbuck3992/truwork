@@ -11,7 +11,7 @@
             </h3>
             <div class="mt-4 sm:mt-0 sm:ml-10">
                 <nav class="-mb-px flex space-x-8">
-                <a v-for="(tab, i) in tabs" :key="i" @click="selectItem(i)" :href="tab.href" :class="[i === activeItem ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300', 'whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm']" :aria-current="tab.current ? 'page' : undefined">
+                <a v-for="(tab, i) in tabs" :key="i" v-bind="activeItem" @click="selectItem(i)" :href="tab.href" :class="[i === activeItem ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300', 'whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm']" :aria-current="i === activeItem ? 'page' : undefined">
                     {{ tab.name }}
                 </a>
                 </nav>
@@ -187,9 +187,9 @@ const galeries = [
 
 ]
 const tabs = [
-  { name: 'Kuchyně', href: '#', current: true },
-  { name: 'Vestavěnné skříně', href: '#', current: false },
-  { name: 'Ostatní', href: '#', current: false },
+  { name: 'Kuchyně', href: '#'},
+  { name: 'Vestavěnné skříně', href: '#'},
+  { name: 'Ostatní', href: '#'},
 ]
 
 export default {
@@ -203,18 +203,20 @@ export default {
     },
     setup() {
         const open = ref(false);
-        const activeItem = 0;
+        const activeItem = ref(0);
+        function selectItem(i) {
+            activeItem.value = i;
+            console.log('item' . activeItem);
+            console.log('index : ' . i);
+        }
+        console.log('item' . activeItem);
         return{
             galeries,
             open,
             tabs,
             activeItem,
+            selectItem,
         }
     },
-    methods: {
-        selectItem(i) {
-            this.activeItem = i;
-        },
-    }
 }
 </script>
