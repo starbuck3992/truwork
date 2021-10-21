@@ -1,6 +1,6 @@
 <template>
-    <div v-show="show">
-        <img width="2560" height="1440" src="https://c.tenor.com/VOdWjm2zbEAAAAAS/gandalf-sax-guy.gif" alt="">
+    <div class="fixed z-10 inset-0 overflow-y-auto w-1/2 justify-center" v-show="show">
+        <img class="object-cover w-full h-full" src="https://c.tenor.com/hqDDsmQQ_6gAAAAC/coffin-dance-moves.gif" alt="">
     </div>
 </template>
 

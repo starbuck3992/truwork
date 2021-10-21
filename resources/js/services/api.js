@@ -6,11 +6,21 @@ export const api = axios.create({
     withCredentials: true,
 });
 
+api.interceptors.request.use( (config)=> {
+    store.dispatch('loading', true)
+    return config;
+}, function (error){
+    store.dispatch('loading', false)
+    return Promise.reject(error);
+});
+
 api.interceptors.response.use(
     (response) => {
+        store.dispatch('loading', false)
         return response;
     },
     function (error) {
+        store.dispatch('loading', false)
         if (
             [401, 403, 419].includes(error.response.status) &&
             store.getters['loggedIn']

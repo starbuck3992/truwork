@@ -22,6 +22,8 @@
                                                class="flex-1 block w-full focus:ring-indigo-500 focus:border-indigo-500 min-w-0 rounded-md sm:text-sm border-gray-300"
                                                required/>
                                     </div>
+                                    <div class="mt-1 text-sm text-red-600" v-if="form.errors.has('title')"
+                                         v-text="form.errors.get('title')"></div>
                                 </div>
                             </div>
                             <div
@@ -37,6 +39,8 @@
                                             <option value="3">Pergoly</option>
                                             <option value="4">Ostatní</option>
                                         </select>
+                                        <div class="mt-1 text-sm text-red-600" v-if="form.errors.has('category')"
+                                             v-text="form.errors.get('category')"></div>
                                     </div>
                                 </div>
                             </div>
@@ -60,14 +64,15 @@
                                                        class="relative cursor-pointer rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                                     <span>Nahrát soubor</span>
                                                     <input @change="showThumbnail" id="thumbnail" name="thumbnail"
-                                                           type="file" class="sr-only" accept="image/png, image/jpeg"
-                                                           required/>
+                                                           type="file" class="sr-only" accept="image/png, image/jpeg"/>
                                                 </label>
                                                 <p class="pl-1">Může se sem i přetáhnout</p>
                                             </div>
                                             <p class="text-xs text-gray-500">Pouze formát: PNG, JPG</p>
                                         </div>
                                     </div>
+                                    <div class="mt-1 text-sm text-red-600" v-if="form.errors.has('thumbnail')"
+                                         v-text="form.errors.get('thumbnail')"></div>
                                     <div v-if="thumbnailPreview">
                                         <img :src="thumbnailPreview" class="preview" style="width:600px;" alt=""/>
                                     </div>
@@ -93,8 +98,7 @@
                                                        class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                                     <span>Nahrát soubor</span>
                                                     <input @change="showImages" id="images" name="images" type="file"
-                                                           multiple accept="image/png, image/jpeg" class="sr-only"
-                                                           required/>
+                                                           multiple accept="image/png, image/jpeg" class="sr-only"/>
                                                 </label>
                                                 <p class="pl-1">Může se sem i přetáhnout</p>
                                             </div>
@@ -118,11 +122,11 @@
                 </div>
                 <div class="pt-5">
                     <div class="flex justify-end">
-                        <button @click="cancel" type="button"
+                        <button :disabled="loading" @click="cancel" type="button"
                                 class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Zrušit
                         </button>
-                        <button type="submit"
+                        <button :disabled="loading" type="submit"
                                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Uložit
                         </button>
@@ -135,16 +139,21 @@
 
 
 <script>
-import {reactive, ref} from 'vue'
+import {useStore} from "vuex";
+import {computed, reactive, ref} from 'vue'
 import {XIcon} from '@heroicons/vue/outline'
 import api from '../../../services/api';
 import Form from "../../../utilities/form"
+import Loading from "../../Loading";
 
 export default {
     components: {
+        Loading,
       XIcon,
     },
     setup() {
+        const store = useStore()
+        const loading = computed(() => store.getters["loading"])
         const createForm = ref()
         const thumbnailPreview = ref(null)
         const imagesPreview = ref([])
@@ -163,7 +172,7 @@ export default {
         }
 
         function showImages(e) {
-            let selectedFiles = e.target.files || e.dataTransfer.files; 
+            let selectedFiles = e.target.files || e.dataTransfer.files;
             for (let i = 0; i < selectedFiles.length; i++) {
                 let img = {
                     src: URL.createObjectURL(selectedFiles[i]),
@@ -181,16 +190,16 @@ export default {
             imagesPreview.value = []
         }
 
-        async function submit() {
-            await api.postGallery(form.objectToFormData())
+        function submit() {
+            api.postGallery(form.objectToFormData())
                 .then(() => {
                     form.onSuccess()
                     createForm.value.reset()
                     thumbnailPreview.value = null
                     imagesPreview.value = []
                 }).catch(error => {
-                    console.log(error)
-                })
+                form.onFail(error.response.data.errors)
+            })
         }
 
         //Drag AND Drop
@@ -223,6 +232,7 @@ export default {
         }
 
         return {
+            loading,
             form,
             createForm,
             thumbnailPreview,

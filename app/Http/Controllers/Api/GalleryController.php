@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GalleryStoreRequest;
 use App\Http\Resources\AdminGalleryResource;
 use App\Models\Gallery;
 use App\Models\Image;
@@ -18,10 +19,12 @@ class GalleryController extends Controller
         return AdminGalleryResource::collection(Gallery::with('user', 'category')->orderBy('created_at', 'DESC')->get());
     }
 
-    public function store(Request $request)
+    public function store(GalleryStoreRequest $request)
     {
 
-        $user = Auth::id();
+//        $user = Auth::id();
+        $user = 1;
+
         $slug = Str::slug($request->title);
 
         $gallery = new Gallery([
