@@ -57,7 +57,7 @@
                                             </svg>
                                             <div class="flex text-sm text-gray-600">
                                                 <label for="thumbnail"
-                                                       class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                                       class="relative cursor-pointer rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                                     <span>Nahrát soubor</span>
                                                     <input @change="showThumbnail" id="thumbnail" name="thumbnail"
                                                            type="file" class="sr-only" accept="image/png, image/jpeg"
@@ -80,7 +80,7 @@
                                     obrázky</label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <div
-                                        class="max-w-lg flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                        class="max-w-lg flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md" @dragover="dragover" @dragleave="dragleave" @drop="drop">
                                         <div class="space-y-1 text-center">
                                             <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor"
                                                  fill="none" viewBox="0 0 48 48" aria-hidden="true">
@@ -101,11 +101,18 @@
                                             <p class="text-xs text-gray-500">Pouze formát: PNG, JPG</p>
                                         </div>
                                     </div>
-                                    <div v-for="(image, key) in imagesPreview" :key="key">
-                                        <img :src="image.src" class="preview" style="width:600px;" alt=""/>
-                                    </div>
                                 </div>
                             </div>
+                            <ul role="list" class="grid grid-cols-5 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-10 xl:gap-x-8 mt-5">
+                                <li v-for="(image, key) in imagesPreview" :key="key" @click="remove(key)" class="relative">
+                                    <div class="relative group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
+                                        <img :src="image.src" alt="" class="object-cover pointer-events-none group-hover:opacity-75" />
+                                        <XIcon class="absolute inset-0 visible w-full z-10 cursor-pointer text-gray-900 opacity-0 group-hover:opacity-100"></XIcon>
+                                    </div>
+                                    <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">{{ image.file.name }}</p>
+                                    <p class="block text-sm font-medium text-gray-500 pointer-events-none">{{ parseFloat(image.file.size/1024/1024).toFixed(2) }} MB</p>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -129,10 +136,14 @@
 
 <script>
 import {reactive, ref} from 'vue'
+import {XIcon} from '@heroicons/vue/outline'
 import api from '../../../services/api';
 import Form from "../../../utilities/form"
 
 export default {
+    components: {
+      XIcon,
+    },
     setup() {
         const createForm = ref()
         const thumbnailPreview = ref(null)
@@ -152,7 +163,7 @@ export default {
         }
 
         function showImages(e) {
-            let selectedFiles = e.target.files;
+            let selectedFiles = e.target.files || e.dataTransfer.files; 
             for (let i = 0; i < selectedFiles.length; i++) {
                 let img = {
                     src: URL.createObjectURL(selectedFiles[i]),
@@ -182,6 +193,35 @@ export default {
                 })
         }
 
+        //Drag AND Drop
+        function remove(i) {
+            form.images.splice(i, 1);
+            imagesPreview.value.splice(i, 1)
+        }
+
+
+        function dragover(event) {
+            event.preventDefault();
+            // Když na to najede
+            if (!event.currentTarget.classList.contains('bg-green-300')) {
+                event.currentTarget.classList.remove('bg-white');
+                event.currentTarget.classList.add('bg-green-300');
+            }
+        }
+
+        function dragleave(event) {
+            // Když z toho vyjede
+            event.currentTarget.classList.add('bg-white');
+            event.currentTarget.classList.remove('bg-green-300');
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            showImages(event);
+            event.currentTarget.classList.add('bg-white');
+            event.currentTarget.classList.remove('bg-green-300');
+        }
+
         return {
             form,
             createForm,
@@ -190,7 +230,12 @@ export default {
             showThumbnail,
             showImages,
             cancel,
-            submit
+            submit,
+            drop,
+            dragleave,
+            dragover,
+            remove,
+            XIcon
         }
     }
 }
