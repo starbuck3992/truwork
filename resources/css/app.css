@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 /* For slider */
+html{
+    scroll-behavior: smooth;
+}
 .height-slide{
     max-height: 100%;
 }

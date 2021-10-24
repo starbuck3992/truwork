@@ -6,7 +6,7 @@ window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 import router from './router';
-import store from './store'
+import store from './store';
 import Vue3TouchEvents from "vue3-touch-events";
 
 const app = Vue.createApp({

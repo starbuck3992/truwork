@@ -115,7 +115,7 @@
                     Kuchyně, vestavěné skříně, nábytek na míru, a mnoho dalšího.
                 </p>
                 <div class="mt-10 mx-5 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
-                    <a href="#" class="flex items-center justify-center px-2 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-white hover:bg-indigo-50 sm:px-8">
+                    <a href="#contact-as" class="flex items-center justify-center px-2 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-white hover:bg-indigo-50 sm:px-8">
                       Kontaktujte nás
                     </a>
                 </div>
@@ -167,7 +167,7 @@ const solutions = [
 const navigation = [
   { name: 'O nás', href: '#' },
   { name: 'Reference', href: '#' },
-  { name: 'Kde nás najdete?', href: '#' },
+  { name: 'Kde nás najdete?', href: '#contact-as' },
 ]
 
 export default {

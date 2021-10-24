@@ -1,6 +1,6 @@
 <template>
   <div class="relative bg-white pt-10 pb-32 overflow-hidden">
-    <div class="relative">
+    <div id="mykitchens" class="relative opacity-0 transform scale-0 transition duration-4000">
       <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
         <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
           <div>
@@ -31,7 +31,7 @@
         </div>
       </div>
     </div>
-    <div class="mt-24">
+    <div id="mycabinets" class="opacity-0 transition-all duration-4000 mt-24">
       <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
         <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-32 lg:max-w-none lg:mx-0 lg:px-0 lg:col-start-2">
           <div>
@@ -57,12 +57,18 @@
         </div>
         <div class="mt-12 sm:mt-16 lg:mt-0 lg:col-start-1">
           <div class="pr-4 -ml-48 sm:pr-6 md:-ml-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
+            <!-- <div class="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
+              <img src="https://cdn.pixabay.com/photo/2019/02/07/17/31/wardrobe-3981732_960_720.jpg" alt="Vestav skříň" class="bg-gray-100 rounded-lg" />
+              <img src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-02.jpg" alt="Vestav skříň" class="bg-gray-100 rounded-lg" />
+              <img src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-03.jpg" alt="Vestav skříň" class="bg-gray-100 rounded-lg" />
+              <img src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-04.jpg" alt="Vestav skříň" class="bg-gray-100 rounded-lg"/>
+            </div> -->
             <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none" src="https://cdn.pixabay.com/photo/2017/07/09/03/19/home-2486092_960_720.jpg" alt="Customer profile user interface" />
           </div>
         </div>
       </div>
     </div>
-    <div class="relative mt-24">
+    <div id="mycommercial" class="opacity-0 transition-all duration-4000 relative mt-24">
       <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
         <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
           <div>
@@ -93,12 +99,12 @@
         </div>
       </div>
     </div>
-    <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 mt-5">
+    <div id="myform" class="opacity-0 transition-all duration-4000 max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 mt-5">
       <div class="relative bg-white shadow-xl">
         <h2 class="sr-only">Kontaktní informace</h2>
 
         <div class="grid grid-cols-1 lg:grid-cols-3">
-          <!-- Contact information -->
+          <!-- Contact information :class="[form ? 'transition-opacity' : 'opacity-0', 'max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 mt-5']-->
           <div class="relative overflow-hidden py-10 px-6 bg-indigo-700 sm:px-10 xl:p-12">
             <div class="absolute inset-0 pointer-events-none sm:hidden" aria-hidden="true">
               <svg class="absolute inset-0 w-full h-full" width="343" height="388" viewBox="0 0 343 388" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -228,6 +234,49 @@
 
 <script>
 import { InboxIcon, SparklesIcon, MailIcon, PhoneIcon, LibraryIcon } from '@heroicons/vue/outline'
+var form =  false;
+// moje
+document.addEventListener("DOMContentLoaded", function(event) { 
+
+  function isInViewport(el) {
+    var top = el.offsetTop;
+    var left = el.offsetLeft;
+    var width = el.offsetWidth;
+    var height = el.offsetHeight;
+
+    while(el.offsetParent) {
+      el = el.offsetParent;
+      top += el.offsetTop;
+      left += el.offsetLeft;
+    }
+
+    return (
+      top < (window.pageYOffset + window.innerHeight) &&
+      left < (window.pageXOffset + window.innerWidth) &&
+      (top + height) > window.pageYOffset &&
+      (left + width) > window.pageXOffset
+    );
+  }
+
+  // Získání elementu
+  const contactForm = document.querySelector('#myform');
+  const commercial  = document.querySelector('#mycommercial');
+  const cabinets  = document.querySelector('#mycabinets');
+  const kitchens = document.querySelector('#mykitchens');
+  const elemets = [contactForm,commercial,cabinets,kitchens];
+
+  document.addEventListener('scroll', function () {
+    for (let index = 0; index < elemets.length; ++index) {
+      if (isInViewport(elemets[index])){
+        elemets[index].classList.remove('opacity-0');
+        elemets[index].classList.add('opacity-1');     
+        elemets[index].classList.remove('scale-0');
+        elemets[index].classList.add('scale-100'); 
+      }
+    }
+  });
+
+});
 
 export default {
   components: {
@@ -236,6 +285,10 @@ export default {
     MailIcon,
     PhoneIcon,
     LibraryIcon,
+  },
+  setup() {
+    return{
+    }
   },
 }
 </script>
