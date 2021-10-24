@@ -235,48 +235,6 @@
 <script>
 import { InboxIcon, SparklesIcon, MailIcon, PhoneIcon, LibraryIcon } from '@heroicons/vue/outline'
 var form =  false;
-// moje
-document.addEventListener("DOMContentLoaded", function(event) { 
-
-  function isInViewport(el) {
-    var top = el.offsetTop;
-    var left = el.offsetLeft;
-    var width = el.offsetWidth;
-    var height = el.offsetHeight;
-
-    while(el.offsetParent) {
-      el = el.offsetParent;
-      top += el.offsetTop;
-      left += el.offsetLeft;
-    }
-
-    return (
-      top < (window.pageYOffset + window.innerHeight) &&
-      left < (window.pageXOffset + window.innerWidth) &&
-      (top + height) > window.pageYOffset &&
-      (left + width) > window.pageXOffset
-    );
-  }
-
-  // Získání elementu
-  const contactForm = document.querySelector('#myform');
-  const commercial  = document.querySelector('#mycommercial');
-  const cabinets  = document.querySelector('#mycabinets');
-  const kitchens = document.querySelector('#mykitchens');
-  const elemets = [contactForm,commercial,cabinets,kitchens];
-
-  document.addEventListener('scroll', function () {
-    for (let index = 0; index < elemets.length; ++index) {
-      if (isInViewport(elemets[index])){
-        elemets[index].classList.remove('opacity-0');
-        elemets[index].classList.add('opacity-1');     
-        elemets[index].classList.remove('scale-0');
-        elemets[index].classList.add('scale-100'); 
-      }
-    }
-  });
-
-});
 
 export default {
   components: {
@@ -290,5 +248,44 @@ export default {
     return{
     }
   },
+  mounted() {
+    function isInViewport(el) {
+      var top = el.offsetTop;
+      var left = el.offsetLeft;
+      var width = el.offsetWidth;
+      var height = el.offsetHeight;
+
+      while(el.offsetParent) {
+        el = el.offsetParent;
+        top += el.offsetTop;
+        left += el.offsetLeft;
+      }
+
+      return (
+        top < (window.pageYOffset + window.innerHeight) &&
+        left < (window.pageXOffset + window.innerWidth) &&
+        (top + height) > window.pageYOffset &&
+        (left + width) > window.pageXOffset
+      );
+    }
+
+    // Získání elementu
+    const contactForm = document.querySelector('#myform');
+    const commercial  = document.querySelector('#mycommercial');
+    const cabinets  = document.querySelector('#mycabinets');
+    const kitchens = document.querySelector('#mykitchens');
+    const elemets = [contactForm,commercial,cabinets,kitchens];
+
+    document.addEventListener('scroll', function () {
+      for (let index = 0; index < elemets.length; ++index) {
+        if (isInViewport(elemets[index])){
+          elemets[index].classList.remove('opacity-0');
+          elemets[index].classList.add('opacity-1');     
+          elemets[index].classList.remove('scale-0');
+          elemets[index].classList.add('scale-100'); 
+        }
+      }
+    });
+  }
 }
 </script>
