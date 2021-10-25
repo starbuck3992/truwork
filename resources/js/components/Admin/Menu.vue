@@ -42,27 +42,32 @@
               <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg" alt="Workflow" />
             </div>
             <nav class="mt-5 flex-1 px-2 bg-white space-y-1">
-              <router-link :to="{ name: 'homeIndex' }" class="bg-gray-100 hover:bg-gray-200 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"><HomeIcon class="h-6 w-6 mr-3"></HomeIcon>Home</router-link>
-              <!-- <router-link :to="{ name: 'adminGalleryIndex' }" class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"><FolderIcon class="h-6 w-6 mr-3"></FolderIcon>Galerie</router-link>-->
-              <Disclosure as="div" class="mt-5 flex-1 bg-white space-y-1" v-slot="{ open }">
-                  <DisclosureButton class="relative w-full">
-                    <a href="#" class="bg-gray-100 hover:bg-gray-200 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+              <router-link @click="selected_item = 1" :to="{ name: 'homeIndex' }" :class="[selected_item == 1 ? 'bg-gray-300' : 'bg-white','hover:bg-gray-200 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md']">
+                <HomeIcon class="h-6 w-6 mr-3"></HomeIcon>Home
+              </router-link>
+              <div class="mt-5 flex-1 bg-white space-y-1">
+                  <div class="relative w-full">
+                    <a href="#" @click="open=!open; selected_item = 2;" :class="[selected_item == 2 ? 'bg-gray-300' : 'bg-white','hover:bg-gray-200 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md']">
                       <FolderIcon class="h-6 w-6 mr-3"></FolderIcon>Galerie
                       <span class="absolute right-3 flex items-center">
                         <PlusSmIcon v-if="!open" class="h-5 w-5" aria-hidden="true" />
                         <MinusSmIcon v-else class="h-5 w-5" aria-hidden="true" />
                       </span>
                     </a>
-                  </DisclosureButton>
-                  <DisclosurePanel class="flex">
+                  </div>
+                  <div v-show="open" class="flex">
                     <div class="space-y-1 w-full">
                       <div class="flex-1 items-end w-full">
-                        <router-link :to="{ name: 'adminGalleryIndex' }" class="ml-5 mb-1 bg-gray-100 hover:bg-gray-200 text-gray-900 group flex items-end px-2 py-2 text-sm font-medium rounded-md"><DocumentTextIcon class="h-6 w-6 mr-3 items-end"></DocumentTextIcon>Seznam</router-link>
-                        <router-link :to="{ name: 'adminGalleryCreate' }" class="ml-5 mb-1 bg-gray-100 hover:bg-gray-200 text-gray-900 group flex items-end px-2 py-2 text-sm font-medium rounded-md"><DocumentAddIcon class="h-6 w-6 mr-3 items-end"></DocumentAddIcon>Vytvořit</router-link>
+                        <router-link :to="{ name: 'adminGalleryIndex' }" class="ml-5 mb-1 hover:bg-gray-200 text-gray-900 group flex items-end px-2 py-2 text-sm font-medium rounded-md">
+                          <DocumentTextIcon class="h-6 w-6 mr-3 items-end"></DocumentTextIcon>Seznam
+                        </router-link>
+                        <router-link :to="{ name: 'adminGalleryCreate' }" class="ml-5 mb-1 hover:bg-gray-200 text-gray-900 group flex items-end px-2 py-2 text-sm font-medium rounded-md">
+                          <DocumentAddIcon class="h-6 w-6 mr-3 items-end"></DocumentAddIcon>Vytvořit
+                        </router-link>
                       </div>
                     </div>
-                  </DisclosurePanel>
-                </Disclosure>
+                  </div>
+                </div>
             </nav>
           </div>
         </div>
@@ -93,7 +98,7 @@
 
 <script>
 import { ref } from 'vue'
-import { Dialog, DialogOverlay, TransitionChild, TransitionRoot, Disclosure,  DisclosureButton,  DisclosurePanel, } from '@headlessui/vue'
+import { Dialog, DialogOverlay, TransitionChild, TransitionRoot} from '@headlessui/vue'
 import {
   FolderIcon,
   HomeIcon,
@@ -110,9 +115,6 @@ export default {
   components: {
     Dialog,
     DialogOverlay,
-    Disclosure,
-    DisclosureButton,
-    DisclosurePanel,
     TransitionChild,
     TransitionRoot,
     MenuIcon,
@@ -126,10 +128,19 @@ export default {
   },
   setup() {
     const sidebarOpen = ref(false);
-
+    const open = ref(true);
+    const selected_item = 2;
     return {
       sidebarOpen,
+      open,
+      selected_item,
     }
   },
 }
 </script>
+<style scoped>
+  .router-link-active{
+    --tw-bg-opacity: 1;
+    background-color: rgba(209, 213, 219, var(--tw-bg-opacity));
+  }
+</style>

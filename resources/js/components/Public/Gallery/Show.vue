@@ -167,7 +167,6 @@ export default {
 
         function onSwipeItem() {
 		return function (direction, mouseEvent) {
-			console.log(direction);
                 if ( direction === "left" || direction === "top" ){
                     next();
                 }

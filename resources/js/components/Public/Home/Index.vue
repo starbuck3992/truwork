@@ -1,6 +1,6 @@
 <template>
   <div class="relative bg-white pt-10 pb-32 overflow-hidden">
-    <div id="mykitchens" class="relative opacity-0 transform scale-0 transition duration-4000">
+    <div id="mykitchens" class="relative opacity-0 transition duration-4000">
       <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
         <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
           <div>
@@ -234,7 +234,6 @@
 
 <script>
 import { InboxIcon, SparklesIcon, MailIcon, PhoneIcon, LibraryIcon } from '@heroicons/vue/outline'
-var form =  false;
 
 export default {
   components: {
@@ -281,8 +280,8 @@ export default {
         if (isInViewport(elemets[index])){
           elemets[index].classList.remove('opacity-0');
           elemets[index].classList.add('opacity-1');     
-          elemets[index].classList.remove('scale-0');
-          elemets[index].classList.add('scale-100'); 
+          //elemets[index].classList.remove('scale-0');
+          //elemets[index].classList.add('scale-100'); 
         }
       }
     });

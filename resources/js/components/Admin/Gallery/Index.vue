@@ -206,10 +206,7 @@ export default {
         const activeItem = ref(0);
         function selectItem(i) {
             activeItem.value = i;
-            console.log('item' . activeItem);
-            console.log('index : ' . i);
         }
-        console.log('item' . activeItem);
         return{
             galeries,
             open,
