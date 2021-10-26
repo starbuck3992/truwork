@@ -46,5 +46,8 @@ export default {
         return api.post("/api/admin/galleries",payload, {
             headers: {'Content-Type': 'multipart/form-data'}
         });
+    },
+    contact(payload){
+        return api.post("/api/contact",payload);
     }
 };

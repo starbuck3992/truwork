@@ -140,10 +140,10 @@
 
 <script>
 import {useStore} from "vuex";
-import {computed, reactive, ref} from 'vue'
-import {XIcon} from '@heroicons/vue/outline'
+import {computed, reactive, ref} from 'vue';
+import {XIcon} from '@heroicons/vue/outline';
 import api from '../../../services/api';
-import Form from "../../../utilities/form"
+import Form from "../../../utilities/form";
 import Loading from "../../Loading";
 
 export default {

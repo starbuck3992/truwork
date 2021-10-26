@@ -1,8 +1,6 @@
 <template>
   <div class="min-h-full w-full bg-white">
     <header>
-        <router-link :to="{name: 'show'}">Chat</router-link>
-        <router-link :to="{name: 'homeIndex'}">Home</router-link>
       <Popover class="relative bg-white">
         <div class="flex justify-between items-center max-w-7xl mx-auto py-6 md:justify-start">
           <div class="flex justify-start lg:w-0 lg:flex-1">
@@ -67,7 +65,7 @@
               <div class="pt-5 pb-6">
                 <div class="flex items-center justify-between">
                   <div>
-                    <img class="h-8 w-auto m-5" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow" />
+                    <img class="h-8 w-auto m-5" src="storage/images/logo.png" alt="Workflow" />
                   </div>
                   <div class="-mr-2">
                     <PopoverButton class="bg-white rounded-md m-5 p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">

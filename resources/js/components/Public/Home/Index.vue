@@ -186,23 +186,23 @@
 
             <!-- Contact form -->
             <div class="py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12">
-              <form action="#" method="POST" class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+              <form @submit.prevent="submit" class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                 <div>
                   <label for="first-name" class="block text-sm font-medium text-gray-900">Jméno</label>
                   <div class="mt-1">
-                    <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" />
+                    <input v-model="form.name" type="text" name="first-name" id="first-name" autocomplete="given-name" class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" />
                   </div>
                 </div>
                 <div>
                   <label for="last-name" class="block text-sm font-medium text-gray-900">Příjmení</label>
                   <div class="mt-1">
-                    <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" />
+                    <input v-model="form.surname" type="text" name="last-name" id="last-name" autocomplete="family-name" class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" />
                   </div>
                 </div>
                 <div>
                   <label for="email" class="block text-sm font-medium text-gray-900">Email</label>
                   <div class="mt-1">
-                    <input id="email" name="email" type="email" autocomplete="email" class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" />
+                    <input v-model="form.email" id="email" name="email" type="email" autocomplete="email" class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" />
                   </div>
                 </div>
                 <div>
@@ -210,13 +210,13 @@
                     <label for="phone" class="block text-sm font-medium text-gray-900">Telefoní číslo</label>
                   </div>
                   <div class="mt-1">
-                    <input type="text" name="phone" id="phone" autocomplete="tel" class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" aria-describedby="phone-optional" />
+                    <input v-model="form.phone" type="text" name="phone" id="phone" autocomplete="tel" class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" aria-describedby="phone-optional" />
                   </div>
                 </div>
                 <div class="sm:col-span-2">
                   <label for="subject" class="block text-sm font-medium text-gray-900">Předmět</label>
                   <div class="mt-1">
-                    <input type="text" name="subject" id="subject" class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" />
+                    <input v-model="form.subject" type="text" name="subject" id="subject" class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" />
                   </div>
                 </div>
                 <div class="sm:col-span-2">
@@ -225,7 +225,7 @@
                     <span id="message-max" class="text-sm text-gray-500">Max. 500 characters</span>
                   </div>
                   <div class="mt-1">
-                    <textarea id="message" name="message" rows="4" class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border border-gray-300 rounded-md" aria-describedby="message-max" />
+                    <textarea v-model="form.content" id="message" name="message" rows="4" class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border border-gray-300 rounded-md" aria-describedby="message-max" />
                   </div>
                 </div>
                 <div class="sm:col-span-2 sm:flex sm:justify-end">
@@ -243,7 +243,10 @@
 </template>
 
 <script>
-import { InboxIcon, SparklesIcon, MailIcon, PhoneIcon, LibraryIcon } from '@heroicons/vue/outline'
+import { InboxIcon, SparklesIcon, MailIcon, PhoneIcon, LibraryIcon } from '@heroicons/vue/outline';
+import api from '../../../services/api';
+import Form from "../../../utilities/form";
+import {reactive} from 'vue'
 
 export default {
   components: {
@@ -254,7 +257,26 @@ export default {
     LibraryIcon,
   },
   setup() {
+    const form = reactive(new Form({
+            name: null,
+            surname: null,
+            email: null,
+            phone: null,
+            subject: null,
+            content: null,
+        }))
+
+    function submit() {
+            api.contact(form.objectToFormData())
+                .then(() => {
+                    form.onSuccess()
+                }).catch(error => {
+                form.onFail(error.response.data.errors)
+            })
+        }
     return{
+      submit,
+      form,
     }
   },
   mounted() {
