@@ -78,10 +78,10 @@
                                     <div class="text-sm text-gray-900">{{ gallery.date }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold bg-red-300 text-red-900 mr-3">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold bg-red-300 text-red-900 mr-3 rounded transform hover:scale-110">
                                     <a @click="open=true" href="#"> Smazat </a>
                                 </span>
-                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Editovat</a>
+                                    <a href="#" class="px-2 inline-flex text-xs leading-5 font-semibold bg-gray-300 text-gray-900 mr-3 rounded transform hover:scale-110">Editovat</a>
                                 </td>
                             </tr>
                             </tbody>

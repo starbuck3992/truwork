@@ -219,7 +219,6 @@ export default {
         //Drag AND Drop
         function remove(i) {
             if (i === 'thumb'){
-                form.thumbnail = "";
                 thumbnailPreview.value = "";
             }
             else

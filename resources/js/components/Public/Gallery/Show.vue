@@ -1,8 +1,8 @@
 <template>
     <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 mt-5">
         <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
-            <li v-for="(file, index) in files" :key="file.source" class="relative">
-                <div @click="openSlider(file.source,index)"
+            <li v-for="(file, i) in files" :key="i" class="relative">
+                <div @click="openSlider(i)"
                      class="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
                     <img :src="file.source" alt="" class="object-cover pointer-events-none group-hover:opacity-75"/>
                     <button type="button" class="absolute inset-0 focus:outline-none">
@@ -46,8 +46,10 @@
                         <ChevronLeftIcon @click="prev()" class="hidden sm:block absolute left-10 top-1/2 bg-white sm:w-10 sm:h-10 h-3 w-3 z-10"></ChevronLeftIcon>
                         <ChevronRightIcon @click="next()" class="hidden sm:block absolute right-10 top-1/2 bg-white sm:w-10 sm:h-10 h-3 w-3 z-10"></ChevronRightIcon>
                         <div v-touch:swipe="onSwipeItem()" class="m-auto height-slide w-full flex justify-center inline-block align-middle">
-                            <img class="active h-auto w-auto object-cpver inline-block align-middle" :src="showImage"
-                                 alt="People working on laptops">
+                            <img v-for="(file, i) in files" :key="i" 
+                                :class="[i==index ? 'opacity-1' : 'absolute -left-full -right-full opacity-0' ,'transition duration-3000 active h-auto w-auto object-cover align-middle']" 
+                                :src="file.source" 
+                                alt="Carousel image"/>
                         </div>
                     </div>
                 </TransitionChild>
@@ -137,14 +139,12 @@ export default {
     },
     setup() {
         const open = ref(false);
-        const showImage = ref(null);
         const index = ref(null);
         const image = ref(null);
 
-        function openSlider(image, key, event) {
+        function openSlider(i, event) {
             open.value = true;
-            showImage.value = image;
-            index.value = key;
+            index.value = i;
         }
 
         function next(){
@@ -153,7 +153,6 @@ export default {
             if ( lastIndex < index.value ){
                 index.value = 0;
             }
-            showImage.value = files[index.value].source;
         }
 
         function prev(){
@@ -162,7 +161,6 @@ export default {
             if ( 0 > index.value ){
                 index.value = lastIndex;
             }
-            showImage.value = files[index.value].source;
         }
 
         function onSwipeItem() {
@@ -180,11 +178,11 @@ export default {
             image,
             open,
             files,
-            showImage,
             openSlider,
             next,
             prev,
             onSwipeItem,
+            index,
         }
     }
 }

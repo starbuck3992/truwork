@@ -8,7 +8,7 @@
           <div class="flex justify-start lg:w-0 lg:flex-1">
             <a href="#">
               <span class="sr-only">Workflow</span>
-              <img class="h-8 w-auto sm:h-10 m-5" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="" />
+              <img class="h-8 w-auto sm:h-10 m-5" src="storage/images/logo.png" alt="" />
             </a>
           </div>
           <div class="-mr-2 -my-2 md:hidden">
@@ -165,7 +165,7 @@ const solutions = [
   },
 ]
 const navigation = [
-  { name: 'O nás', href: '#' },
+  { name: 'O nás', href: '#about-us' },
   { name: 'Reference', href: '#' },
   { name: 'Kde nás najdete?', href: '#contact-as' },
 ]
