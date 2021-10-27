@@ -19,7 +19,7 @@
 
     <!-- SLIDER -->
     <TransitionRoot as="template" :show="open">
-        <Dialog as="div" class="fixed z-10 inset-0 overflow-y-auto" @close="open = false">
+        <Dialog as="div" class="fixed z-100 inset-0 overflow-y-auto" @close="open = false">
             <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                 <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0"
                                  enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100"
@@ -29,7 +29,7 @@
 
                 <!-- This element is to trick the browser into centering the modal contents. -->
                 <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-                <div class="hidden sm:block absolute w-10 h-10 top-5 right-10 pt-4 pr-4 z-10">
+                <div class="hidden sm:block absolute w-10 h-10 top-5 right-10 pt-4 pr-4 z-100">
                             <button type="button"
                                     class="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                     @click="open = false">
@@ -43,8 +43,8 @@
                                  leave-from="opacity-100 translate-y-0 sm:scale-100"
                                  leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                     <div class="inline-block align-middle overflow-hidden transform transition-all m-auto w-full max-h-screen pointer-events: none;">
-                        <ChevronLeftIcon @click="prev()" class="hidden sm:block absolute left-10 top-1/2 bg-white sm:w-10 sm:h-10 h-3 w-3 z-10"></ChevronLeftIcon>
-                        <ChevronRightIcon @click="next()" class="hidden sm:block absolute right-10 top-1/2 bg-white sm:w-10 sm:h-10 h-3 w-3 z-10"></ChevronRightIcon>
+                        <ChevronLeftIcon @click="prev()" class="hidden sm:block absolute left-10 top-1/2 bg-white sm:w-10 sm:h-10 h-3 w-3 z-100"></ChevronLeftIcon>
+                        <ChevronRightIcon @click="next()" class="hidden sm:block absolute right-10 top-1/2 bg-white sm:w-10 sm:h-10 h-3 w-3 z-100"></ChevronRightIcon>
                         <div v-touch:swipe="onSwipeItem()" class="m-auto height-slide w-full flex justify-center inline-block align-middle">
                             <img v-for="(file, i) in files" :key="i" 
                                 :class="[i==index ? 'opacity-1' : 'absolute -left-full -right-full opacity-0' ,'transition duration-3000 active h-auto w-auto object-cover align-middle']" 
