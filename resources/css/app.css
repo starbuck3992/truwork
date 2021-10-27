@@ -9,3 +9,9 @@ html{
 .height-slide{
     max-height: 100%;
 }
+.bg-mycolor{
+    background-color: #f8f4ee;
+}
+#navbar{
+    border-bottom: #c99e68 2px solid;
+}

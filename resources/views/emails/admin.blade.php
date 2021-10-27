@@ -1,18 +1,17 @@
-<div>
-    <h2>Registrace do turnaje : {{ $mail_data['name'] }}</h2>
-</div>
-
-<style>
-    div {
-        margin-left: 20px;
-    }
-
-    .container {
-        width: 80%;
-        margin: auto;
-    }
-
-    h5 span {
-        margin-left: 10px;
-    }
-</style>
+<html>
+    <head>
+        <title>Zpráva od uživatele</title>
+    </head>
+    <body>
+        <div>
+            <p>Jméno : {{ $mail_data['name'] }}</p>
+            <p>Přijmění : {{ $mail_data['surname'] }}</p>
+            <p>Telefon : {{ $mail_data['phone'] }}</p>
+            <p>Email : {{ $mail_data['email'] }}</p>
+            <p>Obsah zprávy:</p>
+            <div>
+                {{ $mail_data['content'] }}
+            </div>
+        </div>
+    </body>
+</html>

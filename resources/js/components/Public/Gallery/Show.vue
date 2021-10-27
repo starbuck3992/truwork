@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 mt-5">
+    <div class="bg-mycolor max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 mt-5">
         <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
             <li v-for="(file, i) in files" :key="i" class="relative">
                 <div @click="openSlider(i)"
