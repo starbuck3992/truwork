@@ -160,8 +160,11 @@ class GalleryController extends Controller
 
     }
 
-    public function destroy($slug)
+    public function destroy($id)
     {
+
+
+
         Gallery::where('slug', $slug)->first()->delete();
     }
 }
