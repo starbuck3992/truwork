@@ -12,6 +12,26 @@ html{
 .bg-mycolor{
     background-color: #f8f4ee;
 }
+
+/* Only for navbar */
 #navbar{
     border-bottom: #c99e68 2px solid;
+}
+
+
+/* Loading Spinner */
+.loader {
+    position: fixed;
+    z-index: 100 !important;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 120px;
+    height: 120px;
+    margin: -76px 0 0 -76px;
+    /*border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db; */
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
 }

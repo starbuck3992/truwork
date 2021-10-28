@@ -1,7 +1,7 @@
 <template>
-    <div class="fixed z-10 inset-0 overflow-y-auto w-1/2 justify-center" v-show="show">
-        <img class="object-cover w-full h-full" src="https://c.tenor.com/hqDDsmQQ_6gAAAAC/coffin-dance-moves.gif" alt="">
+    <div class="fixed w-screen h-screen bg-gray-300 z-75 top-0 opacity-70" v-show="show">
     </div>
+    <div class="loader" v-show="show"><img src="https://icon-library.com/images/carpentry-icon/carpentry-icon-15.jpg" alt=""/></div>
 </template>
 
 <script>

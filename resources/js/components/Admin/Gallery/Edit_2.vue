@@ -183,17 +183,15 @@ export default {
             thumbnail: null,
             images: [],
             originalImagesIds: []
-        }))
+        }));
 
-        let originalData = {
-            title: null,
-            category: null,
-            thumbnail: null,
-            images: []
-        }
+        onMounted(() =>{
+            callApi();        
+        })
+        
 
-        onMounted(async () => {
-                await api.getAdminGallery(galleryId).then(response => {
+        async function callApi(){
+            await api.getAdminGallery(galleryId).then(response => {
                         form.title = response.data.title
                         form.category = response.data.category.id
                         form.originalImagesIds = response.data.images.reduce(function (filtered, item) {
@@ -202,9 +200,6 @@ export default {
                             }
                             return filtered;
                         },[]);
-
-
-
 
 
                         thumbnailPreview.value =
@@ -216,23 +211,9 @@ export default {
                             response.data.images.filter(obj => {
                                 return obj.thumbnail === 0
                             })
-
-                        originalData.thumbnail =
-                            response.data.images.filter(obj => {
-                                return obj.thumbnail === 1
-                            })[0].path
-
-                        originalData.images =
-                            response.data.images.filter(obj => {
-                                return obj.thumbnail === 0
-                            })
-
-                        originalData.title = response.data.title
-                        originalData.category = response.data.category
                     }
                 )
-            }
-        )
+        }
 
 
         function showThumbnail(e) {
@@ -265,14 +246,15 @@ export default {
         }
 
         function cancel() {
-            console.log(originalData)
             form.reset()
             createForm.value.reset()
-            form.title = originalData.title
-            form.category = originalData.category.id
-            thumbnailPreview.value = originalData.thumbnail
+            // form.title = originalData.title
+            // form.category = originalData.category.id
+            // thumbnailPreview.value = originalData.thumbnail
+            // imagesPreview.value = originalData.images
 
-            console.log(originalData.images)
+            // console.log(originalData.images)
+            callApi()
         }
 
         function submit() {
