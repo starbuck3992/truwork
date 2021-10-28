@@ -15,6 +15,7 @@ class Gallery extends Model
         'updated_at'
     ];
 
+    protected $with = ['user'];
 
     public function user()
     {
@@ -24,11 +25,6 @@ class Gallery extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
-    }
-
-    public function thumbnail()
-    {
-        return $this->belongsTo(Image::class);
     }
 
     public function images()

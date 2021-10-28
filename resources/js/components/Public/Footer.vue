@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import {defineComponent, h, computed} from 'vue'
+import {computed} from 'vue'
 import {useStore} from 'vuex'
 import Logout from '../Auth/Logout'
 
@@ -41,8 +41,8 @@ export default {
     },
     setup() {
         const store = useStore()
-        const user = computed(() => store.getters["user"])
-        const loggedIn = computed(() => store.getters["loggedIn"])
+        const user = computed(() => store.getters["userModule/user"])
+        const loggedIn = computed(() => store.getters["userModule/loggedIn"])
         return {
             user,
             loggedIn

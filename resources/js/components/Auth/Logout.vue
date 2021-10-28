@@ -10,7 +10,7 @@ export default {
     setup() {
         const store = useStore()
         async function logout(){
-            await store.dispatch('logout')
+            await store.dispatch('userModule/logout')
         }
         return {
             logout
