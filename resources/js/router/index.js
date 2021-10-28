@@ -12,7 +12,7 @@ import Login from '../components/Auth/Login';
 import AdminPage from '../components/Admin/AdminPage';
 import DashboardIndex from '../components/Admin/Dashboard/Index';
 import AdminGalleryIndex from '../components/Admin/Gallery/Index';
-import AdminGalleryEdit from '../components/Admin/Gallery/Edit';
+import AdminGalleryEdit from '../components/Admin/Gallery/Edit_2';
 import AdminGalleryCreate from '../components/Admin/Gallery/Create';
 
 //Routes
