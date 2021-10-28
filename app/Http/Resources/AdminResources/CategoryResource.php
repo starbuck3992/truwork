@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Admin;
+namespace App\Http\Resources\AdminResources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Storage;
 
-class ImageResource extends JsonResource
+class CategoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,10 +16,7 @@ class ImageResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->original_name,
-            'path' => Storage::url($this->path),
-            'thumbnail' => $this->thumbnail,
-            'size' => $this->size
+            'name' => $this->name
         ];
     }
 }

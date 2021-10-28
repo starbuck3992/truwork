@@ -24,5 +24,10 @@ Route::get('/admin/galleries', [GalleryController::class, 'list']);
 Route::get('/admin/galleries/{id}', [GalleryController::class, 'edit']);
 Route::post('/admin/galleries', [GalleryController::class, 'store']);
 Route::post('/admin/galleries/edit/{id}', [GalleryController::class, 'update']);
+Route::delete('/admin/galleries/{id}',[GalleryController::class, 'destroy']);
+
+
+Route::get('/galleries/{category}',[GalleryController::class,'index']);
+Route::get('/galleries/{category}/{slug}',[GalleryController::class,'show']);
 
 Route::post('/contact', [ContactController::class, 'contact']);

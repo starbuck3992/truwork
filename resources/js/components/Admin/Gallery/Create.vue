@@ -110,11 +110,11 @@
                             <ul role="list" class="grid grid-cols-5 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-10 xl:gap-x-8 mt-5">
                                 <li v-for="(image, key) in imagesPreview" :key="key" @click="remove(key)" class="relative">
                                     <div class="relative group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
-                                        <img :src="image.src" alt="" class="object-cover pointer-events-none group-hover:opacity-75" />
+                                        <img :src="image.path" alt="" class="object-cover pointer-events-none group-hover:opacity-75" />
                                         <XIcon class="absolute inset-0 visible w-full z-10 cursor-pointer text-gray-900 opacity-0 group-hover:opacity-100"></XIcon>
                                     </div>
-                                    <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">{{ image.file.name }}</p>
-                                    <p class="block text-sm font-medium text-gray-500 pointer-events-none">{{ parseFloat(image.file.size/1024/1024).toFixed(2) }} MB</p>
+                                    <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">{{ image.name }}</p>
+                                    <p class="block text-sm font-medium text-gray-500 pointer-events-none">{{ parseFloat(image.size/1024/1024).toFixed(2) }} MB</p>
                                 </li>
                             </ul>
                         </div>
@@ -144,20 +144,19 @@ import {computed, reactive, ref} from 'vue';
 import {XIcon} from '@heroicons/vue/outline';
 import api from '../../../services/api';
 import Form from "../../../utilities/form";
-import Loading from "../../Loading";
+import {useRouter} from "vue-router";
 
 export default {
     components: {
-        Loading,
       XIcon,
     },
     setup() {
+        const router = useRouter()
         const store = useStore()
-        const loading = computed(() => store.getters["loading"])
+        const loading = computed(() => store.getters['loadingModule/loading'])
         const createForm = ref()
         const thumbnailPreview = ref(null)
         const imagesPreview = ref([])
-
         const form = reactive(new Form({
             title: null,
             category: null,
@@ -206,13 +205,13 @@ export default {
         }
 
         function submit() {
-            console.log('test')
             api.postGallery(form.objectToFormData())
-                .then(() => {
+                .then(response => {
                     form.onSuccess()
                     createForm.value.reset()
                     thumbnailPreview.value = null
                     imagesPreview.value = []
+                    router.push({ name: 'galleriesShow', params: {slug: response.data.slug} })
                 }).catch(error => {
                 form.onFail(error.response.data.errors)
             })
