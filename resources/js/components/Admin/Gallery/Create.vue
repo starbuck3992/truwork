@@ -126,7 +126,7 @@
                                 class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Zrušit
                         </button>
-                        <button :disabled="loading" type="submit"
+                        <button type="submit"
                                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Uložit
                         </button>
@@ -189,8 +189,9 @@ export default {
             }
             for (let i = 0; i < selectedFiles.length; i++) {
                 let img = {
-                    src: URL.createObjectURL(selectedFiles[i]),
-                    file: selectedFiles[i],
+                    path: URL.createObjectURL(selectedFiles[i]),
+                    name: selectedFiles[i].name,
+                    size: selectedFiles[i].size
                 }
                 imagesPreview.value.push(img)
                 form.images.push(selectedFiles[i])
@@ -205,6 +206,7 @@ export default {
         }
 
         function submit() {
+            console.log('test')
             api.postGallery(form.objectToFormData())
                 .then(() => {
                     form.onSuccess()

@@ -27,13 +27,13 @@ const routes = [
                 component: HomeIndex,
             },
             {
-                path: '/gallery',
-                name: 'gallery',
+                path: '/galleries',
+                name: 'galleriesIndex',
                 component: GalleryIndex
             },
             {
-                path: '/show',
-                name: 'show',
+                path: '/galleries/:slug',
+                name: 'galleriesShow',
                 component: GalleryShow
             }
         ]
@@ -59,17 +59,17 @@ const routes = [
                 component: DashboardIndex,
             },
             {
-                path: 'gallery',
+                path: 'galleries',
                 name: 'adminGalleryIndex',
                 component: AdminGalleryIndex,
             },
             {
-                path: 'gallery/create',
+                path: 'galleries/create',
                 name: 'adminGalleryCreate',
                 component: AdminGalleryCreate,
             },
             {
-                path: 'gallery/edit',
+                path: 'galleries/edit/:id',
                 name: 'adminGalleryEdit',
                 component: AdminGalleryEdit,
             }
@@ -88,9 +88,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
 
-    //store.dispatch('loading', true);
-
-    const loggedIn = store.getters['loggedIn']
+    const loggedIn = store.getters['userModule/loggedIn']
 
     const canNavigate = to.matched.some(() => {
         if (!loggedIn && to.meta.requiresAuth) {
@@ -105,9 +103,5 @@ router.beforeEach((to, from, next) => {
             next();
     }
 })
-
-// router.afterEach(() => {
-//     store.dispatch('loading', false);
-// })
 
 export default router;

@@ -6,26 +6,26 @@ export const api = axios.create({
     withCredentials: true,
 });
 
-api.interceptors.request.use( (config)=> {
-    store.dispatch('loading', true)
+api.interceptors.request.use((config) => {
+    store.dispatch('loadingModule/loading', true)
     return config;
-}, function (error){
-    store.dispatch('loading', false)
+}, function (error) {
+    store.dispatch('loadingModule/loading', false)
     return Promise.reject(error);
 });
 
 api.interceptors.response.use(
     (response) => {
-        store.dispatch('loading', false)
+        store.dispatch('loadingModule/loading', false)
         return response;
     },
     function (error) {
-        store.dispatch('loading', false)
+        store.dispatch('loadingModule/loading', false)
         if (
             [401, 403, 419].includes(error.response.status) &&
-            store.getters['loggedIn']
+            store.getters['userModule/loggedIn']
         ) {
-            store.dispatch('logout')
+            store.dispatch('userModule/logout')
         }
         return Promise.reject(error);
     }
@@ -39,15 +39,23 @@ export default {
     logout() {
         return api.post("/logout");
     },
-    getUser() {
-        return api.get("api/user");
+    getAdminGalleries() {
+        return api.get('/api/admin/galleries')
+    },
+    getAdminGallery(id) {
+        return api.get(`/api/admin/galleries/${id}`)
     },
     postGallery(payload) {
-        return api.post("/api/admin/galleries",payload, {
+        return api.post("/api/admin/galleries", payload, {
             headers: {'Content-Type': 'multipart/form-data'}
         });
     },
-    contact(payload){
-        return api.post("/api/contact",payload);
+    updateGallery(id, payload) {
+        return api.post(`/api/admin/galleries/edit/${id}`, payload, {
+            headers: {'Content-Type': 'multipart/form-data'}
+        });
+    },
+    contact(payload) {
+        return api.post("/api/contact", payload)
     }
 };

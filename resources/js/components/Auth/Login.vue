@@ -69,10 +69,10 @@ export default {
             }))
 
         async function login() {
-            await store.dispatch('login', form.objectToFormData())
+            await store.dispatch('userModule/login', form.objectToFormData())
                 .then(() => {
                     form.onSuccess()
-                    router.push({ name: 'dashboardIndex' })
+                    router.push({ name: 'adminGalleryIndex' })
                 }).catch(error => {
                     form.onFail(error.response.data.errors)
                 });

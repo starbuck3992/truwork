@@ -12,7 +12,7 @@ export default {
     setup() {
         const store = useStore()
         const show = ref(false)
-        const loading = computed(() => store.getters["loading"])
+        const loading = computed(() => store.getters["loadingModule/loading"])
 
         watch(loading, (val) => {
             if (val) {

@@ -59,29 +59,30 @@
                             </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                            <tr v-for="gallery in galeries" :key="gallery.name">
+                            <tr v-for="gallery in galleries" :key="gallery.id">
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 h-30 w-30">
-                                            <img class="h-auto w-36" :src="gallery.image" alt="" />
+                                            <img v-if="gallery.thumbnail[0]" class="h-auto w-36" :src="gallery.thumbnail[0].path" alt="" />
                                         </div>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">{{ gallery.name }}</div>
-                                    <div class="text-sm text-gray-500">{{ gallery.department }}</div>
+                                    <div class="text-sm text-gray-900">{{ gallery.title }}</div>
+                                    <div class="text-sm text-gray-500">{{ gallery.user.name }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{ gallery.role }}
+                                    {{ gallery.category.name }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <div class="text-sm text-gray-900">{{ gallery.date }}</div>
+                                    <div class="text-sm text-gray-900">{{ gallery.created_at }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold bg-red-300 text-red-900 mr-3 rounded transform hover:scale-110">
+                                    <router-link :to="{ name: 'adminGalleryEdit', params: {id: gallery.id } }" class="px-2 inline-flex text-xs leading-5 font-semibold bg-gray-300 text-gray-900 mr-3 rounded transform hover:scale-110">Editovat
+                                    </router-link>
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold bg-red-300 text-red-900 mr-3 rounded transform hover:scale-110">
                                     <a @click="open=true" href="#"> Smazat </a>
                                 </span>
-                                    <a href="#" class="px-2 inline-flex text-xs leading-5 font-semibold bg-gray-300 text-gray-900 mr-3 rounded transform hover:scale-110">Editovat</a>
                                 </td>
                             </tr>
                             </tbody>
@@ -137,55 +138,11 @@
 </template>
 
 <script>
-import {onMounted, ref} from 'vue'
+import {onMounted, reactive, ref} from 'vue'
 import {Dialog, DialogOverlay, TransitionChild, TransitionRoot, DialogTitle, } from '@headlessui/vue'
 import {ExclamationIcon,} from '@heroicons/vue/outline'
 import api from '../../../services/api';
-const galeries = [
-    {
-        name: 'Kuchyň XY',
-        department: 'popisek nemusí bejt',
-        role: 'Admin',
-        image: 'https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg',
-        date: '06.10.2021',
-    },
-    {
-        name: 'Kuchyň XY',
-        department: 'popisek nemusí bejt',
-        role: 'Admin',
-        image: 'https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg',
-        date: '06.10.2021',
-    },
-    {
-        name: 'Kuchyň XY',
-        department: 'popisek nemusí bejt',
-        role: 'Admin',
-        image: 'https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg',
-        date: '06.10.2021',
-    },
-    {
-        name: 'Kuchyň XY',
-        department: 'popisek nemusí bejt',
-        role: 'Admin',
-        image: 'https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg',
-        date: '06.10.2021',
-    },
-    {
-        name: 'Kuchyň XY',
-        department: 'popisek nemusí bejt',
-        role: 'Admin',
-        image: 'https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg',
-        date: '06.10.2021',
-    },
-    {
-        name: 'Kuchyň XY',
-        department: 'popisek nemusí bejt',
-        role: 'Admin',
-        image: 'https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg',
-        date: '06.10.2021',
-    },
 
-]
 const tabs = [
   { name: 'Kuchyně', href: '#'},
   { name: 'Vestavěnné skříně', href: '#'},
@@ -202,13 +159,23 @@ export default {
         DialogTitle,
     },
     setup() {
+        const galleries = ref([]);
         const open = ref(false);
         const activeItem = ref(0);
         function selectItem(i) {
             activeItem.value = i;
         }
+
+        onMounted(async () => {
+                await api.getAdminGalleries().then(response =>
+                    galleries.value = response.data
+                )
+            }
+        )
+
+
         return{
-            galeries,
+            galleries,
             open,
             tabs,
             activeItem,

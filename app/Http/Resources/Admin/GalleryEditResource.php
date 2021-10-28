@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Admin;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Carbon;
 
-class AdminGalleryResource extends JsonResource
+class GalleryEditResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,11 +16,8 @@ class AdminGalleryResource extends JsonResource
     {
         return [
             'title' => $this->title,
-            'slug' => $this->slug,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'user'   => new UserResource($this->whenLoaded('user')),
             'category'   => new CategoryResource($this->whenLoaded('category')),
+            'images' => ImageResource::collection($this->whenLoaded('images')),
         ];
     }
 }

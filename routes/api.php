@@ -21,7 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/admin/galleries', [GalleryController::class, 'list']);
-
+Route::get('/admin/galleries/{id}', [GalleryController::class, 'edit']);
 Route::post('/admin/galleries', [GalleryController::class, 'store']);
+Route::post('/admin/galleries/edit/{id}', [GalleryController::class, 'update']);
 
 Route::post('/contact', [ContactController::class, 'contact']);
