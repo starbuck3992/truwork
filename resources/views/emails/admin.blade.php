@@ -10,7 +10,7 @@
             <p>Email : {{ $mail_data['email'] }}</p>
             <p>Obsah zprávy:</p>
             <div>
-                {{ $mail_data['content'] }}
+                {{ $mail_data['message'] }}
             </div>
         </div>
     </body>

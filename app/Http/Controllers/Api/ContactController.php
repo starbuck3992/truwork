@@ -17,7 +17,8 @@ class ContactController extends Controller
             'email'   => $request->email,
             'phone'   => $request->phone,
             'subject' => $request->subject,
-            'content' => $request->content,
+            'message' => $request->message,
+            'logo'    => asset('storage/images/logo.png'),
         ];
 
         Mail::to(['admins@truwork.cz'])

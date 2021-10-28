@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-full w-full bg-mycolor">
-    <header id="navbar" class="bg-mycolor fixed inset-x-0 top-0 z-50">
+    <header id="navbar" class="bg-mycolor fixed inset-x-0 top-0 z-50 w-screen">
       <Popover class="relative">
         <div class="flex justify-between items-center max-w-7xl mx-auto py-6 md:justify-start">
           <div class="flex justify-start lg:w-0 lg:flex-1">
@@ -99,26 +99,78 @@
         <div class="relative mt-24 mb-24">
           <div class="absolute inset-x-0 bottom-0 h-screen" />
           <div class="mx-auto">
-            <div class="relative shadow-xl sm:overflow-hidden h-screen">
-              <div class="absolute inset-0">
-                <img class="h-full w-full object-cover" src="https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg" alt="People working on laptops" />
-                <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply" /> <!-- bg-indigo-700 -->
+            <!-- My Slider -->
+            <div class="slider relative shadow-xl sm:overflow-hidden h-screen">
+              <div id="slider-items" class="slider-items">
+                <!-- My Slider Item -->
+                <div class="slider-item">
+                  <div class="relative h-full w-full">
+                    <img class="h-full w-full object-cover" src="https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg" alt="People working on laptops" />
+                    <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply" />
+                    <div class="absolute inset-0 m-auto h-52">
+                      <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+                        <span class="block text-white">TRUWORK 1</span>
+                        <span class="block text-indigo-200">Stolařství</span>
+                      </h1>
+                      <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
+                          Kuchyně, vestavěné skříně, nábytek na míru, a mnoho dalšího.
+                      </p>
+                      <div class="mt-10 mx-5 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
+                          <a href="#contact-as" class="flex items-center justify-center px-2 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-white hover:bg-indigo-50 sm:px-8">
+                            Kontaktujte nás
+                          </a>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+                <!-- End Slider Item -->
+                <!-- My Slider Item -->
+                <div class="slider-item">
+                  <div class="relative h-full w-full">
+                    <img class="h-full w-full object-cover" src="https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg" alt="People working on laptops" />
+                    <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply" />
+                    <div class="absolute inset-0 m-auto h-52">
+                      <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+                        <span class="block text-white">TRUWORK 2</span>
+                        <span class="block text-indigo-200">Stolařství</span>
+                      </h1>
+                      <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
+                          Kuchyně, vestavěné skříně, nábytek na míru, a mnoho dalšího.
+                      </p>
+                      <div class="mt-10 mx-5 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
+                          <a href="#contact-as" class="flex items-center justify-center px-2 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-white hover:bg-indigo-50 sm:px-8">
+                            Kontaktujte nás
+                          </a>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+                <!-- End Slider Item -->
+                <!-- My Slider Item -->
+                <div class="slider-item">
+                  <div class="relative h-full w-full">
+                    <img class="h-full w-full object-cover" src="https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg" alt="People working on laptops" />
+                    <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply" />
+                    <div class="absolute inset-0 m-auto h-52">
+                      <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+                        <span class="block text-white">TRUWORK 3</span>
+                        <span class="block text-indigo-200">Stolařství</span>
+                      </h1>
+                      <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
+                          Kuchyně, vestavěné skříně, nábytek na míru, a mnoho dalšího.
+                      </p>
+                      <div class="mt-10 mx-5 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
+                          <a href="#contact-as" class="flex items-center justify-center px-2 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-white hover:bg-indigo-50 sm:px-8">
+                            Kontaktujte nás
+                          </a>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+                <!-- End Slider Item -->
               </div>
-              <div class="absolute inset-0 m-auto h-52">
-                <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-                  <span class="block text-white">TRUWORK</span>
-                  <span class="block text-indigo-200">Stolařství</span>
-                </h1>
-                <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
-                    Kuchyně, vestavěné skříně, nábytek na míru, a mnoho dalšího.
-                </p>
-                <div class="mt-10 mx-5 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
-                    <a href="#contact-as" class="flex items-center justify-center px-2 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-white hover:bg-indigo-50 sm:px-8">
-                      Kontaktujte nás
-                    </a>
-                </div>
-              </div>
-            </div>
+            </div> 
+            <!-- End Slider -->
           </div>
         </div>
       </div>
@@ -184,5 +236,33 @@ export default {
       navigation,
     }
   },
+  mounted() {
+    const sliderItems = document.querySelector('#slider-items');
+    const sliderItem = document.querySelectorAll('.slider-item');
+    let curr = -1; 
+    const total = sliderItem.length; 
+    carousel();
+    function carousel() {
+      curr = ++curr % total;
+      anim()
+      setTimeout(carousel, 4000); 
+    }
+    function anim() {
+      sliderItems.style.transform = ('translateX(' + -(curr*100) + '%');
+    }
+  }
 }
 </script>
+<style scoped>
+  .slider-items {
+    display: flex; /* Use flex */
+    flex-flow: row nowrap;
+    height: inherit;
+    transition: transform 2s; /* Don't use margin, use transform */
+  }
+
+  .slider-item {
+    flex: 0 0 100%;
+    height: inherit;
+  }
+</style>

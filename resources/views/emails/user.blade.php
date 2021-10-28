@@ -14,7 +14,7 @@
                     <p>Email   : truwork@seznam.cz</p>
                 </p>
             </div>
-            <img src="storage/images/logo.png" alt="" width="100px" height="50px" />
+            <img src="" . {{ $mail_data['logo'] }} . "" alt="" width="100px" height="50px" />
         </div>
     </body>
 </html>
