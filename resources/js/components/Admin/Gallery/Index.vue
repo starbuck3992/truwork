@@ -169,6 +169,7 @@ export default {
         const open = ref(false);
         const activeItem = ref(0);
         const showThisCategory = ref(999);
+
         function selectItem(i,activeItemCategory) {
             activeItem.value = i;
             showThisCategory.value = activeItemCategory;
@@ -183,16 +184,13 @@ export default {
         )
 
         function filterByString(obj) {
-            if (obj.title.startsWith(inputName.value) && obj.user.name.startsWith(inputAutor.value)) 
-            {
-                return true;
-            } 
-                return false;
+            //let title = obj.title;
+            //let name  = inputName.value
+            return (obj.title.startsWith(inputName.value) && obj.user.name.startsWith(inputAutor.value));
         }
    
         const filteredGalleries = computed(() =>
-                    galleries.value.filter(filterByString),
-                    console.log(inputName.value)
+            galleries.value.filter(filterByString),
         );
         function openPopup(id){
             open.value = true
@@ -206,10 +204,6 @@ export default {
             ).catch(error => {
                 console.log(error)
             })
-        }
-
-        function selectItem(i) {
-            activeItem.value = i;
         }
 
         return{
