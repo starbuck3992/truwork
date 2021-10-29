@@ -92,11 +92,10 @@ export default {
         const index = ref(null);
         const image = ref(null);
         const images = ref([]);
-        const categorySlug = route.params.category
         const gallerySlug = route.params.slug
 
         onMounted(async () => {
-                await api.getGallery(categorySlug, gallerySlug).then(response =>
+                await api.getGallery(gallerySlug).then(response =>
                     images.value = response.data
                 )
             }

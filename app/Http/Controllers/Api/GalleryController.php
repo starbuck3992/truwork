@@ -25,8 +25,10 @@ class GalleryController extends Controller
             ['user', 'category', 'images' => function ($query) {$query->where('thumbnail', 1);}])->orderBy('created_at', 'DESC')->get());
     }
 
-    public function index($category)
+    public function index(Request $request)
     {
+        $category = $request->query('category');
+
         return GalleryIndexResource::collection(Gallery::with(
             ['images' => function ($query) {$query->where('thumbnail', 1);}])->whereHas('category', function($query) use ($category) {$query->where('slug', $category);})->orderBy('created_at', 'DESC')->get());
     }

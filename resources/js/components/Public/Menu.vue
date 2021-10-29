@@ -178,10 +178,10 @@
       <!-- More main page content here... -->
     </main>
   </div>
-    <router-link :to="{ name: 'galleriesIndex', params:{category:'kuchyne'} }">Kuchyně</router-link>
-    <router-link :to="{ name: 'galleriesIndex', params:{category:'vestavenne_skrine'} }">Vestavěnné skříně</router-link>
-    <router-link :to="{ name: 'galleriesIndex', params:{category:'pergoly'} }">Pergoly</router-link>
-    <router-link :to="{ name: 'galleriesIndex', params:{category:'ostatni'} }">Ostatní</router-link>
+    <router-link :to="{ name: 'galleriesIndex', query:{category:'kuchyne'} }">Kuchyně</router-link>
+    <router-link :to="{ name: 'galleriesIndex', query:{category:'vestavenne_skrine'} }">Vestavěnné skříně</router-link>
+    <router-link :to="{ name: 'galleriesIndex', query:{category:'pergoly'} }">Pergoly</router-link>
+    <router-link :to="{ name: 'galleriesIndex', query:{category:'ostatni'} }">Ostatní</router-link>
 </template>
 
 <script>

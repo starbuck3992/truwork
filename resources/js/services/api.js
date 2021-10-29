@@ -60,10 +60,10 @@ export default {
         return api.delete(`/api/admin/galleries/${id}`)
     },
     getGalleries(category){
-        return api.get(`/api/galleries/${category}`)
+        return api.get(`/api/galleries?category=${category}`)
     },
-    getGallery(category,slug){
-        return api.get(`/api/galleries/${category}/${slug}`)
+    getGallery(slug){
+        return api.get(`/api/galleries/${slug}`)
     },
     contact(payload) {
         return api.post("/api/contact", payload)

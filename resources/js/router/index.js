@@ -1,19 +1,19 @@
-import { createWebHistory, createRouter } from 'vue-router';
-import store from '../store';
+import {createWebHistory, createRouter} from 'vue-router'
+import store from '../store'
 
 //Components
-import LandingPage from '../components/Public/LandingPage';
-import HomeIndex from '../components/Public/Home/Index';
-import GalleryIndex from '../components/Public/Gallery/Index';
-import GalleryShow from '../components/Public/Gallery/Show';
+import LandingPage from '../components/Public/LandingPage'
+import HomeIndex from '../components/Public/Home/Index'
+import GalleryIndex from '../components/Public/Gallery/Index'
+import GalleryShow from '../components/Public/Gallery/Show'
 
-import Login from '../components/Auth/Login';
+import Login from '../components/Auth/Login'
 
-import AdminPage from '../components/Admin/AdminPage';
-import DashboardIndex from '../components/Admin/Dashboard/Index';
-import AdminGalleryIndex from '../components/Admin/Gallery/Index';
-import AdminGalleryEdit from '../components/Admin/Gallery/Edit';
-import AdminGalleryCreate from '../components/Admin/Gallery/Create';
+import AdminPage from '../components/Admin/AdminPage'
+import DashboardIndex from '../components/Admin/Dashboard/Index'
+import AdminGalleryIndex from '../components/Admin/Gallery/Index'
+import AdminGalleryEdit from '../components/Admin/Gallery/Edit'
+import AdminGalleryCreate from '../components/Admin/Gallery/Create'
 
 //Routes
 const routes = [
@@ -24,19 +24,17 @@ const routes = [
             {
                 path: '',
                 name: 'homeIndex',
-                component: HomeIndex,
+                component: HomeIndex
             },
             {
-                path: '/galleries/:category',
+                path: 'galleries',
                 name: 'galleriesIndex',
-                component: GalleryIndex,
-                children: [
-                    {
-                        path: ':slug',
-                        name: 'galleriesShow',
-                        component: GalleryShow
-                    }
-                ]
+                component: GalleryIndex
+            },
+            {
+                path: 'galleries/:slug',
+                name: 'galleriesShow',
+                component: GalleryShow
             }
         ]
     },
@@ -95,15 +93,14 @@ router.beforeEach((to, from, next) => {
     const canNavigate = to.matched.some(() => {
         if (!loggedIn && to.meta.requiresAuth) {
             return false
-        }
-        else return !(loggedIn && to.meta.guest);
+        } else return !(loggedIn && to.meta.guest)
     })
 
     if (!canNavigate) {
         return next('/')
     } else {
-            next();
+        next()
     }
 })
 
-export default router;
+export default router

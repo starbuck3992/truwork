@@ -289,7 +289,7 @@
                                     <div class="flex justify-between">
                                         <label for="message"
                                                class="block text-sm font-medium text-gray-900">Text</label>
-                                        <span id="message-max" class="text-sm text-gray-500">Max. 500 characters</span>
+                                        <span id="message-max" class="text-sm text-gray-500">Maximálně 500 znaků</span>
                                     </div>
                                     <div class="mt-1">
                                         <textarea v-model="form.message" id="message" name="message" rows="4"
@@ -319,10 +319,10 @@
 </template>
 
 <script>
-import {reactive} from 'vue'
+import {onMounted, onUnmounted, reactive} from 'vue'
 import {InboxIcon, SparklesIcon, MailIcon, PhoneIcon, LibraryIcon} from '@heroicons/vue/outline'
 import api from '../../../services/api'
-import Form from "../../../utilities/form"
+import Form from '../../../utilities/form'
 
 export default {
     components: {
@@ -343,6 +343,13 @@ export default {
             message: null
         }))
 
+        let contactForm = null
+        let commercial = null
+        let cabinets = null
+        let kitchens = null
+        let aboutUs = null
+        let elements = null
+
         function submit() {
             api.contact(form.objectToFormData())
                 .then(() => {
@@ -352,22 +359,16 @@ export default {
             })
         }
 
-        return {
-            submit,
-            form,
-        }
-    },
-    mounted() {
         function isInViewport(el) {
-            var top = el.offsetTop;
-            var left = el.offsetLeft;
-            var width = el.offsetWidth;
-            var height = el.offsetHeight;
+            let top = el.offsetTop
+            let left = el.offsetLeft
+            let width = el.offsetWidth
+            let height = el.offsetHeight
 
             while (el.offsetParent) {
-                el = el.offsetParent;
-                top += el.offsetTop;
-                left += el.offsetLeft;
+                el = el.offsetParent
+                top += el.offsetTop
+                left += el.offsetLeft
             }
 
             return (
@@ -378,24 +379,33 @@ export default {
             );
         }
 
-        // Získání elementu
-        const contactForm = document.querySelector('#myform');
-        const commercial = document.querySelector('#mycommercial');
-        const cabinets = document.querySelector('#mycabinets');
-        const kitchens = document.querySelector('#mykitchens');
-        const aboutUs = document.querySelector('#about-us');
-        const elemets = [contactForm, commercial, cabinets, kitchens, aboutUs];
-
-        document.addEventListener('scroll', function () {
-            for (let index = 0; index < elemets.length; ++index) {
-                if (isInViewport(elemets[index])) {
-                    elemets[index].classList.remove('opacity-0');
-                    elemets[index].classList.add('opacity-1');
-                    //elemets[index].classList.remove('scale-0');
-                    //elemets[index].classList.add('scale-100');
+        function onScroll() {
+            for (let index = 0; index < elements.length; ++index) {
+                if (isInViewport(elements[index])) {
+                    elements[index].classList.remove('opacity-0')
+                    elements[index].classList.add('opacity-1')
                 }
             }
-        });
-    }
+        }
+
+        onMounted(() => {
+            contactForm = document.querySelector('#myform')
+            commercial = document.querySelector('#mycommercial')
+            cabinets = document.querySelector('#mycabinets')
+            kitchens = document.querySelector('#mykitchens')
+            aboutUs = document.querySelector('#about-us')
+            elements = [contactForm, commercial, cabinets, kitchens, aboutUs]
+
+            document.addEventListener('scroll', onScroll)
+        })
+        onUnmounted(() => {
+            document.removeEventListener('scroll', onScroll)
+        })
+
+        return {
+            submit,
+            form,
+        }
+    },
 }
 </script>

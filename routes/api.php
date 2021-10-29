@@ -24,6 +24,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('/admin/galleries/{id}',[GalleryController::class, 'destroy']);
 });
 
-Route::get('/galleries/{category}',[GalleryController::class,'index']);
-Route::get('/galleries/{category}/{slug}',[GalleryController::class,'show']);
-Route::post('/contact', [ContactController::class, 'contact']);
+Route::get('/galleries',[GalleryController::class,'index']);
+Route::get('/galleries/{slug}',[GalleryController::class,'show']);
+
+Route::middleware(['throttle:contact'])->group(function () {
+    Route::post('/contact', [ContactController::class, 'contact']);
+});
+
+
