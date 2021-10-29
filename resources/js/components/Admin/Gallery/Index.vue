@@ -190,7 +190,7 @@ export default {
                 return false;
         }
    
-        const filteredGalleries = computed(() => 
+        const filteredGalleries = computed(() =>
                     galleries.value.filter(filterByString),
                     console.log(inputName.value)
         );
