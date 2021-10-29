@@ -25,8 +25,8 @@ class GalleryStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'max:64', Rule::unique('galleries')],
-            'category' => ['required', Rule::in([1,2,3,4])],
+            'name' => ['required', 'max:64', Rule::unique('galleries')],
+            'surname' => ['required', Rule::in([1,2,3,4])],
             'thumbnail' => 'required|image|mimes:jpeg,jpg,png',
             'images' => 'required|array',
             'images.*' => 'required|image|mimes:jpeg,jpg,png'
