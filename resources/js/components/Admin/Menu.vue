@@ -39,11 +39,13 @@
         <div class="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
           <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
             <div class="flex items-center flex-shrink-0 px-4">
-              <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg" alt="Workflow" />
+              <router-link :to="{ name: 'homeIndex' }">
+                <img class="h-8 w-auto m-5" src="storage/images/logo.png" alt="Logo" />
+              </router-link>
             </div>
             <nav class="mt-5 flex-1 px-2 bg-white space-y-1">
               <router-link @click="selected_item = 1" :to="{ name: 'homeIndex' }" :class="[selected_item == 1 ? 'bg-gray-300' : 'bg-white','hover:bg-gray-200 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md']">
-                <HomeIcon class="h-6 w-6 mr-3"></HomeIcon>Home
+                <HomeIcon class="h-6 w-6 mr-3"></HomeIcon>Domů
               </router-link>
               <div class="mt-5 flex-1 bg-white space-y-1">
                   <div class="relative w-full">

@@ -1,4 +1,5 @@
 <template>
+    <hero-scene :title="category"></hero-scene>
     <div class="bg-mycolor max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 mt-5">
         <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
             <li v-for="(gallery, i) in galleries" :key="i" class="relative">
@@ -22,15 +23,21 @@
 import {onMounted, ref, watch} from 'vue'
 import {useRoute} from 'vue-router'
 import api from '../../../services/api'
+import HeroScene from '../../HeroScene.vue'
 
 export default {
+    components: {
+        HeroScene,
+    },
     setup() {
         const route = useRoute()
         const galleries = ref([])
+        const category = ref(route.query.category)
 
         async function callApi() {
             await api.getGalleries(route.query.category).then(response =>
-                galleries.value = response.data
+                galleries.value = response.data,
+                category.value = route.query.category,
             )
         }
 
@@ -46,6 +53,7 @@ export default {
 
         return {
             galleries,
+            category,
         }
     },
 }

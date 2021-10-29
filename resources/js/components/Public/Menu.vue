@@ -4,10 +4,10 @@
       <Popover class="relative">
         <div class="flex justify-between items-center max-w-7xl mx-auto py-6 md:justify-start">
           <div class="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#">
+            <router-link :to="{ name: 'homeIndex' }">
               <span class="sr-only">Workflow</span>
               <img class="h-8 w-auto sm:h-10 m-5" src="storage/images/logo.png" alt="" />
-            </a>
+            </router-link>
           </div>
           <div class="-my-2 md:hidden">
             <PopoverButton class="rounded-md p-2 m-5 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -26,7 +26,11 @@
                 <PopoverPanel class="absolute z-10 -ml-4 mt-3 transform w-screen max-w-md lg:max-w-2xl lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
                   <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                     <div class="relative grid gap-6 bg-mycolor px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
-                      <a v-for="item in solutions" :key="item.name" :href="item.href" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
+                      <router-link 
+                        v-for="item in solutions" 
+                        :key="item.name" 
+                        :to="{ name: 'galleriesIndex', query:{category: item.category} }" 
+                        class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
                         <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-600 text-white sm:h-12 sm:w-12">
                           <component :is="item.icon" class="h-6 w-6" aria-hidden="true" />
                         </div>
@@ -38,12 +42,13 @@
                             {{ item.description }}
                           </p>
                         </div>
-                      </a>
+                      </router-link>
                     </div>
                   </div>
                 </PopoverPanel>
               </transition>
             </Popover>
+            
 
             <a v-for="item in navigation" :key="item.name" :href="item.href" class="text-base font-medium text-gray-500 hover:text-gray-900">
               {{ item.name }}
@@ -76,14 +81,18 @@
                 </div>
                 <div class="mt-6">
                   <nav class="grid grid-cols-1 gap-7">
-                    <a v-for="item in solutions" :key="item.name" :href="item.href" class="-my-3 mx-3 p-3 flex items-center rounded-lg hover:bg-gray-50">
-                      <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-600 text-white">
-                        <component :is="item.icon" class="h-6 w-6" aria-hidden="true" />
-                      </div>
-                      <div class="ml-4 text-base font-medium text-gray-900">
-                        {{ item.name }}
-                      </div>
-                    </a>
+                    <router-link 
+                        v-for="item in solutions" 
+                        :key="item.name" 
+                        :to="{ name: 'galleriesIndex', query:{category: item.category} }" 
+                        class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
+                        <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-600 text-white">
+                          <component :is="item.icon" class="h-6 w-6" aria-hidden="true" />
+                        </div>
+                        <div class="ml-4 text-base font-medium text-gray-900">
+                          {{ item.name }}
+                        </div>
+                    </router-link>
                   </nav>
                 </div>
               </div>
@@ -92,96 +101,7 @@
         </transition>
       </Popover>
     </header>
-
-    <main>
-      <div>
-        <!-- Hero card -->
-        <div class="relative mt-24 mb-24">
-          <div class="absolute inset-x-0 bottom-0 h-screen" />
-          <div class="mx-auto">
-            <!-- My Slider -->
-            <div class="slider relative shadow-xl sm:overflow-hidden h-screen">
-              <div id="slider-items" class="slider-items">
-                <!-- My Slider Item -->
-                <div class="slider-item">
-                  <div class="relative h-full w-full">
-                    <img class="h-full w-full object-cover" src="https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg" alt="People working on laptops" />
-                    <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply" />
-                    <div class="absolute inset-0 m-auto h-52">
-                      <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-                        <span class="block text-white">TRUWORK 1</span>
-                        <span class="block text-indigo-200">Stolařství</span>
-                      </h1>
-                      <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
-                          Kuchyně, vestavěné skříně, nábytek na míru, a mnoho dalšího.
-                      </p>
-                      <div class="mt-10 mx-5 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
-                          <a href="#contact-as" class="flex items-center justify-center px-2 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-white hover:bg-indigo-50 sm:px-8">
-                            Kontaktujte nás
-                          </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- End Slider Item -->
-                <!-- My Slider Item -->
-                <div class="slider-item">
-                  <div class="relative h-full w-full">
-                    <img class="h-full w-full object-cover" src="https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg" alt="People working on laptops" />
-                    <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply" />
-                    <div class="absolute inset-0 m-auto h-52">
-                      <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-                        <span class="block text-white">TRUWORK 2</span>
-                        <span class="block text-indigo-200">Stolařství</span>
-                      </h1>
-                      <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
-                          Kuchyně, vestavěné skříně, nábytek na míru, a mnoho dalšího.
-                      </p>
-                      <div class="mt-10 mx-5 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
-                          <a href="#contact-as" class="flex items-center justify-center px-2 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-white hover:bg-indigo-50 sm:px-8">
-                            Kontaktujte nás
-                          </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- End Slider Item -->
-                <!-- My Slider Item -->
-                <div class="slider-item">
-                  <div class="relative h-full w-full">
-                    <img class="h-full w-full object-cover" src="https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg" alt="People working on laptops" />
-                    <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply" />
-                    <div class="absolute inset-0 m-auto h-52">
-                      <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-                        <span class="block text-white">TRUWORK 3</span>
-                        <span class="block text-indigo-200">Stolařství</span>
-                      </h1>
-                      <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
-                          Kuchyně, vestavěné skříně, nábytek na míru, a mnoho dalšího.
-                      </p>
-                      <div class="mt-10 mx-5 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
-                          <a href="#contact-as" class="flex items-center justify-center px-2 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-white hover:bg-indigo-50 sm:px-8">
-                            Kontaktujte nás
-                          </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- End Slider Item -->
-              </div>
-            </div>
-            <!-- End Slider -->
-          </div>
-        </div>
-      </div>
-
-      <!-- More main page content here... -->
-    </main>
   </div>
-    <router-link :to="{ name: 'galleriesIndex', query:{category:'kuchyne'} }">Kuchyně</router-link>
-    <router-link :to="{ name: 'galleriesIndex', query:{category:'vestavenne_skrine'} }">Vestavěnné skříně</router-link>
-    <router-link :to="{ name: 'galleriesIndex', query:{category:'pergoly'} }">Pergoly</router-link>
-    <router-link :to="{ name: 'galleriesIndex', query:{category:'ostatni'} }">Ostatní</router-link>
 </template>
 
 <script>
@@ -197,24 +117,24 @@ const solutions = [
   {
     name: 'Kuchyně',
     description: 'Kuchyně na míru.',
-    href: '#',
+    category: 'kuchyne',
     icon: CheckIcon,
   },
   {
     name: 'Vestavěné skříně',
     description: 'Vestavěné skříně na míru.',
-    href: '#',
+    category: 'vestavenne_skrine',
     icon: CheckIcon,
   },
   {
     name: 'Komerční prostory',
     description: "Vybavíme školy, školky, obecní úřády, restaurace, a další.",
-    href: '#',
+    category: 'pergoly',
     icon: CheckIcon },
   {
     name: 'Ostatní',
     description: "Pergoly, dveře, přistřešky.",
-    href: '#',
+    category: 'ostatni',
     icon: CheckIcon,
   },
 ]
@@ -240,33 +160,6 @@ export default {
       navigation,
     }
   },
-  mounted() {
-    const sliderItems = document.querySelector('#slider-items');
-    const sliderItem = document.querySelectorAll('.slider-item');
-    let curr = -1;
-    const total = sliderItem.length;
-    carousel();
-    function carousel() {
-      curr = ++curr % total;
-      anim()
-      setTimeout(carousel, 4000);
-    }
-    function anim() {
-      sliderItems.style.transform = ('translateX(' + -(curr*100) + '%');
-    }
-  }
 }
 </script>
-<style scoped>
-  .slider-items {
-    display: flex; /* Use flex */
-    flex-flow: row nowrap;
-    height: inherit;
-    transition: transform 2s; /* Don't use margin, use transform */
-  }
 
-  .slider-item {
-    flex: 0 0 100%;
-    height: inherit;
-  }
-</style>
