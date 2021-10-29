@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GalleryStoreRequest;
 use App\Http\Requests\GalleryUpdateRequest;
-use App\Http\Resources\Admin\GalleryEditResource;
-use App\Http\Resources\Admin\GalleryListResource;
+use App\Http\Resources\AdminResources\GalleryEditResource;
+use App\Http\Resources\AdminResources\GalleryListResource;
+use App\Http\Resources\PublicResources\ImageResource;
+use App\Http\Resources\PublicResources\GalleryIndexResource;
 use App\Models\Gallery;
 use App\Models\Image;
 use Illuminate\Http\Request;
@@ -23,11 +25,16 @@ class GalleryController extends Controller
             ['user', 'category', 'images' => function ($query) {$query->where('thumbnail', 1);}])->orderBy('created_at', 'DESC')->get());
     }
 
+    public function index($category)
+    {
+        return GalleryIndexResource::collection(Gallery::with(
+            ['images' => function ($query) {$query->where('thumbnail', 1);}])->whereHas('category', function($query) use ($category) {$query->where('slug', $category);})->orderBy('created_at', 'DESC')->get());
+    }
+
     public function store(GalleryStoreRequest $request)
     {
 
-//        $user = Auth::id();
-        $user = 1;
+        $user = Auth::id();
 
         $slug = Str::slug($request->title);
 
@@ -40,12 +47,12 @@ class GalleryController extends Controller
 
         $gallery->save();
 
-        $images = array();
+        $imagesToSave = array();
         $thumbnail_file = $request->file('thumbnail');
-        $images[] = new Image([
+        $imagesToSave[] = new Image([
             'user_id' => $user,
             'original_name' => $thumbnail_file->getClientOriginalName(),
-            'path' => $thumbnail_file->store("images/galleries/$gallery->id"),
+            'path' => $thumbnail_file->store("images/galleries/$gallery->id",'public'),
             'extension' => $thumbnail_file->extension(),
             'size' => $thumbnail_file->getSize(),
             'thumbnail' => true
@@ -53,9 +60,9 @@ class GalleryController extends Controller
 
         foreach ($request->file('images') as $image) {
 
-            $path = $image->store("images/galleries/$gallery->id");
+            $path = $image->store("images/galleries/$gallery->id", 'public');
 
-            $images[] = new Image([
+            $imagesToSave[] = new Image([
                 'user_id' => $user,
                 'original_name' => $image->getClientOriginalName(),
                 'path' => $path,
@@ -63,10 +70,8 @@ class GalleryController extends Controller
                 'size' => $image->getSize(),
                 'thumbnail' => false
             ]);
-
         }
-
-        $gallery->images()->saveMany($images);
+        $gallery->images()->saveMany($imagesToSave);
 
         return response()->json([
             'slug' => $slug
@@ -75,8 +80,8 @@ class GalleryController extends Controller
 
     public function show($slug)
     {
-        return [
-        ];
+        return ImageResource::collection(Image::with('gallery')->whereHas('gallery', function($query) use ($slug) {$query->where('slug', $slug);})->get());
+
     }
 
     public function edit($id)
@@ -86,11 +91,11 @@ class GalleryController extends Controller
 
     public function update(GalleryUpdateRequest $request, $id)
     {
-        //        $user = Auth::id();
-        $user = 1;
+        $user = Auth::id();
         $slug = Str::slug($request->title);
 
         $gallery = Gallery::where('id', $id)->firstorfail();
+        $images = $gallery->images()->select('id','path')->where('thumbnail', '=', 0)->get()->toArray();
 
         $gallery->user_id = $user;
         $gallery->title = $request->title;
@@ -106,7 +111,7 @@ class GalleryController extends Controller
             Storage::delete($current_thumbnail_path);
 
             $thumbnail_file = $request->file('thumbnail');
-            $path = $thumbnail_file->store("images/galleries/$gallery->id");
+            $path = $thumbnail_file->store("images/galleries/$id", 'public');
 
             $thumbnail->user_id = $user;
             $thumbnail->original_name = $thumbnail_file->getClientOriginalName();
@@ -117,27 +122,26 @@ class GalleryController extends Controller
             $thumbnail->save();
 
         }
+
         if($request->file('images')){
-            $images = array();
+
+            $imagesToSave = array();
 
             foreach ($request->file('images') as $image) {
-            $path = $image->store("images/galleries/$gallery->id");
 
-            $images[] = new Image([
-                'user_id' => $user,
-                'original_name' => $image->getClientOriginalName(),
-                'path' => $path,
-                'extension' => $image->extension(),
-                'size' => $image->getSize(),
-                'thumbnail' => false
-            ]);
+                $path = $image->store("images/galleries/$id", 'public');
+
+                $imagesToSave[] = new Image([
+                    'user_id' => $user,
+                    'original_name' => $image->getClientOriginalName(),
+                    'path' => $path,
+                    'extension' => $image->extension(),
+                    'size' => $image->getSize(),
+                    'thumbnail' => false
+                ]);
             }
-
-            $gallery->images()->saveMany($images);
-
+            $gallery->images()->saveMany($imagesToSave);
         }
-
-        $images = $gallery->images()->select('id','path')->where('thumbnail', '=', 0)->get()->toArray();
 
         $originalImagesIds = array_column($images, 'id');
 
@@ -162,9 +166,7 @@ class GalleryController extends Controller
 
     public function destroy($id)
     {
-
-
-
-        Gallery::where('slug', $slug)->first()->delete();
+        Storage::deleteDirectory(public_path("images/galleries/$id"));
+        Gallery::where('id', $id)->first()->delete();
     }
 }

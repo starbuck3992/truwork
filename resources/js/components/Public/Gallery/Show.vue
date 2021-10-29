@@ -1,16 +1,16 @@
 <template>
     <div class="bg-mycolor max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 mt-5">
         <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
-            <li v-for="(file, i) in files" :key="i" class="relative">
+            <li v-for="(image, i) in images" :key="i" class="relative">
                 <div @click="openSlider(i)"
                      class="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
-                    <img :src="file.source" alt="" class="object-cover pointer-events-none group-hover:opacity-75"/>
+                    <img :src="image.path" alt="" class="object-cover pointer-events-none group-hover:opacity-75"/>
                     <button type="button" class="absolute inset-0 focus:outline-none">
-                        <span class="sr-only">View details for {{ file.title }}</span>
+                        <span class="sr-only">View details for {{ image.name }}</span>
                     </button>
                 </div>
                 <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">{{
-                        file.title
+                        image.name
                     }}</p>
                 <!-- <p class="block text-sm font-medium text-gray-500 pointer-events-none">{{ file.size }}</p> -->
             </li>
@@ -46,9 +46,9 @@
                         <ChevronLeftIcon @click="prev()" class="hidden sm:block absolute left-10 top-1/2 bg-white sm:w-10 sm:h-10 h-3 w-3 z-100"></ChevronLeftIcon>
                         <ChevronRightIcon @click="next()" class="hidden sm:block absolute right-10 top-1/2 bg-white sm:w-10 sm:h-10 h-3 w-3 z-100"></ChevronRightIcon>
                         <div v-touch:swipe="onSwipeItem()" class="m-auto height-slide w-full flex justify-center inline-block align-middle">
-                            <img v-for="(file, i) in files" :key="i" 
-                                :class="[i==index ? 'opacity-1' : 'absolute -left-full -right-full opacity-0' ,'transition duration-3000 active h-auto w-auto object-cover align-middle']" 
-                                :src="file.source" 
+                            <img v-for="(image, i) in images" :key="i"
+                                :class="[i===index ? 'opacity-1' : 'absolute -left-full -right-full opacity-0' ,'transition duration-3000 active h-auto w-auto object-cover align-middle']"
+                                :src="image.path"
                                 alt="Carousel image"/>
                         </div>
                     </div>
@@ -64,58 +64,7 @@ import {onMounted, ref} from 'vue'
 import {Dialog, DialogOverlay, DialogTitle, TransitionChild, TransitionRoot} from '@headlessui/vue'
 import {CheckIcon, XIcon, ChevronRightIcon, ChevronLeftIcon} from '@heroicons/vue/outline'
 import api from "../../../services/api";
-
-const files = [
-    {
-        title: 'img1',
-        size: '3.9 MB',
-        source:
-            'https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg',
-    },
-    {
-        title: 'img2',
-        size: '3.9 MB',
-        source:
-            'http://kitchenremodelingsavannah.com/wp-content/uploads/2017/10/iStock-542686440.jpg',
-    },
-    {
-        title: 'img3',
-        size: '3.9 MB',
-        source:
-            'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
-    },
-    {
-        title: 'img4',
-        size: '3.9 MB',
-        source:
-            'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
-    },
-    {
-        title: 'img5',
-        size: '3.9 MB',
-        source:
-            'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
-    },
-    {
-        title: 'img6',
-        size: '3.9 MB',
-        source:
-            'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
-    },
-    {
-        title: 'img7',
-        size: '3.9 MB',
-        source:
-            'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
-    },
-    {
-        title: 'img8',
-        size: '3.9 MB',
-        source:
-            'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
-    },
-    // More files...
-]
+import {useRoute} from "vue-router";
 
 const animation = anime({
   targets: '.active',
@@ -138,9 +87,20 @@ export default {
         ChevronLeftIcon,
     },
     setup() {
+        const route = useRoute()
         const open = ref(false);
         const index = ref(null);
         const image = ref(null);
+        const images = ref([]);
+        const categorySlug = route.params.category
+        const gallerySlug = route.params.slug
+
+        onMounted(async () => {
+                await api.getGallery(categorySlug, gallerySlug).then(response =>
+                    images.value = response.data
+                )
+            }
+        )
 
         function openSlider(i, event) {
             open.value = true;
@@ -148,7 +108,7 @@ export default {
         }
 
         function next(){
-            let lastIndex = _.findLastIndex(files);
+            let lastIndex = _.findLastIndex(images.value);
             index.value ++;
             if ( lastIndex < index.value ){
                 index.value = 0;
@@ -156,7 +116,7 @@ export default {
         }
 
         function prev(){
-            let lastIndex = _.findLastIndex(files);
+            let lastIndex = _.findLastIndex(images.value);
             index.value --;
             if ( 0 > index.value ){
                 index.value = lastIndex;
@@ -177,7 +137,7 @@ export default {
         return {
             image,
             open,
-            files,
+            images,
             openSlider,
             next,
             prev,

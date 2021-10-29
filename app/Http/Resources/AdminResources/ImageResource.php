@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\AdminResources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
@@ -16,7 +16,11 @@ class ImageResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'path' => Storage::url($this->path)
+            'id' => $this->id,
+            'name' => $this->original_name,
+            'path' => Storage::url($this->path),
+            'thumbnail' => $this->thumbnail,
+            'size' => $this->size
         ];
     }
 }

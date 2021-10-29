@@ -26,16 +26,16 @@
                             <thead class="bg-gray-50">
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Obrázek
+                                    Náhledový obrázek
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Název
+                                    Název galerie
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Autor
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Datum
+                                    Datum vytvoření
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Možnosti
@@ -46,10 +46,10 @@
 
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    <input v-model="inputName" type="name" name="name" id="name" placeholder="Zde zadej název" required="" class="appearance-none min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400 sm:max-w-xs"/>
+                                    <input v-model="inputName" type="text" name="name" id="name" placeholder="Zde zadej název" required="" class="appearance-none min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400 sm:max-w-xs"/>
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    <input type="athor" name="author" id="author" required="" class="appearance-none min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400 sm:max-w-xs" placeholder="Zadej autora" />
+                                    <input type="text" name="author" id="author" required="" class="appearance-none min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400 sm:max-w-xs" placeholder="Zadej autora" />
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     <input type="date" name="date" id="date" required="" class="appearance-none min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400 sm:max-w-xs"/>
@@ -69,10 +69,9 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-900">{{ gallery.title }}</div>
-                                    <div class="text-sm text-gray-500">{{ gallery.user.name }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{ gallery.category.name }}
+                                    {{ gallery.user.name }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     <div class="text-sm text-gray-900">{{ gallery.created_at }}</div>
@@ -81,7 +80,7 @@
                                     <router-link :to="{ name: 'adminGalleryEdit', params: {id: gallery.id } }" class="px-2 inline-flex text-xs leading-5 font-semibold bg-gray-300 text-gray-900 mr-3 rounded transform hover:scale-110">Editovat
                                     </router-link>
                                     <span class="px-2 inline-flex text-xs leading-5 font-semibold bg-red-300 text-red-900 mr-3 rounded transform hover:scale-110">
-                                    <a @click="open=true" href="#"> Smazat </a>
+                                    <a @click="openPopup(gallery.id)" href="#"> Smazat </a>
                                 </span>
                                 </td>
                             </tr>
@@ -120,7 +119,7 @@
                                 </div>
                             </div>
                             <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-                                <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm" @click="open = false">
+                                <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm" @click="deleteGallery()">
                                     Smazat
                                 </button>
                                 <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm" @click="open = false" ref="cancelButtonRef">
@@ -138,7 +137,7 @@
 </template>
 
 <script>
-import {onMounted, reactive, ref, computed} from 'vue'
+import {onMounted, ref, computed} from 'vue'
 import {Dialog, DialogOverlay, TransitionChild, TransitionRoot, DialogTitle, } from '@headlessui/vue'
 import {ExclamationIcon,} from '@heroicons/vue/outline'
 import api from '../../../services/api';
@@ -164,9 +163,8 @@ export default {
         //filter data
         const inputName = ref('');
         //end filter data
-    
+        const galleryToDelete = ref(null)
         const galleries = ref([]);
-        //const filteredGalleries = ref([]);
         const open = ref(false);
         const activeItem = ref(0);
         const showThisCategory = ref(999);
@@ -195,9 +193,27 @@ export default {
                     galleries.value.filter(filterById),
                     console.log(inputName.value)
         );
+        function openPopup(id){
+            open.value = true
+            galleryToDelete.value = id
+
+        }
+
+        function deleteGallery(){
+            api.deleteGallery(galleryToDelete.value).then(response =>
+                open.value = false,
+            ).catch(error => {
+                console.log(error)
+            })
+        }
+
+        function selectItem(i) {
+            activeItem.value = i;
+        }
 
         return{
             galleries,
+            openPopup,
             open,
             tabs,
             activeItem,
@@ -205,6 +221,7 @@ export default {
             showThisCategory,
             inputName,
             filteredGalleries,
+            deleteGallery
         }
     },
 }

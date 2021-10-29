@@ -122,7 +122,7 @@
                       </div>
                     </div>
                   </div>
-                </div> 
+                </div>
                 <!-- End Slider Item -->
                 <!-- My Slider Item -->
                 <div class="slider-item">
@@ -144,7 +144,7 @@
                       </div>
                     </div>
                   </div>
-                </div> 
+                </div>
                 <!-- End Slider Item -->
                 <!-- My Slider Item -->
                 <div class="slider-item">
@@ -166,10 +166,10 @@
                       </div>
                     </div>
                   </div>
-                </div> 
+                </div>
                 <!-- End Slider Item -->
               </div>
-            </div> 
+            </div>
             <!-- End Slider -->
           </div>
         </div>
@@ -178,6 +178,10 @@
       <!-- More main page content here... -->
     </main>
   </div>
+    <router-link :to="{ name: 'galleriesIndex', params:{category:'kuchyne'} }">Kuchyně</router-link>
+    <router-link :to="{ name: 'galleriesIndex', params:{category:'vestavenne_skrine'} }">Vestavěnné skříně</router-link>
+    <router-link :to="{ name: 'galleriesIndex', params:{category:'pergoly'} }">Pergoly</router-link>
+    <router-link :to="{ name: 'galleriesIndex', params:{category:'ostatni'} }">Ostatní</router-link>
 </template>
 
 <script>
@@ -239,13 +243,13 @@ export default {
   mounted() {
     const sliderItems = document.querySelector('#slider-items');
     const sliderItem = document.querySelectorAll('.slider-item');
-    let curr = -1; 
-    const total = sliderItem.length; 
+    let curr = -1;
+    const total = sliderItem.length;
     carousel();
     function carousel() {
       curr = ++curr % total;
       anim()
-      setTimeout(carousel, 4000); 
+      setTimeout(carousel, 4000);
     }
     function anim() {
       sliderItems.style.transform = ('translateX(' + -(curr*100) + '%');

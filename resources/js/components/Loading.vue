@@ -15,11 +15,7 @@ export default {
         const loading = computed(() => store.getters["loadingModule/loading"])
 
         watch(loading, (val) => {
-            if (val) {
-                show.value = true
-            } else {
-                show.value = false
-            }
+            show.value = !!val;
         })
         return {
             show
