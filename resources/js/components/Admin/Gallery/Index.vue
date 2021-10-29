@@ -11,7 +11,7 @@
             </h3>
             <div class="mt-4 sm:mt-0 sm:ml-10">
                 <nav class="-mb-px flex space-x-8">
-                <a v-for="(tab, i) in tabs" :key="i" v-bind="activeItem" @click="selectItem(i)" :href="tab.href" :class="[i === activeItem ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300', 'whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm']" :aria-current="i === activeItem ? 'page' : undefined">
+                <a v-for="(tab, i) in tabs" :key="i" v-bind="activeItem" @click="selectItem(i,tab.category)" :href="tab.href" :class="[i === activeItem ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300', 'whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm']" :aria-current="i === activeItem ? 'page' : undefined">
                     {{ tab.name }}
                 </a>
                 </nav>
@@ -46,7 +46,7 @@
 
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    <input type="name" name="name" id="name" required="" class="appearance-none min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400 sm:max-w-xs" placeholder="Zadej název" />
+                                    <input v-model="inputName" type="name" name="name" id="name" placeholder="Zde zadej název" required="" class="appearance-none min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400 sm:max-w-xs"/>
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     <input type="athor" name="author" id="author" required="" class="appearance-none min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400 sm:max-w-xs" placeholder="Zadej autora" />
@@ -59,7 +59,7 @@
                             </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                            <tr v-for="gallery in galleries" :key="gallery.id">
+                            <tr v-for="gallery in filteredGalleries" :key="gallery.id" v-show="gallery.category.id == showThisCategory || showThisCategory == 999">
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 h-30 w-30">
@@ -138,16 +138,17 @@
 </template>
 
 <script>
-import {onMounted, reactive, ref} from 'vue'
+import {onMounted, reactive, ref, computed} from 'vue'
 import {Dialog, DialogOverlay, TransitionChild, TransitionRoot, DialogTitle, } from '@headlessui/vue'
 import {ExclamationIcon,} from '@heroicons/vue/outline'
 import api from '../../../services/api';
 
 const tabs = [
-  { name: 'Vše', href: '#'},
-  { name: 'Kuchyně', href: '#'},
-  { name: 'Vestavěnné skříně', href: '#'},
-  { name: 'Ostatní', href: '#'},
+  { name: 'Vše', category: 999},
+  { name: 'Kuchyně', category: 1},
+  { name: 'Vestavěnné Skříně', category: 2},
+  { name: 'Pergoly', category: 3},
+  { name: 'Ostatní', category: 4},
 ]
 
 export default {
@@ -160,21 +161,40 @@ export default {
         DialogTitle,
     },
     setup() {
+        //filter data
+        const inputName = ref('');
+        //end filter data
+    
         const galleries = ref([]);
+        //const filteredGalleries = ref([]);
         const open = ref(false);
         const activeItem = ref(0);
-        function selectItem(i) {
+        const showThisCategory = ref(999);
+        function selectItem(i,activeItemCategory) {
             activeItem.value = i;
+            showThisCategory.value = activeItemCategory;
         }
 
         onMounted(async () => {
                 await api.getAdminGalleries().then(response =>
                     galleries.value = response.data
                 )
-                console.log(galleries)
+                console.log(galleries);
             }
         )
 
+        function filterById(obj) {
+            if (obj.title.startsWith(inputName.value)) 
+            {
+                return true;
+            } 
+                return false;
+        }
+   
+        const filteredGalleries = computed(() => 
+                    galleries.value.filter(filterById),
+                    console.log(inputName.value)
+        );
 
         return{
             galleries,
@@ -182,6 +202,9 @@ export default {
             tabs,
             activeItem,
             selectItem,
+            showThisCategory,
+            inputName,
+            filteredGalleries,
         }
     },
 }
