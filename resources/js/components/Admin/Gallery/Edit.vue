@@ -4,7 +4,7 @@
             <h1 class="text-2xl font-semibold text-gray-900">Galerie - Editace</h1>
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-            <form ref="createForm" @submit.prevent="submit" class="space-y-8 divide-y divide-gray-200">
+            <form @submit.prevent="submit" class="space-y-8 divide-y divide-gray-200">
                 <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                     <div>
                         <div>
@@ -28,7 +28,8 @@
                             </div>
                             <div
                                 class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="about" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Kategorie</label>
+                                <label
+                                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Kategorie</label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <div class="mt-1 sm:mt-0 sm:col-span-2">
                                         <select v-model="form.category" id="category" name="category"
@@ -46,8 +47,8 @@
                             </div>
                             <div
                                 class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="cover-photo"
-                                       class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Úvodní
+                                <label
+                                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Úvodní
                                     obrázek</label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <div id="thumbn"
@@ -71,7 +72,8 @@
                                                 <label for="thumbnail"
                                                        class="relative cursor-pointer rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                                     <span>Nahrát soubor</span>
-                                                    <input @change="showThumbnail" id="thumbnail" name="thumbnail"
+                                                    <input ref="thumbnailUploader" @click="resetThumbnail"
+                                                           @change="showThumbnail" id="thumbnail" name="thumbnail"
                                                            type="file" class="sr-only" accept="image/png, image/jpeg"/>
                                                 </label>
                                                 <p class="pl-1">Může se sem i přetáhnout</p>
@@ -86,8 +88,8 @@
                             </div>
                             <div
                                 class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="cover-photo"
-                                       class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Další
+                                <label
+                                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Další
                                     obrázky</label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <div id="image"
@@ -104,12 +106,21 @@
                                                 <label for="images"
                                                        class="relative cursor-pointer rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                                     <span>Nahrát soubor</span>
-                                                    <input @change="showImages" id="images" name="images" type="file"
+                                                    <input ref="imagesUploader" @click="resetImages"
+                                                           @change="showImages" id="images" name="images" type="file"
                                                            multiple accept="image/png, image/jpeg" class="sr-only"/>
                                                 </label>
                                                 <p class="pl-1">Může se sem i přetáhnout</p>
                                             </div>
                                             <p class="text-xs text-gray-500">Pouze formát: PNG, JPG</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-1 text-sm text-red-600" v-if="form.errors.has('images')"
+                                         v-text="form.errors.get('images')">
+                                    </div>
+                                    <div v-for="(image, index) in form.images" :key="index">
+                                        <div class="mt-1 text-sm text-red-600" v-if="form.errors.has(`images.${index}`)"
+                                             v-text="form.errors.get(`images.${index}`)">
                                         </div>
                                     </div>
                                 </div>
@@ -136,7 +147,7 @@
                 </div>
                 <div class="pt-5">
                     <div class="flex justify-end">
-                        <button :disabled="loading" @click="cancel" type="button"
+                        <button @click="reset" type="button"
                                 class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Zrušit
                         </button>
@@ -153,28 +164,23 @@
 
 
 <script>
-import {useStore} from "vuex";
-import {computed, onMounted, reactive, ref} from 'vue';
-import {XIcon} from '@heroicons/vue/outline';
-import api from '../../../services/api';
-import Form from "../../../utilities/form";
-import Loading from "../../Loading";
-import {useRoute, useRouter} from "vue-router";
+import {onMounted, reactive, ref} from 'vue'
+import {useRoute, useRouter} from 'vue-router'
+import {XIcon} from '@heroicons/vue/outline'
+import api from '../../../services/api'
+import Form from '../../../utilities/form'
 
 export default {
     components: {
-        Loading,
         XIcon,
     },
     setup() {
-        const store = useStore()
         const router = useRouter()
         const route = useRoute()
-        const loading = computed(() => store.getters['loadingModule/loading'])
-        const createForm = ref()
+        const thumbnailUploader = ref(null)
+        const imagesUploader = ref(null)
         const thumbnailPreview = ref(null)
         const imagesPreview = ref([])
-        const galleryId = route.params.id
 
         const form = reactive(new Form({
             title: null,
@@ -184,124 +190,143 @@ export default {
             originalImagesIds: []
         }));
 
-        onMounted(() =>{
-            callApi();
+        onMounted(() => {
+            callApi()
         })
 
-        async function callApi(){
-            await api.getAdminGallery(galleryId).then(response => {
-                        form.title = response.data.title
-                        form.category = response.data.category.id
-                        form.originalImagesIds = response.data.images.reduce(function (filtered, item) {
-                            if (item.thumbnail === 0) {
-                                filtered.push(item.id);
-                            }
-                            return filtered;
-                        },[]);
+        async function callApi() {
+            await api.getAdminGallery(route.params.id).then(response => {
+                    form.title = response.data.title
+                    form.category = response.data.category.id
+                    form.originalImagesIds = response.data.images.reduce(function (filtered, item) {
+                        if (item.thumbnail === 0) {
+                            filtered.push(item.id)
+                        }
+                        return filtered
+                    }, [])
 
+                    thumbnailPreview.value =
+                        response.data.images.filter(obj => {
+                            return obj.thumbnail === 1
+                        })[0].path
 
-                        thumbnailPreview.value =
-                            response.data.images.filter(obj => {
-                                return obj.thumbnail === 1
-                            })[0].path
-
-                        imagesPreview.value =
-                            response.data.images.filter(obj => {
-                                return obj.thumbnail === 0
-                            })
-                    }
-                )
+                    imagesPreview.value =
+                        response.data.images.filter(obj => {
+                            return obj.thumbnail === 0
+                        })
+                }
+            )
         }
 
         function showThumbnail(e) {
-            let selectedFile = '';
-            if (e.target.files === undefined) {
-                selectedFile = e.dataTransfer.files[0];
-            } else {
-                selectedFile = e.target.files[0];
+            if (e.target.files[0].type === ('image/jpeg' || 'image/jgp' || 'image||png')) {
+                let selectedFile
+                if (e.target.files === undefined) {
+                    selectedFile = e.dataTransfer.files[0]
+                } else {
+                    selectedFile = e.target.files[0]
+                }
+                thumbnailPreview.value = URL.createObjectURL(selectedFile)
+                form.thumbnail = selectedFile
             }
-            thumbnailPreview.value = URL.createObjectURL(selectedFile)
-            form.thumbnail = selectedFile
         }
 
         function showImages(e) {
-            let selectedFiles = '';
+            let selectedFiles
             if (e.target.files === undefined) {
-                selectedFiles = e.dataTransfer.files;
+                selectedFiles = e.dataTransfer.files
             } else {
-                selectedFiles = e.target.files;
+                selectedFiles = e.target.files
             }
             for (let i = 0; i < selectedFiles.length; i++) {
-                let img = {
-                    path: URL.createObjectURL(selectedFiles[i]),
-                    name: selectedFiles[i].name,
-                    size: selectedFiles[i].size
+                if (selectedFiles[i].type === 'image/jpeg' || 'image/jgp' || 'image||png') {
+                    let img = {
+                        path: URL.createObjectURL(selectedFiles[i]),
+                        name: selectedFiles[i].name,
+                        size: selectedFiles[i].size
+                    }
+                    imagesPreview.value.push(img)
+                    form.images.push(selectedFiles[i])
                 }
-                imagesPreview.value.push(img)
-                form.images.push(selectedFiles[i])
             }
         }
 
-        function cancel() {
+        function resetThumbnail() {
+            thumbnailUploader.value.value = null
+            thumbnailPreview.value = null
+        }
+
+        function resetImages() {
+            imagesUploader.value.value = null
+            imagesPreview.value = []
+        }
+
+        function reset() {
             form.reset()
-            createForm.value.reset()
+            resetThumbnail()
+            resetImages()
             callApi()
         }
 
         function submit() {
-            api.updateGallery(galleryId, form.objectToFormData())
+            api.updateGallery(route.params.id, form.objectToFormData())
                 .then(response => {
-                    router.push({name: 'galleriesShow', params: {slug: response.data.slug}})
+                    // form.onSuccess()
+                    // resetThumbnail()
+                    // resetImages()
+                    // router.push({name: 'galleriesShow', params: {slug: response.data.slug}})
                 }).catch(error => {
                 form.onFail(error.response.data.errors)
-            });
+            })
         }
 
         //Drag AND Drop
         function remove(i) {
             if (i === 'thumb') {
-                thumbnailPreview.value = ""
+                form.thumbnail = null
+                thumbnailPreview.value = null
             } else {
-                form.originalImagesIds.splice(i, 1)
                 form.images.splice(i, 1)
+                form.originalImagesIds.splice(i, 1)
                 imagesPreview.value.splice(i, 1)
             }
         }
 
-
         function dragover(event) {
-            event.preventDefault();
+            event.preventDefault()
             if (!event.currentTarget.classList.contains('bg-green-300')) {
-                event.currentTarget.classList.remove('bg-white');
-                event.currentTarget.classList.add('bg-green-300');
+                event.currentTarget.classList.remove('bg-white')
+                event.currentTarget.classList.add('bg-green-300')
             }
         }
 
         function dragleave(event) {
-            event.currentTarget.classList.add('bg-white');
-            event.currentTarget.classList.remove('bg-green-300');
+            event.currentTarget.classList.add('bg-white')
+            event.currentTarget.classList.remove('bg-green-300')
         }
 
         function drop(event) {
-            event.preventDefault();
+            event.preventDefault()
             if (event.target.id === 'image') {
-                showImages(event);
+                showImages(event)
             } else {
-                showThumbnail(event);
+                showThumbnail(event)
             }
-            event.currentTarget.classList.add('bg-white');
-            event.currentTarget.classList.remove('bg-green-300');
+            event.currentTarget.classList.add('bg-white')
+            event.currentTarget.classList.remove('bg-green-300')
         }
 
         return {
-            loading,
             form,
-            createForm,
+            thumbnailUploader,
+            imagesUploader,
             thumbnailPreview,
             imagesPreview,
+            resetThumbnail,
+            resetImages,
             showThumbnail,
             showImages,
-            cancel,
+            reset,
             submit,
             drop,
             dragleave,

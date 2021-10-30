@@ -1,76 +1,85 @@
 <template>
     <!-- My Slider -->
-            <div class="slider relative shadow-xl sm:overflow-hidden h-screen">
-              <div id="slider-items" class="slider-items">
-                <!-- My Slider Item -->
-                <div class="slider-item">
-                  <div class="relative h-full w-full">
-                    <img class="h-full w-full object-cover" src="https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg" alt="People working on laptops" />
-                    <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply" />
+    <div class="slider relative shadow-xl sm:overflow-hidden h-screen">
+        <div id="slider-items" class="slider-items">
+            <!-- My Slider Item -->
+            <div class="slider-item">
+                <div class="relative h-full w-full">
+                    <img class="h-full w-full object-cover"
+                         src="https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg"
+                         alt="People working on laptops"/>
+                    <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply"/>
                     <div class="absolute inset-0 m-auto h-52">
-                      <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-                        <span class="block text-white">TRUWORK 1</span>
-                        <span class="block text-indigo-200">Stolařství</span>
-                      </h1>
-                      <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
-                          Kuchyně, vestavěné skříně, nábytek na míru, a mnoho dalšího.
-                      </p>
-                      <div class="mt-10 mx-5 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
-                          <a href="#contact-as" class="flex items-center justify-center px-2 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-white hover:bg-indigo-50 sm:px-8">
-                            Kontaktujte nás
-                          </a>
-                      </div>
+                        <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+                            <span class="block text-white">TRUWORK 1</span>
+                            <span class="block text-indigo-200">Stolařství</span>
+                        </h1>
+                        <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
+                            Kuchyně, vestavěné skříně, nábytek na míru, a mnoho dalšího.
+                        </p>
+                        <div class="mt-10 mx-5 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
+                            <a href="#contact-as"
+                               class="flex items-center justify-center px-2 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-white hover:bg-indigo-50 sm:px-8">
+                                Kontaktujte nás
+                            </a>
+                        </div>
                     </div>
-                  </div>
                 </div>
-                <!-- End Slider Item -->
-                <!-- My Slider Item -->
-                <div class="slider-item">
-                  <div class="relative h-full w-full">
-                    <img class="h-full w-full object-cover" src="https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg" alt="People working on laptops" />
-                    <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply" />
-                    <div class="absolute inset-0 m-auto h-52">
-                      <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-                        <span class="block text-white">TRUWORK 2</span>
-                        <span class="block text-indigo-200">Stolařství</span>
-                      </h1>
-                      <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
-                          Kuchyně, vestavěné skříně, nábytek na míru, a mnoho dalšího.
-                      </p>
-                      <div class="mt-10 mx-5 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
-                          <a href="#contact-as" class="flex items-center justify-center px-2 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-white hover:bg-indigo-50 sm:px-8">
-                            Kontaktujte nás
-                          </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- End Slider Item -->
-                <!-- My Slider Item -->
-                <div class="slider-item">
-                  <div class="relative h-full w-full">
-                    <img class="h-full w-full object-cover" src="https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg" alt="People working on laptops" />
-                    <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply" />
-                    <div class="absolute inset-0 m-auto h-52">
-                      <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-                        <span class="block text-white">TRUWORK 3</span>
-                        <span class="block text-indigo-200">Stolařství</span>
-                      </h1>
-                      <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
-                          Kuchyně, vestavěné skříně, nábytek na míru, a mnoho dalšího.
-                      </p>
-                      <div class="mt-10 mx-5 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
-                          <a href="#contact-as" class="flex items-center justify-center px-2 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-white hover:bg-indigo-50 sm:px-8">
-                            Kontaktujte nás
-                          </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- End Slider Item -->
-              </div>
             </div>
-            <!-- End Slider -->
+            <!-- End Slider Item -->
+            <!-- My Slider Item -->
+            <div class="slider-item">
+                <div class="relative h-full w-full">
+                    <img class="h-full w-full object-cover"
+                         src="https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg"
+                         alt="People working on laptops"/>
+                    <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply"/>
+                    <div class="absolute inset-0 m-auto h-52">
+                        <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+                            <span class="block text-white">TRUWORK 2</span>
+                            <span class="block text-indigo-200">Stolařství</span>
+                        </h1>
+                        <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
+                            Kuchyně, vestavěné skříně, nábytek na míru, a mnoho dalšího.
+                        </p>
+                        <div class="mt-10 mx-5 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
+                            <a href="#contact-as"
+                               class="flex items-center justify-center px-2 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-white hover:bg-indigo-50 sm:px-8">
+                                Kontaktujte nás
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Slider Item -->
+            <!-- My Slider Item -->
+            <div class="slider-item">
+                <div class="relative h-full w-full">
+                    <img class="h-full w-full object-cover"
+                         src="https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg"
+                         alt="People working on laptops"/>
+                    <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply"/>
+                    <div class="absolute inset-0 m-auto h-52">
+                        <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+                            <span class="block text-white">TRUWORK 3</span>
+                            <span class="block text-indigo-200">Stolařství</span>
+                        </h1>
+                        <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
+                            Kuchyně, vestavěné skříně, nábytek na míru, a mnoho dalšího.
+                        </p>
+                        <div class="mt-10 mx-5 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
+                            <a href="#contact-as"
+                               class="flex items-center justify-center px-2 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-white hover:bg-indigo-50 sm:px-8">
+                                Kontaktujte nás
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Slider Item -->
+        </div>
+    </div>
+    <!-- End Slider -->
     <div class="relative bg-mycolor pt-10 pb-32 overflow-hidden">
         <section id="about-us" class="opacity-0 transition-all duration-4000">
             <div class="bg-mycolor">
@@ -101,8 +110,8 @@
                                     arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.
                                 </p>
                                 <div class="mt-6">
-                                    <router-link :to="{ name: 'galleriesIndex', query:{category: 'kuchyne'} }" 
-                                       class="inline-flex px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
+                                    <router-link :to="{ name: 'galleriesIndex', query:{category: 'kuchyne'} }"
+                                                 class="inline-flex px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
                                         Pokračovat na galerii
                                     </router-link>
                                 </div>
@@ -139,7 +148,7 @@
                                 </p>
                                 <div class="mt-6">
                                     <router-link :to="{ name: 'galleriesIndex', query:{category: 'vestavene_skrine'} }"
-                                       class="inline-flex px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
+                                                 class="inline-flex px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
                                         Pokračovat na galerii
                                     </router-link>
                                 </div>
@@ -176,7 +185,7 @@
                                 </p>
                                 <div class="mt-6">
                                     <router-link :to="{ name: 'galleriesIndex', query:{category: 'ostatni'} }"
-                                       class="inline-flex px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
+                                                 class="inline-flex px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
                                         Pokračovat na galerii
                                     </router-link>
                                 </div>
@@ -258,12 +267,12 @@
                             <h3 class="text-lg font-medium text-white">Kontaktní informace</h3>
                             <p class="mt-6 text-base text-indigo-50 max-w-3xl"></p>
                             <dl class="mt-8 space-y-6">
-                                <dt><span class="sr-only">Adress</span></dt>
+                                <dt><span class="sr-only">Adresa</span></dt>
                                 <dd class="flex text-base text-indigo-50">
                                     <LibraryIcon class="flex-shrink-0 w-6 h-6 text-indigo-200" aria-hidden="true"/>
-                                    <span class="ml-3">Jeseník 790 00, Astur 185</span>
+                                    <span class="ml-3"><a href="https://mapy.cz/s/hocezopale" target="_blank">Jeseník 790 00, Astur 185</a></span>
                                 </dd>
-                                <dt><span class="sr-only">Phone number</span></dt>
+                                <dt><span class="sr-only">Telefonní číslo</span></dt>
                                 <dd class="flex text-base text-indigo-50">
                                     <PhoneIcon class="flex-shrink-0 w-6 h-6 text-indigo-200" aria-hidden="true"/>
                                     <span class="ml-3">607 238 514</span>
@@ -303,7 +312,7 @@
                                     <div class="mt-1">
                                         <input v-model="form.name" type="text" name="first-name" id="first-name"
                                                autocomplete="given-name"
-                                               class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"/>
+                                               class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" required/>
                                     </div>
                                     <div class="mt-1 text-sm text-red-600" v-if="form.errors.has('name')"
                                          v-text="form.errors.get('name')"></div>
@@ -314,7 +323,7 @@
                                     <div class="mt-1">
                                         <input v-model="form.surname" type="text" name="last-name" id="last-name"
                                                autocomplete="family-name"
-                                               class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"/>
+                                               class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" required/>
                                     </div>
                                     <div class="mt-1 text-sm text-red-600" v-if="form.errors.has('surname')"
                                          v-text="form.errors.get('surname')"></div>
@@ -324,7 +333,7 @@
                                     <div class="mt-1">
                                         <input v-model="form.email" id="email" name="email" type="email"
                                                autocomplete="email"
-                                               class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"/>
+                                               class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" required/>
                                     </div>
                                     <div class="mt-1 text-sm text-red-600" v-if="form.errors.has('email')"
                                          v-text="form.errors.get('email')"></div>
@@ -338,7 +347,7 @@
                                         <input v-model="form.phone" type="text" name="phone" id="phone"
                                                autocomplete="tel"
                                                class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
-                                               aria-describedby="phone-optional"/>
+                                               aria-describedby="phone-optional" required/>
                                     </div>
                                     <div class="mt-1 text-sm text-red-600" v-if="form.errors.has('phone')"
                                          v-text="form.errors.get('phone')"></div>
@@ -347,7 +356,7 @@
                                     <label for="subject" class="block text-sm font-medium text-gray-900">Předmět</label>
                                     <div class="mt-1">
                                         <input v-model="form.subject" type="text" name="subject" id="subject"
-                                               class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"/>
+                                               class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" required/>
                                     </div>
                                     <div class="mt-1 text-sm text-red-600" v-if="form.errors.has('subject')"
                                          v-text="form.errors.get('subject')"></div>
@@ -361,15 +370,12 @@
                                     <div class="mt-1">
                                         <textarea v-model="form.message" id="message" name="message" rows="4"
                                                   class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border border-gray-300 rounded-md"
-                                                  aria-describedby="message-max"/>
+                                                  aria-describedby="message-max" required/>
                                     </div>
                                     <div class="mt-1 text-sm text-red-600" v-if="form.errors.has('message')"
                                          v-text="form.errors.get('message')"></div>
                                 </div>
                                 <input v-model="form.title" type="hidden" id="title" name="title">
-                                <div class="mt-1 text-sm text-red-600" v-if="form.errors.has('exception')"
-                                     v-text="form.errors.get('exception')">
-                                </div>
                                 <div class="sm:col-span-2 sm:flex sm:justify-end">
                                     <button type="submit"
                                             class="mt-2 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-auto">
@@ -383,8 +389,8 @@
             </div>
         </section>
     </div>
-    <Successful :open="showSuccessful"></Successful>
-    <Exception :open="showException"></Exception>
+    <Successful :open="showSuccessful" :message="message" @close="close"></Successful>
+    <Exception :open="showException" :message="message" @close="close"></Exception>
 </template>
 
 <script>
@@ -415,9 +421,9 @@ export default {
             subject: null,
             message: null
         }))
-
-        const showSuccessful = ref(false);
-        const showException = ref(false);
+        const showSuccessful = ref(false)
+        const showException = ref(false)
+        const message = ref()
 
         let contactForm = null
         let commercial = null
@@ -428,13 +434,23 @@ export default {
 
         function submit() {
             api.contact(form.objectToFormData())
-                .then(() => {
+                .then((response) => {
                     form.onSuccess()
-                    showSuccessful.value=true;
+                    showSuccessful.value = true
+                    message.value = response.data.message
                 }).catch(error => {
-                form.onFail(error.response.data.errors)
-                showException.value=true;
+                if (error.response.data.errors) {
+                    form.onFail(error.response.data.errors)
+                } else {
+                    showException.value = true
+                    message.value = error.response.data.message
+                }
             })
+        }
+
+        function close(){
+            showSuccessful.value = false
+            showException.value = false
         }
 
         function isInViewport(el) {
@@ -477,43 +493,49 @@ export default {
             document.addEventListener('scroll', onScroll)
 
             //Slider
-            const sliderItems = document.querySelector('#slider-items');
-            const sliderItem = document.querySelectorAll('.slider-item');
-            let curr = -1;
-            const total = sliderItem.length;
-            carousel();
+            const sliderItems = document.querySelector('#slider-items')
+            const sliderItem = document.querySelectorAll('.slider-item')
+            const total = sliderItem.length
+            let curr = -1
+
             function carousel() {
-                curr = ++curr % total;
+                curr = ++curr % total
                 anim()
-                setTimeout(carousel, 4000);
+                setTimeout(carousel, 4000)
             }
+
             function anim() {
-                sliderItems.style.transform = ('translateX(' + -(curr*100) + '%');
+                sliderItems.style.transform = ('translateX(' + -(curr * 100) + '%')
             }
+
+            carousel()
+
         })
         onUnmounted(() => {
             document.removeEventListener('scroll', onScroll)
         })
 
         return {
-            submit,
             form,
             showSuccessful,
             showException,
+            message,
+            submit,
+            close
         }
     },
 }
 </script>
 <style scoped>
-  .slider-items {
+.slider-items {
     display: flex; /* Use flex */
     flex-flow: row nowrap;
     height: inherit;
     transition: transform 2s; /* Don't use margin, use transform */
-  }
+}
 
-  .slider-item {
+.slider-item {
     flex: 0 0 100%;
     height: inherit;
-  }
+}
 </style>

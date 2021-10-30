@@ -21,8 +21,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/admin/galleries/{id}', [GalleryController::class, 'edit']);
     Route::post('/admin/galleries', [GalleryController::class, 'store']);
     Route::post('/admin/galleries/edit/{id}', [GalleryController::class, 'update']);
-    Route::delete('/admin/galleries/{id}',[GalleryController::class, 'destroy']);
+    //Route::delete('/admin/galleries/{id}',[GalleryController::class, 'destroy']);
 });
+
+
+Route::delete('/admin/galleries/{id}',[GalleryController::class, 'destroy']);
 
 Route::get('/galleries',[GalleryController::class,'index']);
 Route::get('/galleries/{slug}',[GalleryController::class,'show']);

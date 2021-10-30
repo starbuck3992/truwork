@@ -27,9 +27,9 @@ class GalleryUpdateRequest extends FormRequest
         return [
             'title' => ['required', 'max:64', Rule::unique('galleries')->ignore($this->route()->parameter('id'))],
             'category' => ['required', Rule::in([1,2,3,4])],
-//            'thumbnail' => 'required|image|mimes:jpeg,jpg,png',
-//            'images' => 'required|array',
-//            'images.*' => 'required|image|mimes:jpeg,jpg,png'
+            'thumbnail' => 'image|mimes:jpeg,jpg,png',
+            'images' => 'array',
+            'images.*' => 'image|mimes:jpeg,jpg,png'
         ];
     }
 
@@ -41,14 +41,11 @@ class GalleryUpdateRequest extends FormRequest
             'title.max' => 'Název galerie nemůže být delší než 64 znaků',
             'category.required' => 'Povinné pole',
             'category.in' => 'Nevalidní hodnota',
-//            'thumbnail.required' => 'Povinné pole',
-//            'thumbnail.image' => 'Soubor musí být obrázek typu: jpeg, jpg nebo png',
-//            'thumbnail.mimes' => 'Soubor musí být obrázek typu: jpeg, jpg nebo png',
-//            'images.required' => 'Povinné pole',
-//            'images.array' => 'Nevalidní hodnota',
-//            'images.*.required' => 'Povinné pole',
-//            'images.*.image' => 'Soubory musí být obrázky typu: jpeg, jpg nebo png',
-//            'images.*.mimes' => 'Soubory musí být obrázky typu: jpeg, jpg nebo png',
+            'thumbnail.image' => 'Soubor musí být obrázek typu: jpeg, jpg nebo png',
+            'thumbnail.mimes' => 'Soubor musí být obrázek typu: jpeg, jpg nebo png',
+            'images.array' => 'Nevalidní hodnota',
+            'images.*.image' => 'Soubory musí být obrázky typu: jpeg, jpg nebo png',
+            'images.*.mimes' => 'Soubory musí být obrázky typu: jpeg, jpg nebo png',
         ];
     }
 }

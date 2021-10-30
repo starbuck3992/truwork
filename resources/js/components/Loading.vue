@@ -5,21 +5,21 @@
 </template>
 
 <script>
-import {useStore} from "vuex";
-import {computed, ref, watch} from "vue";
+import {computed, ref, watch} from 'vue'
+import {useStore} from 'vuex'
 
 export default {
     setup() {
         const store = useStore()
         const show = ref(false)
-        const loading = computed(() => store.getters["loadingModule/loading"])
+        const loading = computed(() => store.getters['loadingModule/loading'])
 
         watch(loading, (val) => {
-            show.value = !!val;
+            show.value = !!val
         })
         return {
             show
         }
     }
-};
+}
 </script>

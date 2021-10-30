@@ -54,8 +54,7 @@
 <script>
 import {reactive} from 'vue'
 import {useStore} from 'vuex'
-import {useRouter} from 'vue-router';
-
+import {useRouter} from 'vue-router'
 import Form from "../../utilities/form"
 
 export default {
@@ -64,8 +63,8 @@ export default {
         const router = useRouter()
         const form =
             reactive(new Form({
-                email: "",
-                password: "",
+                email: null,
+                password: null,
             }))
 
         async function login() {

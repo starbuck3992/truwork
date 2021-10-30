@@ -7,6 +7,7 @@ use App\Http\Requests\ContactRequest;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Admin;
 use App\Mail\User;
+use Illuminate\Http\Request;
 use Throwable;
 
 class ContactController extends Controller
@@ -26,20 +27,17 @@ class ContactController extends Controller
                 ];
 
                 Mail::to('admins@truwork.cz')
-                    ->send(new Admins($mail_data));
+                    ->send(new Admin($mail_data));
 
                 Mail::to($mail_data['email'])
-                    ->send(new Users($mail_data));
+                    ->send(new User($mail_data));
 
             } catch (Throwable $e) {
                 report($e);
-                return response()->json([
-                    'errors' => [
-                        'exception' => ['Došlo k chybě při odesílání zprávy']
-                    ]], 500);
+                return response()->json(['message' => ' Je nám líto, ale odeslání formuláře se bohužel nezdařilo. Kontaktujte prosím správce webu, nebo to zkuste později.'], 500);
             }
 
         }
-        return response()->json('Zpráva byla odeslána');
+        return response()->json(['message' => 'Děkujeme za zprávu. Pokusíme se Vás co nejdříve kontaktovat :)']);
     }
 }

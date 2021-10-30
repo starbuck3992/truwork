@@ -12,7 +12,7 @@
                     </router-link>
                 </div>
                 <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">{{
-                    gallery.title
+                        gallery.title
                     }}</p>
             </li>
         </ul>
@@ -32,12 +32,14 @@ export default {
     setup() {
         const route = useRoute()
         const galleries = ref([])
-        const category = ref(route.query.category)
+        const category = ref()
 
         async function callApi() {
-            await api.getGalleries(route.query.category).then(response =>
-                galleries.value = response.data,
-                category.value = route.query.category,
+            await api.getGalleries(route.query.category).then(response => {
+                    galleries.value = response.data
+                    category.value = route.query.category
+
+                }
             )
         }
 

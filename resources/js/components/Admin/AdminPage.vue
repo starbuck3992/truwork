@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Menu from './Menu';
+import Menu from './Menu'
 export default {
     components: {
         Menu
