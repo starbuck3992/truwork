@@ -1,19 +1,16 @@
 <template>
-    <HeroScene :title="'Galerie'"></HeroScene>
+    <HeroScene :title="category"></HeroScene>
     <div class="bg-mycolor max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 mt-5">
         <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
-            <li v-for="(image, i) in images" :key="i" class="relative">
+            <li v-for="(image, i) in images" :key="i" class="relative cursor-pointer">
                 <div @click="openSlider(i)"
-                     class="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
+                     class="relative group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
                     <img :src="image.path" alt="" class="object-cover pointer-events-none group-hover:opacity-75"/>
-                    <button type="button" class="absolute inset-0 focus:outline-none">
+                    <ZoomInIcon class="absolute inset-0 opacity-0 group-hover:opacity-70"></ZoomInIcon>
+                    <!-- <button type="button" class="absolute inset-0 focus:outline-none">
                         <span class="sr-only">View details for {{ image.name }}</span>
-                    </button>
+                    </button> -->
                 </div>
-                <!-- <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">{{
-                        image.name
-                    }}</p> -->
-                <!-- <p class="block text-sm font-medium text-gray-500 pointer-events-none">{{ file.size }}</p> -->
             </li>
         </ul>
     </div>
@@ -64,9 +61,9 @@
 import anime from 'animejs/lib/anime.es.js';
 import {onMounted, ref} from 'vue'
 import {Dialog, DialogOverlay, DialogTitle, TransitionChild, TransitionRoot} from '@headlessui/vue'
-import {CheckIcon, XIcon, ChevronRightIcon, ChevronLeftIcon} from '@heroicons/vue/outline'
+import {CheckIcon, XIcon, ChevronRightIcon, ChevronLeftIcon,ZoomInIcon} from '@heroicons/vue/outline'
 import api from "../../../services/api";
-import {useRoute} from "vue-router";
+import {useRouter, useRoute} from "vue-router";
 import HeroScene from '../../HeroScene.vue'
 import Exception from '../../Exception.vue'
 
@@ -91,27 +88,30 @@ export default {
         ChevronRightIcon,
         ChevronLeftIcon,
         HeroScene,
-        Exception
+        Exception,
+        ZoomInIcon,
     },
     setup() {
         const route = useRoute()
-        //const router = useRouter()
+        const router = useRouter()
         const open = ref(false);
         const index = ref(null);
         const image = ref(null);
         const images = ref([]);
-        const gallerySlug = route.params.slug
+        const category = ref();
+        const gallerySlug = route.params.slug;
 
-        const showException = ref(false)
-        const message = ref()
+        const showException = ref(false);
+        const message = ref();
 
         onMounted(async () => {
-                await api.getGallery(gallerySlug).then(response =>
-                    console.log(response),
-                    images.value = response.data
-                ).catch(() => (
+                await api.getGallery(gallerySlug).then(response => {
                     console.log(response)
-                    //router.push({name: 'homeIndex'})
+                    images.value = response.data.images
+                    category.value = response.data.title
+                    }
+                ).catch(() => (
+                    router.push({name: 'homeIndex'})
                 ))
             }
         )
@@ -164,6 +164,7 @@ export default {
             prev,
             onSwipeItem,
             index,
+            category,
         }
     }
 }

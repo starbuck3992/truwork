@@ -78,14 +78,18 @@
                                     v-show="gallery.category.id === showThisCategory || showThisCategory === 999">
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-30 w-30">
-                                                <img v-if="gallery.thumbnail[0]" class="h-auto w-36"
-                                                     :src="gallery.thumbnail[0].path" alt=""/>
-                                            </div>
+                                            <router-link :to="{ name: 'galleriesShow', params: {slug: gallery.slug } }">
+                                                <div class="flex-shrink-0">
+                                                    <img v-if="gallery.thumbnail[0]" class="max-h-36 max-w-36"
+                                                        :src="gallery.thumbnail[0].path" alt=""/>
+                                                </div>
+                                            </router-link>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">{{ gallery.title }}</div>
+                                        <router-link :to="{ name: 'galleriesShow', params: {slug: gallery.slug } }">
+                                            <div class="text-sm text-gray-700 hover:text-gray-900">{{ gallery.title }}</div>
+                                        </router-link>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         {{ gallery.user.name }}

@@ -48,12 +48,21 @@
                 </PopoverPanel>
               </transition>
             </Popover>
-
-
-            <router-link v-for="item in navigation" :to="{params :{link: item.href }}" :key="item.name"  class="text-base font-medium text-gray-500 hover:text-gray-900">
+            <router-link v-for="item in navigation" :to="{ name: 'homeIndex', hash: item.href }"  :key="item.name"  class="text-base font-medium text-gray-500 hover:text-gray-900">
               {{ item.name }}
             </router-link>
           </PopoverGroup>
+          <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+           <!-- 
+             !!!!Maybe in the future. Ready for login and user registration!!!!
+             <a href="#" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+              Sign in
+            </a>
+            <a href="#" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+              Sign up
+            </a> 
+            -->
+          </div>
         </div>
 
         <transition enter-active-class="duration-200 ease-out" enter-from-class="opacity-0 scale-95" enter-to-class="opacity-100 scale-100" leave-active-class="duration-100 ease-in" leave-from-class="opacity-100 scale-100" leave-to-class="opacity-0 scale-95">
@@ -104,9 +113,8 @@ import {
   XIcon,
 } from '@heroicons/vue/outline'
 import { ChevronDownIcon } from '@heroicons/vue/solid'
-import {watch} from 'vue'
-//import {useRoute} from 'vue-router'
-//import router from '../../router'; 
+import {watch,ref} from 'vue'
+import {useRouter,useRoute,createWebHistory} from 'vue-router'
 
 const solutions = [
   {
@@ -150,11 +158,6 @@ export default {
     XIcon,
   },
   setup() {
-  //  const route = useRoute()
-  //  watch(() => route.params.link, () => {
-  //      console.log(route.params.link)
-  //      router.push('/' + route.params.link)
-  //  });
     return {
       solutions,
       navigation,

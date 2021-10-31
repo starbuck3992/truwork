@@ -21,7 +21,8 @@ class GalleryListResource extends JsonResource
             'created_at' => $this->created_at->timezone('Europe/Prague')->format('d. m. Y'),
             'user'   => new UserResource($this->whenLoaded('user')),
             'category'   => new CategoryResource($this->whenLoaded('category')),
-            'thumbnail'  => ImageResource::collection($this->whenLoaded('images'))
+            'thumbnail'  => ImageResource::collection($this->whenLoaded('images')),
+            'slug'       => $this->slug
         ];
     }
 }
