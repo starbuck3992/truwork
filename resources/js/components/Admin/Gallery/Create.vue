@@ -191,15 +191,22 @@ export default {
         const loading = computed(() => store.getters['loadingModule/loading'])
 
         function showThumbnail(e) {
-            if (e.target.files[0].type === ('image/jpeg' || 'image/jgp' || 'image||png')) {
-                let selectedFile
-                if (e.target.files === undefined) {
-                    selectedFile = e.dataTransfer.files[0]
-                } else {
-                    selectedFile = e.target.files[0]
-                }
+            let selectedFile;
+            let typeFile;
+            if (e.target.files === undefined) {
+                selectedFile = e.dataTransfer.files[0]
+                typeFile = e.dataTransfer.files[0].type
+            } else {
+                selectedFile = e.target.files[0]
+                typeFile = e.target.files[0].type
+            }
+            if (typeFile === ('image/jpeg' || 'image/jgp' || 'image||png')) {
                 thumbnailPreview.value = URL.createObjectURL(selectedFile)
                 form.thumbnail = selectedFile
+            }
+            else
+            {
+              alert('Nahrát lze pouze soubory typu image. jpeg jpg png')  
             }
         }
 

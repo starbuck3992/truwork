@@ -1,4 +1,5 @@
 <template>
+    <HeroScene :title="'Galerie'"></HeroScene>
     <div class="bg-mycolor max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 mt-5">
         <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
             <li v-for="(image, i) in images" :key="i" class="relative">
@@ -9,9 +10,9 @@
                         <span class="sr-only">View details for {{ image.name }}</span>
                     </button>
                 </div>
-                <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">{{
+                <!-- <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">{{
                         image.name
-                    }}</p>
+                    }}</p> -->
                 <!-- <p class="block text-sm font-medium text-gray-500 pointer-events-none">{{ file.size }}</p> -->
             </li>
         </ul>
@@ -47,7 +48,7 @@
                         <ChevronRightIcon @click="next()" class="hidden sm:block absolute right-10 top-1/2 bg-white sm:w-10 sm:h-10 h-3 w-3 z-100"></ChevronRightIcon>
                         <div v-touch:swipe="onSwipeItem()" class="m-auto height-slide w-full flex justify-center inline-block align-middle">
                             <img v-for="(image, i) in images" :key="i"
-                                :class="[i===index ? 'opacity-1' : 'absolute -left-full -right-full opacity-0' ,'transition duration-3000 active h-auto w-auto object-cover align-middle']"
+                                :class="[i===index ? 'opacity-1' : 'absolute -left-full -right-full opacity-0' ,'transition duration-3000 active max-w-full h-screen object-cover align-middle']"
                                 :src="image.path"
                                 alt="Carousel image"/>
                         </div>
@@ -65,6 +66,7 @@ import {Dialog, DialogOverlay, DialogTitle, TransitionChild, TransitionRoot} fro
 import {CheckIcon, XIcon, ChevronRightIcon, ChevronLeftIcon} from '@heroicons/vue/outline'
 import api from "../../../services/api";
 import {useRoute} from "vue-router";
+import HeroScene from '../../HeroScene.vue'
 
 const animation = anime({
   targets: '.active',
@@ -85,6 +87,7 @@ export default {
         XIcon,
         ChevronRightIcon,
         ChevronLeftIcon,
+        HeroScene,
     },
     setup() {
         const route = useRoute()
