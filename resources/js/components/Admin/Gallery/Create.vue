@@ -188,7 +188,6 @@ export default {
             thumbnail: null,
             images: []
         }))
-        const loading = computed(() => store.getters['loadingModule/loading'])
 
         function showThumbnail(e) {
             if (e.target.files[0].type === ('image/jpeg' || 'image/jgp' || 'image||png')) {
@@ -225,18 +224,18 @@ export default {
 
         function resetThumbnail() {
             thumbnailUploader.value.value = null
-            thumbnailPreview.value = null
         }
 
         function resetImages() {
             imagesUploader.value.value = null
-            imagesPreview.value = []
         }
 
         function reset() {
             form.reset()
             resetThumbnail()
             resetImages()
+            thumbnailPreview.value = null
+            imagesPreview.value = []
         }
 
         function submit() {
@@ -245,6 +244,8 @@ export default {
                     form.onSuccess()
                     resetThumbnail()
                     resetImages()
+                    thumbnailPreview.value = null
+                    imagesPreview.value = []
                     router.push({name: 'galleriesShow', params: {slug: response.data.slug}})
                 }).catch(error => {
                 form.onFail(error.response.data.errors)
@@ -287,7 +288,6 @@ export default {
         }
 
         return {
-            loading,
             form,
             thumbnailUploader,
             imagesUploader,

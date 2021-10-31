@@ -29,7 +29,9 @@ class GalleryUpdateRequest extends FormRequest
             'category' => ['required', Rule::in([1,2,3,4])],
             'thumbnail' => 'image|mimes:jpeg,jpg,png',
             'images' => 'array',
-            'images.*' => 'image|mimes:jpeg,jpg,png'
+            'images.*' => 'image|mimes:jpeg,jpg,png',
+            'originalImagesIds' => 'required|array',
+            'originalImagesIds.*' => 'integer'
         ];
     }
 
@@ -46,6 +48,9 @@ class GalleryUpdateRequest extends FormRequest
             'images.array' => 'Nevalidní hodnota',
             'images.*.image' => 'Soubory musí být obrázky typu: jpeg, jpg nebo png',
             'images.*.mimes' => 'Soubory musí být obrázky typu: jpeg, jpg nebo png',
+            'originalImagesIds.required' => 'Povinné pole',
+            'originalImagesIds.array' => 'Nevalidní hodnota',
+            'originalImagesIds.*' => 'Nevalidní hodnota',
         ];
     }
 }
