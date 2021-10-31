@@ -65,6 +65,7 @@ export default {
             reactive(new Form({
                 email: null,
                 password: null,
+                rememberMe: true
             }))
 
         async function login() {

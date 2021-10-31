@@ -115,13 +115,8 @@
                                             <p class="text-xs text-gray-500">Pouze formát: PNG, JPG</p>
                                         </div>
                                     </div>
-                                    <div class="mt-1 text-sm text-red-600" v-if="form.errors.has('images')"
-                                         v-text="form.errors.get('images')">
-                                    </div>
-                                    <div v-for="(image, index) in form.images" :key="index">
-                                        <div class="mt-1 text-sm text-red-600" v-if="form.errors.has(`images.${index}`)"
-                                             v-text="form.errors.get(`images.${index}`)">
-                                        </div>
+                                    <div class="mt-1 text-sm text-red-600" v-if="form.errors.has('originalImagesIds')"
+                                         v-text="form.errors.get('originalImagesIds')">
                                     </div>
                                 </div>
                             </div>
@@ -160,6 +155,7 @@
             </form>
         </div>
     </div>
+    <Exception :open="showException" :message="message" @close="close"></Exception>
 </template>
 
 
@@ -169,18 +165,25 @@ import {useRoute, useRouter} from 'vue-router'
 import {XIcon} from '@heroicons/vue/outline'
 import api from '../../../services/api'
 import Form from '../../../utilities/form'
+import Exception from '../../Exception.vue'
 
 export default {
     components: {
         XIcon,
+        Exception
     },
     setup() {
         const router = useRouter()
         const route = useRoute()
+
         const thumbnailUploader = ref(null)
         const imagesUploader = ref(null)
+
         const thumbnailPreview = ref(null)
         const imagesPreview = ref([])
+
+        const showException = ref(false)
+        const message = ref()
 
         const form = reactive(new Form({
             title: null,
@@ -215,7 +218,9 @@ export default {
                             return obj.thumbnail === 0
                         })
                 }
-            )
+            ).catch(() => (
+                router.push({name: 'adminGalleryIndex'})
+            ))
         }
 
         function showThumbnail(e) {
@@ -253,31 +258,43 @@ export default {
 
         function resetThumbnail() {
             thumbnailUploader.value.value = null
-            thumbnailPreview.value = null
         }
 
         function resetImages() {
             imagesUploader.value.value = null
-            imagesPreview.value = []
+
         }
 
         function reset() {
             form.reset()
             resetThumbnail()
             resetImages()
+            thumbnailPreview.value = null
+            imagesPreview.value = []
             callApi()
         }
 
         function submit() {
             api.updateGallery(route.params.id, form.objectToFormData())
                 .then(response => {
-                    // form.onSuccess()
-                    // resetThumbnail()
-                    // resetImages()
-                    // router.push({name: 'galleriesShow', params: {slug: response.data.slug}})
+                    form.onSuccess()
+                    resetThumbnail()
+                    resetImages()
+                    thumbnailPreview.value = null
+                    imagesPreview.value = []
+                    router.push({name: 'galleriesShow', params: {slug: response.data.slug}})
                 }).catch(error => {
-                form.onFail(error.response.data.errors)
+                if (error.response.data.errors) {
+                    form.onFail(error.response.data.errors)
+                } else {
+                    showException.value = true
+                    message.value = error.response.data.message
+                }
             })
+        }
+
+        function close(){
+            showException.value = false
         }
 
         //Drag AND Drop
@@ -322,12 +339,15 @@ export default {
             imagesUploader,
             thumbnailPreview,
             imagesPreview,
+            showException,
+            message,
             resetThumbnail,
             resetImages,
             showThumbnail,
             showImages,
             reset,
             submit,
+            close,
             drop,
             dragleave,
             dragover,

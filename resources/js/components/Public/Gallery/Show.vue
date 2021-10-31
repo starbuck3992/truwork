@@ -57,6 +57,7 @@
             </div>
         </Dialog>
     </TransitionRoot>
+    <Exception :open="showException" :message="message" @close="close"></Exception>
 </template>
 
 <script>
@@ -67,6 +68,7 @@ import {CheckIcon, XIcon, ChevronRightIcon, ChevronLeftIcon} from '@heroicons/vu
 import api from "../../../services/api";
 import {useRoute} from "vue-router";
 import HeroScene from '../../HeroScene.vue'
+import Exception from '../../Exception.vue'
 
 const animation = anime({
   targets: '.active',
@@ -88,21 +90,32 @@ export default {
         ChevronRightIcon,
         ChevronLeftIcon,
         HeroScene,
+        Exception
     },
     setup() {
         const route = useRoute()
+        const router = useRouter()
         const open = ref(false);
         const index = ref(null);
         const image = ref(null);
         const images = ref([]);
         const gallerySlug = route.params.slug
 
+        const showException = ref(false)
+        const message = ref()
+
         onMounted(async () => {
                 await api.getGallery(gallerySlug).then(response =>
                     images.value = response.data
-                )
+                ).catch(() => (
+                    router.push({name: 'homeIndex'})
+                ))
             }
         )
+
+        function close(){
+            showException.value = false
+        }
 
         function openSlider(i, event) {
             open.value = true;
@@ -140,6 +153,9 @@ export default {
             image,
             open,
             images,
+            showException,
+            message,
+            close,
             openSlider,
             next,
             prev,

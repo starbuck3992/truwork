@@ -7,7 +7,7 @@ use App\Http\Requests\GalleryStoreRequest;
 use App\Http\Requests\GalleryUpdateRequest;
 use App\Http\Resources\AdminResources\GalleryEditResource;
 use App\Http\Resources\AdminResources\GalleryListResource;
-use App\Http\Resources\PublicResources\ImageResource;
+use App\Http\Resources\PublicResources\GalleryShowResource;
 use App\Http\Resources\PublicResources\GalleryIndexResource;
 use App\Models\Gallery;
 use App\Models\Image;
@@ -34,7 +34,7 @@ class GalleryController extends Controller
         $category = $request->query('category');
 
         return GalleryIndexResource::collection(Gallery::with(
-            ['category','images' => function ($query) {
+            ['category', 'images' => function ($query) {
                 $query->where('thumbnail', 1);
             }])->whereHas('category', function ($query) use ($category) {
             $query->where('slug', $category);
@@ -90,15 +90,30 @@ class GalleryController extends Controller
 
     public function show($slug)
     {
-        return ImageResource::collection(Image::with('gallery')->whereHas('gallery', function ($query) use ($slug) {
-            $query->where('slug', $slug);
-        })->get());
+        try {
 
+        return new GalleryShowResource(Gallery::with(['images'])->where('slug', $slug)->firstOrFail());
+
+        } catch (Throwable $e) {
+
+            report($e);
+            return response()->json(['message' => 'Galerie nenalezena'], 404);
+
+        }
     }
 
     public function edit($id)
     {
-        return new GalleryEditResource(Gallery::where('id', $id)->with(['category', 'images'])->firstorfail());
+        try {
+
+            return new GalleryEditResource(Gallery::where('id', $id)->with(['category', 'images'])->firstorfail());
+
+        } catch (Throwable $e) {
+
+            report($e);
+            return response()->json(['message' => 'Galerie nenalezena'], 404);
+
+        }
     }
 
     public function update(GalleryUpdateRequest $request, $id)
@@ -106,76 +121,121 @@ class GalleryController extends Controller
         $user = Auth::id();
         $slug = Str::slug($request->title);
 
-        $gallery = Gallery::where('id', $id)->firstorfail();
+        try {
+
+            $gallery = Gallery::where('id', $id)->firstorfail();
+            $gallery->user_id = $user;
+            $gallery->title = $request->title;
+            $gallery->category_id = $request->category;
+            $gallery->slug = $slug;
+            $gallery->save();
+
+        } catch (Throwable $e) {
+
+            report($e);
+            return response()->json(['message' => 'Galerie nenalezena'], 404);
+
+        }
+
+        if ($request->file('thumbnail')) {
+
+            try {
+
+                $thumbnail = $gallery->images()->where('thumbnail', '=', 1)->firstorfail();
+                $current_thumbnail_path = $thumbnail->path;
+
+                Storage::delete($current_thumbnail_path);
+
+                $thumbnail_file = $request->file('thumbnail');
+                $path = $thumbnail_file->store("images/galleries/$id", 'public');
+
+                $thumbnail->user_id = $user;
+                $thumbnail->original_name = $thumbnail_file->getClientOriginalName();
+                $thumbnail->path = $path;
+                $thumbnail->extension = $thumbnail_file->extension();
+                $thumbnail->size = $thumbnail_file->getSize();
+                $thumbnail->save();
+
+            } catch (Throwable $e) {
+
+                report($e);
+                return response()->json(['message' => 'Chyba při ukládání náhledového obrázku'], 500);
+
+            }
+
+        }
+
         $images = DB::table('images')->where([
             'gallery_id' => $id,
             'thumbnail' => 0,
         ])->selectRaw('CAST(id as CHAR(50)) as id, path')->get()->toArray();
 
-        $gallery->user_id = $user;
-        $gallery->title = $request->title;
-        $gallery->category_id = $request->category;
-        $gallery->slug = $slug;
-        $gallery->save();
-
-        if ($request->file('thumbnail')) {
-
-            $thumbnail = $gallery->images()->where('thumbnail', '=', 1)->firstorfail();
-            $current_thumbnail_path = $thumbnail->path;
-
-            Storage::delete($current_thumbnail_path);
-
-            $thumbnail_file = $request->file('thumbnail');
-            $path = $thumbnail_file->store("images/galleries/$id", 'public');
-
-            $thumbnail->user_id = $user;
-            $thumbnail->original_name = $thumbnail_file->getClientOriginalName();
-            $thumbnail->path = $path;
-            $thumbnail->extension = $thumbnail_file->extension();
-            $thumbnail->size = $thumbnail_file->getSize();
-
-            $thumbnail->save();
-
-        }
-
         if ($request->file('images')) {
 
-            $imagesToSave = array();
+            try {
 
-            foreach ($request->file('images') as $image) {
+                $imagesToSave = array();
 
-                $path = $image->store("images/galleries/$id", 'public');
+                foreach ($request->file('images') as $image) {
 
-                $imagesToSave[] = new Image([
-                    'user_id' => $user,
-                    'original_name' => $image->getClientOriginalName(),
-                    'path' => $path,
-                    'extension' => $image->extension(),
-                    'size' => $image->getSize(),
-                    'thumbnail' => false
-                ]);
+                    $path = $image->store("images/galleries/$id", 'public');
+
+                    $imagesToSave[] = new Image([
+                        'user_id' => $user,
+                        'original_name' => $image->getClientOriginalName(),
+                        'path' => $path,
+                        'extension' => $image->extension(),
+                        'size' => $image->getSize(),
+                        'thumbnail' => false
+                    ]);
+                }
+
+                $gallery->images()->saveMany($imagesToSave);
+
+            } catch (Throwable $e) {
+
+                report($e);
+
+                foreach ($imagesToSave as $image){
+
+                    Storage::delete($image->path);
+
+                }
+
+                return response()->json(['message' => 'Chyba při ukládání obrázků'], 500);
+
             }
-            $gallery->images()->saveMany($imagesToSave);
+
         }
 
-        $originalImagesIds = array_column($images, 'id');
+        try {
 
-        if ($originalImagesIds !== $request->originalImagesIds) {
+            $originalImagesIds = array_column($images, 'id');
 
-            $originalImagesPaths = array_column($images, 'path');
-            $imagesToDelete = array_diff($originalImagesIds, $request->originalImagesIds);
+            if ($originalImagesIds !== $request->originalImagesIds) {
 
-            foreach ($imagesToDelete as $key => $value) {
-                Storage::delete($originalImagesPaths[$key]);
+                $originalImagesPaths = array_column($images, 'path');
+                $imagesToDelete = array_diff($originalImagesIds, $request->originalImagesIds);
+
+                foreach ($imagesToDelete as $key => $value) {
+                    Storage::delete($originalImagesPaths[$key]);
+                }
+
+                $gallery->images()->whereIn('id', $imagesToDelete)->delete();
+
             }
 
-            $gallery->images()->whereIn('id', $imagesToDelete)->delete();
-        }
+            return response()->json([
+                'message' => 'Galerie byla aktualizována',
+                'slug' => $slug
+            ]);
 
-        return response()->json([
-            'message' => 'Galerie byla aktualizována',
-            'slug' => $slug
-        ]);
+        } catch (Throwable $e) {
+
+            report($e);
+            return response()->json(['message' => 'Chyba při aktualizování obrázků galerie'], 500);
+
+        }
 
     }
 
@@ -183,9 +243,9 @@ class GalleryController extends Controller
     {
         try {
 
-            Gallery::where('id', $id)->firstOrFail()->delete();
-
             Storage::deleteDirectory("public/images/galleries/$id");
+
+            Gallery::where('id', $id)->firstOrFail()->delete();
 
             return response()->json(['message' => 'Galerie byla smazána']);
 
