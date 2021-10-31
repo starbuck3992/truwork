@@ -85,7 +85,7 @@
             <div class="bg-mycolor">
                 <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
                     <div class="text-center">
-                        <p class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+                        <p class="mt-10 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
                             Stylové kuchyně na zakázku</p>
                         <p class="max-w-xl mt-5 mx-auto text-xl text-gray-500">Vyrábíme kvalitní kuchyňský nábytek z
                             masivu v tradičním i moderním vzhledu. Každý kus je ručne vyrobeným a lakovaným originálem,
@@ -96,7 +96,7 @@
             </div>
         </section>
         <section id="content">
-            <div id="mykitchens" class="relative opacity-0 transition duration-4000">
+            <div id="mykitchens" class="relative mt-10 opacity-0 transition duration-4000">
                 <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
                     <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
                         <div>
@@ -207,7 +207,7 @@
             <div id="myform"
                  class="opacity-0 transition-all duration-4000 max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 mt-5">
                 <div class="text-center">
-                    <p class="mt-1 mb-12 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+                    <p class="mt-10 mb-12 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
                         Kontaktujte nás!</p>
                 </div>
                 <div class="relative bg-white shadow-xl">
