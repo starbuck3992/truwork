@@ -70,6 +70,7 @@ import {useRoute} from "vue-router";
 import HeroScene from '../../HeroScene.vue'
 import Exception from '../../Exception.vue'
 
+
 const animation = anime({
   targets: '.active',
   translateX: 250,
@@ -94,7 +95,7 @@ export default {
     },
     setup() {
         const route = useRoute()
-        const router = useRouter()
+        //const router = useRouter()
         const open = ref(false);
         const index = ref(null);
         const image = ref(null);
@@ -106,9 +107,11 @@ export default {
 
         onMounted(async () => {
                 await api.getGallery(gallerySlug).then(response =>
+                    console.log(response),
                     images.value = response.data
                 ).catch(() => (
-                    router.push({name: 'homeIndex'})
+                    console.log(response)
+                    //router.push({name: 'homeIndex'})
                 ))
             }
         )

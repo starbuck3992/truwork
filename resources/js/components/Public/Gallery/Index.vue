@@ -36,8 +36,7 @@ export default {
         async function callApi() {
             await api.getGalleries(route.query.category).then(response => {
                     galleries.value = response.data
-                    category.value = route.query.category
-
+                    category.value = response.data[0].title
                 }
             )
         }

@@ -50,9 +50,9 @@
             </Popover>
 
 
-            <a v-for="item in navigation" :key="item.name" :href="item.href" class="text-base font-medium text-gray-500 hover:text-gray-900">
+            <router-link v-for="item in navigation" :to="{params :{link: item.href }}" :key="item.name"  class="text-base font-medium text-gray-500 hover:text-gray-900">
               {{ item.name }}
-            </a>
+            </router-link>
           </PopoverGroup>
         </div>
 
@@ -104,6 +104,9 @@ import {
   XIcon,
 } from '@heroicons/vue/outline'
 import { ChevronDownIcon } from '@heroicons/vue/solid'
+import {watch} from 'vue'
+//import {useRoute} from 'vue-router'
+//import router from '../../router'; 
 
 const solutions = [
   {
@@ -147,6 +150,11 @@ export default {
     XIcon,
   },
   setup() {
+  //  const route = useRoute()
+  //  watch(() => route.params.link, () => {
+  //      console.log(route.params.link)
+  //      router.push('/' + route.params.link)
+  //  });
     return {
       solutions,
       navigation,

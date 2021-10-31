@@ -37,10 +37,10 @@
       <div class="flex flex-col w-64">
         <!-- Sidebar component, swap this element with another sidebar if you like -->
         <div class="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
-          <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+          <div class="flex-1 flex flex-col pt-5 overflow-y-auto">
             <div class="flex items-center flex-shrink-0 px-4">
               <router-link :to="{ name: 'homeIndex' }">
-                <img class="h-8 w-auto m-5" src="storage/images/logo.png" alt="Logo" />
+                <img class="h-auto w-full m-auto" :src="'storage/images/logo.png'" alt="Logo" />
               </router-link>
             </div>
             <nav class="mt-5 flex-1 px-2 bg-white space-y-1">
@@ -71,6 +71,31 @@
                   </div>
                 </div>
             </nav>
+            <div class="flex-shrink-0 flex bg-gray-200 p-4">
+              <a href="#" class="flex-shrink-0 w-full group block">
+                <div class="flex items-center">
+                  <div>
+                    <img class="inline-block h-9 w-9 rounded-full object-cover" 
+                      src="https://scontent.fprg4-1.fna.fbcdn.net/v/t31.18172-8/10662082_376000669217269_7408501700190222776_o.jpg?_nc_cat=102&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=cVwEL2u6AS0AX-eJi5a&tn=5qI38hRPvv5oRhaj&_nc_ht=scontent.fprg4-1.fna&oh=0b2dbbdf3be5afc2a1b73619a1d4130b&oe=61A3AAC8"
+                      alt="" 
+                    />
+                  </div>
+                  <div class="ml-2">
+                    <p class="text-xs font-medium text-gray-900">
+                      Pavel Švardala
+                    </p>
+                    <p class="text-xs font-medium text-gray-900">
+                      Administrator
+                    </p>
+                  </div>
+                  <div class="ml-2">
+                    <Logout 
+                      style="font-size: 0.75rem; line-height: 1rem; padding:2px;">
+                    </Logout>
+                  </div>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -101,6 +126,7 @@
 <script>
 import { ref } from 'vue'
 import { Dialog, DialogOverlay, TransitionChild, TransitionRoot} from '@headlessui/vue'
+import Logout from '../Auth/Logout'
 import {
   FolderIcon,
   HomeIcon,
@@ -127,6 +153,7 @@ export default {
     MinusSmIcon,
     DocumentTextIcon,
     DocumentAddIcon,
+    Logout,
   },
   setup() {
     const sidebarOpen = ref(false);
