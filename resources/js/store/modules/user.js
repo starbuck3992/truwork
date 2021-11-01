@@ -25,12 +25,12 @@ const user = {
     actions: {
         login({commit}, payload) {
             return api.login(payload)
-                .then(response => commit('createSession', response.data))
+                .then(response => commit('createSession', response.data.name))
         },
         logout({commit}) {
             return api.logout()
                 .then(() => {
-                    commit('destroySession');
+                    commit('destroySession')
                 })
                 .finally(() => {
                     router.push({name: 'homeIndex'})

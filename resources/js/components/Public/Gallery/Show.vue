@@ -99,14 +99,12 @@ export default {
         const image = ref(null);
         const images = ref([]);
         const category = ref();
-        const gallerySlug = route.params.slug;
 
         const showException = ref(false);
         const message = ref();
 
         onMounted(async () => {
-                await api.getGallery(gallerySlug).then(response => {
-                    console.log(response)
+                await api.getGallery(route.params.slug).then(response => {
                     images.value = response.data.images
                     category.value = response.data.title
                     }
@@ -120,7 +118,7 @@ export default {
             showException.value = false
         }
 
-        function openSlider(i, event) {
+        function openSlider(i) {
             open.value = true;
             index.value = i;
         }
@@ -142,7 +140,7 @@ export default {
         }
 
         function onSwipeItem() {
-		return function (direction, mouseEvent) {
+		return function (direction) {
                 if ( direction === "left" || direction === "top" ){
                     next();
                 }

@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
             <div class="flex justify-center space-x-6 md:order-2">
                 <div v-if="loggedIn">
-                    Přihlášen uživatel <span class="text-indigo-600 font-medium hover:text-indigo-700">{{ user.name }}</span>
+                    Přihlášen uživatel <span class="text-indigo-600 font-medium hover:text-indigo-700">{{ user }}</span>
                     <p>
                     <router-link :to="{ name: 'adminGalleryIndex' }">
                         <button type="button" class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -41,8 +41,9 @@ export default {
     },
     setup() {
         const store = useStore()
-        const user = computed(() => store.getters["userModule/user"])
-        const loggedIn = computed(() => store.getters["userModule/loggedIn"])
+        const user = computed(() => store.getters['userModule/user'])
+        const loggedIn = computed(() => store.getters['userModule/loggedIn'])
+
         return {
             user,
             loggedIn

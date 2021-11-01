@@ -78,17 +78,20 @@
                                     v-show="gallery.category.id === showThisCategory || showThisCategory === 999">
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
-                                            <router-link :to="{ name: 'galleriesShow', params: {slug: gallery.slug } }">
+                                            <router-link :to="{ name: 'galleriesShow', params: {slug: gallery.slug } }" target="_blank">
                                                 <div class="flex-shrink-0">
                                                     <img v-if="gallery.thumbnail[0]" class="max-h-36 max-w-36"
-                                                        :src="gallery.thumbnail[0].path" alt=""/>
+                                                         :src="gallery.thumbnail[0].path" alt=""/>
                                                 </div>
                                             </router-link>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <router-link :to="{ name: 'galleriesShow', params: {slug: gallery.slug } }">
-                                            <div class="text-sm text-gray-700 hover:text-gray-900">{{ gallery.title }}</div>
+                                            <div class="text-sm text-gray-700 hover:text-gray-900">{{
+                                                    gallery.title
+                                                }}
+                                            </div>
                                         </router-link>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -223,7 +226,10 @@ export default {
         onMounted(async () => {
                 await api.getAdminGalleries().then(response =>
                     galleries.value = response.data
-                )
+                ).catch(error => {
+                    showException.value = true
+                    message.value = error.response.data.message
+                })
             }
         )
 
@@ -246,7 +252,7 @@ export default {
             galleryToDelete.index = index
         }
 
-        function close(){
+        function close() {
             showSuccessful.value = false
             showException.value = false
         }

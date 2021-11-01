@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GalleryIndexRequest;
 use App\Http\Requests\GalleryStoreRequest;
 use App\Http\Requests\GalleryUpdateRequest;
 use App\Http\Resources\AdminResources\GalleryEditResource;
@@ -11,7 +12,6 @@ use App\Http\Resources\PublicResources\GalleryShowResource;
 use App\Http\Resources\PublicResources\GalleryIndexResource;
 use App\Models\Gallery;
 use App\Models\Image;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -23,22 +23,52 @@ class GalleryController extends Controller
 
     public function list()
     {
-        return GalleryListResource::collection(Gallery::with(
-            ['user', 'category', 'images' => function ($query) {
-                $query->where('thumbnail', 1);
-            }])->orderBy('created_at', 'DESC')->get());
+        try {
+
+            return GalleryListResource::collection(Gallery::with(
+                ['user', 'category', 'images' => function ($query) {
+                    $query->where('thumbnail', 1);
+                }])->orderBy('created_at', 'DESC')->get());
+
+        } catch (Throwable $e) {
+
+            report($e);
+
+            return response()->json(['message' => 'Chyba při získávání seznamu galerií'], 500);
+
+        }
     }
 
-    public function index(Request $request)
+    public function index(GalleryIndexRequest $request)
     {
-        $category = $request->query('category');
+        try {
 
-        return GalleryIndexResource::collection(Gallery::with(
-            ['category', 'images' => function ($query) {
-                $query->where('thumbnail', 1);
-            }])->whereHas('category', function ($query) use ($category) {
-            $query->where('slug', $category);
-        })->orderBy('created_at', 'DESC')->get());
+            $category = $request->query('category');
+
+            $galleries = Gallery::with(
+                ['category', 'images' => function ($query) {
+                    $query->where('thumbnail', 1);
+                }])->whereHas('category', function ($query) use ($category) {
+                $query->where('slug', $category);
+
+            })->orderBy('created_at', 'DESC')->get();
+
+            if ($galleries->isNotEmpty()) {
+
+                return GalleryIndexResource::collection($galleries);
+
+            } else {
+
+                return response()->json(['message' => 'Neexistují galerie s danou kategorií'], 404);
+
+            }
+        } catch (Throwable $e) {
+
+            report($e);
+
+            return response()->json(['message' => 'Chyba při získávání galerií'], 500);
+
+        }
     }
 
     public function store(GalleryStoreRequest $request)
@@ -92,7 +122,7 @@ class GalleryController extends Controller
     {
         try {
 
-        return new GalleryShowResource(Gallery::with(['images'])->where('slug', $slug)->firstOrFail());
+            return new GalleryShowResource(Gallery::with(['images'])->where('slug', $slug)->firstOrFail());
 
         } catch (Throwable $e) {
 
@@ -165,10 +195,20 @@ class GalleryController extends Controller
 
         }
 
-        $images = DB::table('images')->where([
-            'gallery_id' => $id,
-            'thumbnail' => 0,
-        ])->selectRaw('CAST(id as CHAR(50)) as id, path')->get()->toArray();
+        try {
+
+            $images = DB::table('images')->where([
+                'gallery_id' => $id,
+                'thumbnail' => 0,
+            ])->selectRaw('CAST(id as CHAR(50)) as id, path')->get()->toArray();
+
+        } catch (Throwable $e) {
+
+            report($e);
+
+            return response()->json(['message' => 'Chyba při ukládání obrázků'], 500);
+
+        }
 
         if ($request->file('images')) {
 
@@ -196,7 +236,7 @@ class GalleryController extends Controller
 
                 report($e);
 
-                foreach ($imagesToSave as $image){
+                foreach ($imagesToSave as $image) {
 
                     Storage::delete($image->path);
 
