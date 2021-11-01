@@ -1,5 +1,6 @@
 <template>
     <HeroScene :title="category"></HeroScene>
+    <p class="mt-10 mb-5 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl text-center">Ukázka naší práce</p>
     <div class="bg-mycolor max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 mt-5">
         <ul role="list" class="grid grid-cols-2 gap-x-3 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-3 xl:gap-x-8">
             <li v-for="(gallery, i) in galleries" :key="i" class="relative">
@@ -38,7 +39,7 @@ export default {
         async function callApi() {
             await api.getGalleries(route.query.category).then(response => {
                     galleries.value = response.data
-                    category.value = response.data[0].title
+                    category.value = response.data[0].category.name
                 }
             )
         }

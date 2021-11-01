@@ -40,7 +40,7 @@
           <div class="flex-1 flex flex-col pt-5 overflow-y-auto">
             <div class="flex items-center flex-shrink-0 px-4">
               <router-link :to="{ name: 'homeIndex' }">
-                <img class="h-auto w-full m-auto" :src="'storage/images/logo.png'" alt="Logo" />
+                <img class="h-auto w-full m-auto" src="/storage/images/logo.png" alt="Logo" />
               </router-link>
             </div>
             <nav class="mt-5 flex-1 px-2 bg-white space-y-1">

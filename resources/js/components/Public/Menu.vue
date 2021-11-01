@@ -6,7 +6,7 @@
           <div class="flex justify-start lg:w-0 lg:flex-1">
             <router-link :to="{ name: 'homeIndex' }">
               <span class="sr-only">Workflow</span>
-              <img class="h-8 w-auto sm:h-10 m-5" src="storage/images/logo.png" alt="" />
+              <img class="h-8 w-auto sm:h-10 m-5" src="/storage/images/logo.png" alt="" />
             </router-link>
           </div>
           <div class="-my-2 md:hidden">
