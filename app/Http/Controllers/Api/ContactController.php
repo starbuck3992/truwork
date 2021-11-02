@@ -26,7 +26,7 @@ class ContactController extends Controller
                     'logo' => asset('storage/images/logo.png'),
                 ];
 
-                Mail::to('admins@truwork.cz')
+                Mail::to('truwork@truwork.cz')
                     ->send(new Admin($mail_data));
 
                 Mail::to($mail_data['email'])
