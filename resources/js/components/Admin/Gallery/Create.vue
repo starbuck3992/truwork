@@ -160,34 +160,41 @@
             </form>
         </div>
     </div>
+    <Exception :open="showException" :message="message" @close="close"></Exception>
 </template>
 
 
 <script>
-import {computed, reactive, ref} from 'vue'
+import {reactive, ref} from 'vue'
 import {useRouter} from 'vue-router'
-import {useStore} from 'vuex'
 import {XIcon} from '@heroicons/vue/outline'
 import api from '../../../services/api'
 import Form from '../../../utilities/form'
+import Exception from '../../Exception.vue'
 
 export default {
     components: {
         XIcon,
+        Exception
     },
     setup() {
         const router = useRouter()
-        const store = useStore()
+
         const thumbnailUploader = ref(null)
         const imagesUploader = ref(null)
+
         const thumbnailPreview = ref(null)
         const imagesPreview = ref([])
+
         const form = reactive(new Form({
             title: null,
             category: null,
             thumbnail: null,
             images: []
         }))
+
+        const showException = ref(false)
+        const message = ref()
 
         function showThumbnail(e) {
             let selectedFile;
@@ -205,7 +212,7 @@ export default {
             }
             else
             {
-              alert('Nahrát lze pouze soubory typu image. jpeg jpg png')  
+              alert('Nahrát lze pouze soubory typu image. jpeg jpg png')
             }
         }
 
@@ -255,8 +262,17 @@ export default {
                     imagesPreview.value = []
                     router.push({name: 'galleriesShow', params: {slug: response.data.slug}})
                 }).catch(error => {
-                form.onFail(error.response.data.errors)
+                if (error.response.data.errors) {
+                    form.onFail(error.response.data.errors)
+                } else {
+                    showException.value = true
+                    message.value = error.response.data.message
+                }
             })
+        }
+
+        function close(){
+            showException.value = false
         }
 
         //Drag AND Drop
@@ -300,12 +316,15 @@ export default {
             imagesUploader,
             thumbnailPreview,
             imagesPreview,
+            showException,
+            message,
             resetThumbnail,
             resetImages,
             showThumbnail,
             showImages,
             reset,
             submit,
+            close,
             drop,
             dragleave,
             dragover,

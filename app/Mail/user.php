@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use Illuminate\Bus\Queueable; 
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -22,6 +22,6 @@ class User extends Mailable
 
     public function build()
     {
-        return $this->subject('Truwork - děkujeme že jste nás kontaktovali')->view('emails.user');
+        return $this->frsubject('Truwork - děkujeme že jste nás kontaktovali')->view('emails.user');
     }
 }

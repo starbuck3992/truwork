@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GalleryDeleteRequest;
 use App\Http\Requests\GalleryIndexRequest;
 use App\Http\Requests\GalleryStoreRequest;
 use App\Http\Requests\GalleryUpdateRequest;
@@ -74,48 +75,77 @@ class GalleryController extends Controller
     public function store(GalleryStoreRequest $request)
     {
 
-        $user = Auth::id();
+        DB::beginTransaction();
 
-        $slug = Str::slug($request->title);
+        try {
 
-        $gallery = new Gallery([
-            'user_id' => $user,
-            'category_id' => $request->category,
-            'title' => $request->title,
-            'slug' => $slug
-        ]);
+            $user = Auth::id();
+            $slug = Str::slug($request->title);
 
-        $gallery->save();
+            $gallery = new Gallery([
+                'user_id' => $user,
+                'category_id' => $request->category,
+                'title' => $request->title,
+                'slug' => $slug
+            ]);
 
-        $imagesToSave = array();
-        $thumbnail_file = $request->file('thumbnail');
-        $imagesToSave[] = new Image([
-            'user_id' => $user,
-            'original_name' => $thumbnail_file->getClientOriginalName(),
-            'path' => $thumbnail_file->store("images/galleries/$gallery->id", 'public'),
-            'extension' => $thumbnail_file->extension(),
-            'size' => $thumbnail_file->getSize(),
-            'thumbnail' => true
-        ]);
+            $gallery->save();
 
-        foreach ($request->file('images') as $image) {
+        } catch (Throwable $e) {
 
-            $path = $image->store("images/galleries/$gallery->id", 'public');
+            DB::rollback();
 
+            report($e);
+
+            return response()->json(['message' => 'Chyba při vytváření galerie'], 500);
+
+        }
+        try {
+
+            $imagesToSave = array();
+            $thumbnail_file = $request->file('thumbnail');
             $imagesToSave[] = new Image([
                 'user_id' => $user,
-                'original_name' => $image->getClientOriginalName(),
-                'path' => $path,
-                'extension' => $image->extension(),
-                'size' => $image->getSize(),
-                'thumbnail' => false
+                'original_name' => $thumbnail_file->getClientOriginalName(),
+                'path' => $thumbnail_file->store("images/galleries/$gallery->id", 'public'),
+                'extension' => $thumbnail_file->extension(),
+                'size' => $thumbnail_file->getSize(),
+                'thumbnail' => true
             ]);
-        }
-        $gallery->images()->saveMany($imagesToSave);
 
-        return response()->json([
-            'slug' => $slug
-        ]);
+            foreach ($request->file('images') as $image) {
+
+                $path = $image->store("images/galleries/$gallery->id", 'public');
+
+                $imagesToSave[] = new Image([
+                    'user_id' => $user,
+                    'original_name' => $image->getClientOriginalName(),
+                    'path' => $path,
+                    'extension' => $image->extension(),
+                    'size' => $image->getSize(),
+                    'thumbnail' => false
+                ]);
+            }
+            $gallery->images()->saveMany($imagesToSave);
+
+            DB::commit();
+
+            return response()->json([
+                'message' => 'Galerie vytvořena',
+                'slug' => $slug
+            ]);
+
+        } catch (Throwable $e) {
+
+            Storage::deleteDirectory("public/images/galleries/$gallery->id");
+
+            DB::rollback();
+
+            report($e);
+
+            return response()->json(['message' => 'Chyba při vytváření galerie'], 500);
+
+        }
     }
 
     public function show($slug)
@@ -141,6 +171,7 @@ class GalleryController extends Controller
         } catch (Throwable $e) {
 
             report($e);
+
             return response()->json(['message' => 'Galerie nenalezena'], 404);
 
         }
@@ -148,10 +179,13 @@ class GalleryController extends Controller
 
     public function update(GalleryUpdateRequest $request, $id)
     {
-        $user = Auth::id();
-        $slug = Str::slug($request->title);
+
+        DB::beginTransaction();
 
         try {
+
+            $user = Auth::id();
+            $slug = Str::slug($request->title);
 
             $gallery = Gallery::where('id', $id)->firstorfail();
             $gallery->user_id = $user;
@@ -162,7 +196,10 @@ class GalleryController extends Controller
 
         } catch (Throwable $e) {
 
+            DB::rollback();
+
             report($e);
+
             return response()->json(['message' => 'Galerie nenalezena'], 404);
 
         }
@@ -188,7 +225,10 @@ class GalleryController extends Controller
 
             } catch (Throwable $e) {
 
+                DB::rollback();
+
                 report($e);
+
                 return response()->json(['message' => 'Chyba při ukládání náhledového obrázku'], 500);
 
             }
@@ -203,6 +243,8 @@ class GalleryController extends Controller
             ])->selectRaw('CAST(id as CHAR(50)) as id, path')->get()->toArray();
 
         } catch (Throwable $e) {
+
+            DB::rollback();
 
             report($e);
 
@@ -226,7 +268,7 @@ class GalleryController extends Controller
                         'path' => $path,
                         'extension' => $image->extension(),
                         'size' => $image->getSize(),
-                        'thumbnail' => false
+                        'thumbnails' => false
                     ]);
                 }
 
@@ -234,11 +276,15 @@ class GalleryController extends Controller
 
             } catch (Throwable $e) {
 
+                DB::rollback();
+
                 report($e);
 
-                foreach ($imagesToSave as $image) {
+                $imagesPaths = array_column($imagesToSave, 'path');
 
-                    Storage::delete($image->path);
+                foreach ($imagesPaths as $path) {
+
+                    Storage::delete("public/$path");
 
                 }
 
@@ -265,6 +311,8 @@ class GalleryController extends Controller
 
             }
 
+            DB::commit();
+
             return response()->json([
                 'message' => 'Galerie byla aktualizována',
                 'slug' => $slug
@@ -272,20 +320,23 @@ class GalleryController extends Controller
 
         } catch (Throwable $e) {
 
+            DB::rollback();
+
             report($e);
+
             return response()->json(['message' => 'Chyba při aktualizování obrázků galerie'], 500);
 
         }
 
     }
 
-    public function destroy($id)
+    public function destroy(GalleryDeleteRequest $request)
     {
         try {
 
-            Storage::deleteDirectory("public/images/galleries/$id");
+            Storage::deleteDirectory("public/images/galleries/$request->id");
 
-            Gallery::where('id', $id)->firstOrFail()->delete();
+            Gallery::where('id', $request->id)->firstOrFail()->delete();
 
             return response()->json(['message' => 'Galerie byla smazána']);
 
