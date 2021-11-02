@@ -22,6 +22,6 @@ class User extends Mailable
 
     public function build()
     {
-        return $this->frsubject('Truwork - děkujeme že jste nás kontaktovali')->view('emails.user');
+        return $this->subject('Truwork - děkujeme že jste nás kontaktovali')->view('emails.user');
     }
 }
