@@ -190,7 +190,7 @@ const tabs = [
     {name: 'Vše', category: 999},
     {name: 'Kuchyně', category: 1},
     {name: 'Vestavěnné Skříně', category: 2},
-    {name: 'Pergoly', category: 3},
+    {name: 'Komerční prostory', category: 3},
     {name: 'Ostatní', category: 4},
 ]
 

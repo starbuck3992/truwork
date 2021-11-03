@@ -149,7 +149,7 @@ const solutions = [
     {
         name: 'Komerční prostory',
         description: "Vybavíme školy, školky, obecní úřády, restaurace, a další.",
-        category: 'pergoly',
+        category: 'komercni_prostory',
         icon: CheckIcon
     },
     {

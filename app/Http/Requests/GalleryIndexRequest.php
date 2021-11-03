@@ -25,7 +25,7 @@ class GalleryIndexRequest extends FormRequest
     public function rules()
     {
         return [
-            'category' => ['required', Rule::in(['kuchyne','vestavenne_skrine','pergoly','ostatni'])]
+            'category' => ['required', Rule::in(['kuchyne','vestavenne_skrine','komercni_prostory','ostatni'])]
         ];
     }
 
