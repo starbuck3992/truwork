@@ -24,8 +24,8 @@ class CategorySeeder extends Seeder
                     'slug' => 'vestavenne_skrine'
                 ],
                 [
-                    'name' => 'Pergoly',
-                    'slug' => 'pergoly'
+                    'name' => 'Komerční prostory',
+                    'slug' => 'komercni_prostory'
                 ],
                 [
                     'name' => 'Ostatní',

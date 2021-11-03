@@ -37,7 +37,7 @@
                                                 required>
                                             <option value="1">Kuchyně</option>
                                             <option value="2">Vestavěné skříně</option>
-                                            <option value="3">Pergoly</option>
+                                            <option value="3">Komerční prostory</option>
                                             <option value="4">Ostatní</option>
                                         </select>
                                         <div class="mt-1 text-sm text-red-600" v-if="form.errors.has('category')"
