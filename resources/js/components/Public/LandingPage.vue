@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-mycolor min-h-screen">
+    <div class="bg-mycolor min-h-screen max-w-screen overflow-x-hidden">
         <Menu></Menu>
         <router-view></router-view>
         <Footer></Footer>

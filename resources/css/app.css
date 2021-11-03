@@ -18,6 +18,10 @@ html{
     border-bottom: #c99e68 2px solid;
 }
 
+#footer{
+    border-top: #c99e68 2px solid;
+}
+
 
 /* Loading Spinner */
 .loader {
