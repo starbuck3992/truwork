@@ -49,18 +49,24 @@
             </div>
         </div>
     </div>
+    <Exception :open="showException" :message="message" @close="close"></Exception>
 </template>
 
 <script>
-import {reactive} from 'vue'
+import {reactive, ref} from 'vue'
 import {useStore} from 'vuex'
 import {useRouter} from 'vue-router'
-import Form from "../../utilities/form"
+import Form from '../../utilities/form'
+import Exception from '../Exception'
 
 export default {
+    components: {
+        Exception
+    },
     setup() {
         const store = useStore()
         const router = useRouter()
+
         const form =
             reactive(new Form({
                 email: null,
@@ -68,18 +74,34 @@ export default {
                 rememberMe: true
             }))
 
+        const showException = ref(false)
+        const message = ref()
+
         async function login() {
             await store.dispatch('userModule/login', form.objectToFormData())
                 .then(() => {
                     form.onSuccess()
-                    router.push({ name: 'adminGalleryIndex' })
+                    router.push({name: 'adminGalleryIndex'})
                 }).catch(error => {
-                    form.onFail(error.response.data.errors)
-                });
+                    if (error.response.data.errors) {
+                        form.onFail(error.response.data.errors)
+                    } else {
+                        showException.value = true
+                        message.value = error.response.data.message
+                    }
+                })
         }
+
+        function close() {
+            showException.value = false
+        }
+
         return {
             form,
+            showException,
+            message,
             login,
+            close
         }
     }
 }
