@@ -162,7 +162,7 @@ const solutions = [
 const navigation = [
     {name: 'O nás', href: '#about-us'},
     {name: 'Reference', href: '#'},
-    {name: 'Kde nás najdete?', href: '#contact-as'},
+    {name: 'Kontakt', href: '#contact-as'},
 ]
 
 export default {

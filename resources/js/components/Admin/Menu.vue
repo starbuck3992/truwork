@@ -17,12 +17,58 @@
             </TransitionChild>
             <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
               <div class="flex-shrink-0 flex items-center px-4">
-                <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg" alt="Workflow" />
+                <img class="h-8 w-auto" src="/storage/images/initialize/logo.png" alt="Workflow" />
               </div>
               <nav class="mt-5 px-2 space-y-1">
-                <router-link :to="{ name: 'homeIndex' }" class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"><HomeIcon class="h-6 w-6 mr-3"></HomeIcon>Home</router-link>
-                <router-link :to="{ name: 'adminGalleryIndex' }" class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"><FolderIcon class="h-6 w-6 mr-3"></FolderIcon>Galerie</router-link>
+                <router-link @click="selected_item = 1" :to="{ name: 'homeIndex' }" :class="[selected_item === 1 ? 'bg-gray-300' : 'bg-white','hover:bg-gray-200 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md']">
+                <HomeIcon class="h-6 w-6 mr-3"></HomeIcon>Domů
+                </router-link>
+                <div class="mt-5 flex-1 bg-white space-y-1">
+                    <div class="relative w-full">
+                      <a href="#" @click="open=!open; selected_item = 2;" :class="[selected_item === 2 ? 'bg-gray-300' : 'bg-white','hover:bg-gray-200 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md']">
+                        <FolderIcon class="h-6 w-6 mr-3"></FolderIcon>Galerie
+                        <span class="absolute right-3 flex items-center">
+                          <PlusSmIcon v-if="!open" class="h-5 w-5" aria-hidden="true" />
+                          <MinusSmIcon v-else class="h-5 w-5" aria-hidden="true" />
+                        </span>
+                      </a>
+                    </div>
+                    <div v-show="open" class="flex">
+                      <div class="space-y-1 w-full">
+                        <div class="flex-1 items-end w-full">
+                          <router-link :to="{ name: 'adminGalleryIndex' }" class="ml-5 mb-1 hover:bg-gray-200 text-gray-900 group flex items-end px-2 py-2 text-sm font-medium rounded-md">
+                            <DocumentTextIcon class="h-6 w-6 mr-3 items-end"></DocumentTextIcon>Seznam
+                          </router-link>
+                          <router-link :to="{ name: 'adminGalleryCreate' }" class="ml-5 mb-1 hover:bg-gray-200 text-gray-900 group flex items-end px-2 py-2 text-sm font-medium rounded-md">
+                            <DocumentAddIcon class="h-6 w-6 mr-3 items-end"></DocumentAddIcon>Vytvořit
+                          </router-link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               </nav>
+            </div>
+            <div class="flex-shrink-0 flex bg-gray-200 p-4">
+              <a href="#" class="flex-shrink-0 w-full group block">
+                <div class="flex items-center">
+                  <div>
+                    <UserIcon class="inline-block h-9 w-9 rounded-full object-cover"></UserIcon>
+                  </div>
+                  <div class="ml-2">
+                    <!-- <p class="text-xs font-medium text-gray-900">
+                        {{ user }}
+                    </p> -->
+                    <p class="text-xs font-medium text-gray-900">
+                      Administrator
+                    </p>
+                  </div>
+                  <div class="ml-2">
+                    <Logout
+                      style="font-size: 0.75rem; line-height: 1rem; padding:4px;">
+                    </Logout>
+                  </div>
+                </div>
+              </a>
             </div>
           </div>
         </TransitionChild>
@@ -75,22 +121,19 @@
               <a href="#" class="flex-shrink-0 w-full group block">
                 <div class="flex items-center">
                   <div>
-                    <img class="inline-block h-9 w-9 rounded-full object-cover"
-                      src="https://scontent.fprg4-1.fna.fbcdn.net/v/t31.18172-8/10662082_376000669217269_7408501700190222776_o.jpg?_nc_cat=102&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=cVwEL2u6AS0AX-eJi5a&tn=5qI38hRPvv5oRhaj&_nc_ht=scontent.fprg4-1.fna&oh=0b2dbbdf3be5afc2a1b73619a1d4130b&oe=61A3AAC8"
-                      alt=""
-                    />
+                    <UserIcon class="inline-block h-9 w-9 rounded-full object-cover"></UserIcon>
                   </div>
                   <div class="ml-2">
-                    <p class="text-xs font-medium text-gray-900">
+                    <!-- <p class="text-xs font-medium text-gray-900">
                         {{ user }}
-                    </p>
+                    </p> -->
                     <p class="text-xs font-medium text-gray-900">
                       Administrator
                     </p>
                   </div>
                   <div class="ml-2">
                     <Logout
-                      style="font-size: 0.75rem; line-height: 1rem; padding:2px;">
+                      style="font-size: 0.75rem; line-height: 1rem; padding:4px;">
                     </Logout>
                   </div>
                 </div>
@@ -129,6 +172,7 @@ import {
   MinusSmIcon,
   DocumentTextIcon,
   DocumentAddIcon,
+  UserIcon,
 } from '@heroicons/vue/outline'
 import Logout from '../Auth/Logout'
 
@@ -146,6 +190,7 @@ export default {
     MinusSmIcon,
     DocumentTextIcon,
     DocumentAddIcon,
+    UserIcon,
     Logout,
   },
   setup() {
@@ -154,13 +199,13 @@ export default {
     const selected_item = 2
 
       const store = useStore()
-      const user = computed(() => store.getters['userModule/user'])
+      //const user = computed(() => store.getters['userModule/user'])
 
     return {
       sidebarOpen,
       open,
       selected_item,
-        user
+      //user
     }
 
   },

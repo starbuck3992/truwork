@@ -1,18 +1,18 @@
 <template>
-    <div class="py-6">
+    <div class="py-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 md:px-8">
             <h1 class="text-2xl font-semibold text-gray-900">Galerie - Seznam</h1>
         </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mt-2">
+        <div class="max-w-7xl mx-auto">
             <div class="border-b border-gray-200">
                 <div class="sm:flex sm:items-baseline">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         Kategorie
                     </h3>
                     <div class="mt-4 sm:mt-0 sm:ml-10">
-                        <nav class="-mb-px flex space-x-8">
+                        <nav class="-mb-px flex space-x-1 sm:space-x-8">
                             <a v-for="(tab, i) in tabs" :key="i" v-bind="activeItem" @click="selectItem(i,tab.category)"
-                               :class="[i === activeItem ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300', 'whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm cursor-pointer']"
+                               :class="[i === activeItem ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300', 'whitespace-nowrap pb-4 px-1 border-b-2 text-xs sm:text-sm cursor-pointer']"
                                :aria-current="i === activeItem ? 'page' : undefined">
                                 {{ tab.name }}
                             </a>
@@ -36,11 +36,11 @@
                                         Název galerie
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        class="hidden sm:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Autor
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        class="hidden sm:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Datum vytvoření
                                     </th>
                                     <th scope="col"
@@ -48,7 +48,7 @@
                                         Možnosti
                                     </th>
                                 </tr>
-                                <tr>
+                                <tr class="hidden sm:contents" >
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 
@@ -94,10 +94,10 @@
                                             </div>
                                         </router-link>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {{ gallery.user.name }}
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        Administrator
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         <div class="text-sm text-gray-900">{{ gallery.created_at }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">

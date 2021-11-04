@@ -1,5 +1,5 @@
 <template>
-    <footer id="footer" class="relative bg-mycolor clear-both h-40 -mt-40">
+    <footer id="footer" class="relative bg-mycolor clear-both h-40">
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
             <div class="flex justify-center space-x-6 md:order-2">
                 <div v-if="loggedIn">
