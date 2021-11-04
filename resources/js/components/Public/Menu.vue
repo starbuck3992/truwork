@@ -33,10 +33,10 @@
                                         leave-from-class="opacity-100 translate-y-0"
                                         leave-to-class="opacity-0 translate-y-1">
                                 <PopoverPanel
-                                    class="absolute z-10 -ml-4 mt-3 transform w-screen max-w-md lg:max-w-2xl lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
+                                    class="absolute z-10 -ml-4 mt-3 transform w-screen max-w-md lg:max-w-2xl lg:ml-0 lg:left-1/2 lg:-translate-x-1/2 ">
                                     <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                                         <div
-                                            class="relative grid gap-6 bg-mycolor px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
+                                            class="relative grid gap-6 bg-mycolor px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2 px-2">
                                             <router-link
                                                 v-for="item in solutions"
                                                 :key="item.name"
@@ -82,7 +82,7 @@
                             enter-to-class="opacity-100 scale-100" leave-active-class="duration-100 ease-in"
                             leave-from-class="opacity-100 scale-100" leave-to-class="opacity-0 scale-95">
                     <PopoverPanel focus
-                                  class="absolute z-30 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
+                                  class="absolute z-30 top-0 inset-x-0 px-2 transition transform origin-top-right md:hidden">
                         <div
                             class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-mycolor divide-y-2 divide-gray-50">
                             <div class="pt-5 pb-6">
@@ -101,7 +101,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-6">
-                                    <nav class="grid grid-cols-1 gap-7">
+                                    <nav class="grid grid-cols-1 gap-7 px-2">
                                         <router-link
                                             v-for="item in solutions"
                                             :key="item.name"
