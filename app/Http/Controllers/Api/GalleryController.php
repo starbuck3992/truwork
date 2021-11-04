@@ -13,10 +13,12 @@ use App\Http\Resources\PublicResources\GalleryShowResource;
 use App\Http\Resources\PublicResources\GalleryIndexResource;
 use App\Models\Gallery;
 use App\Models\Image;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Nette\Utils\DateTime;
 use Throwable;
 
 class GalleryController extends Controller
@@ -177,7 +179,7 @@ class GalleryController extends Controller
         }
     }
 
-    public function update(GalleryUpdateRequest $request, $id)
+    public function update(GalleryUpdateRequest $request)
     {
 
         DB::beginTransaction();
@@ -187,12 +189,27 @@ class GalleryController extends Controller
             $user = Auth::id();
             $slug = Str::slug($request->title);
 
-            $gallery = Gallery::where('id', $id)->firstorfail();
+            $gallery = Gallery::where('id', $request->id)->firstorfail();
+
+            $updated_at = new DateTime($gallery->updated_at);
+            $fetched_at = new DateTime($request->fetchedAt);
+
+            if($updated_at > $fetched_at){
+
+                DB::rollback();
+
+                return response()->json([
+                    'code' => 'DATA_CHANGED',
+                    'message' => 'Galerie byla změněna'
+                ], 400);
+            }
+
             $gallery->user_id = $user;
             $gallery->title = $request->title;
             $gallery->category_id = $request->category;
             $gallery->slug = $slug;
             $gallery->save();
+
 
         } catch (Throwable $e) {
 
@@ -214,7 +231,7 @@ class GalleryController extends Controller
                 Storage::delete($current_thumbnail_path);
 
                 $thumbnail_file = $request->file('thumbnail');
-                $path = $thumbnail_file->store("images/galleries/$id", 'public');
+                $path = $thumbnail_file->store("images/galleries/$request->id", 'public');
 
                 $thumbnail->user_id = $user;
                 $thumbnail->original_name = $thumbnail_file->getClientOriginalName();
@@ -238,7 +255,7 @@ class GalleryController extends Controller
         try {
 
             $images = DB::table('images')->where([
-                'gallery_id' => $id,
+                'gallery_id' => $request->id,
                 'thumbnail' => 0,
             ])->selectRaw('CAST(id as CHAR(50)) as id, path')->get()->toArray();
 
@@ -260,7 +277,7 @@ class GalleryController extends Controller
 
                 foreach ($request->file('images') as $image) {
 
-                    $path = $image->store("images/galleries/$id", 'public');
+                    $path = $image->store("images/galleries/$request->id", 'public');
 
                     $imagesToSave[] = new Image([
                         'user_id' => $user,

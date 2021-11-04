@@ -189,7 +189,7 @@ import Exception from '../../Exception.vue'
 const tabs = [
     {name: 'Vše', category: 999},
     {name: 'Kuchyně', category: 1},
-    {name: 'Vestavěnné Skříně', category: 2},
+    {name: 'Vestavěné Skříně', category: 2},
     {name: 'Komerční prostory', category: 3},
     {name: 'Ostatní', category: 4},
 ]

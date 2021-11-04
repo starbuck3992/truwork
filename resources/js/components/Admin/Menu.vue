@@ -160,7 +160,7 @@
 </template>
 
 <script>
-import { ref, computed} from 'vue'
+import {ref} from 'vue'
 import {useStore} from 'vuex'
 import { Dialog, DialogOverlay, TransitionChild, TransitionRoot} from '@headlessui/vue'
 import {

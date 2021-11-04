@@ -178,9 +178,7 @@ export default {
         XIcon,
     },
     setup() {
-        //const open = ref(false);
         return {
-            //open,
             solutions,
             navigation,
         }

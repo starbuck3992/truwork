@@ -3,7 +3,6 @@
 namespace App\Http\Resources\PublicResources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\PublicResources\CategoryResource;
 
 class GalleryShowResource extends JsonResource
 {

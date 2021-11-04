@@ -1,8 +1,8 @@
 import {createStore} from 'vuex'
-import createPersistedState from 'vuex-persistedstate';
+import createPersistedState from 'vuex-persistedstate'
 
-import userModule from './modules/user';
-import loadingModule from './modules/loading';
+import userModule from './modules/user'
+import loadingModule from './modules/loading'
 
 const store = createStore(
     {
@@ -16,4 +16,4 @@ const store = createStore(
     }
 )
 
-export default store;
+export default store

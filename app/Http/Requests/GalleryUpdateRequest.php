@@ -25,19 +25,23 @@ class GalleryUpdateRequest extends FormRequest
     public function rules()
     {
         return [
+            'id' => 'required,integer',
             'title' => ['required', 'max:64', Rule::unique('galleries')->ignore($this->route()->parameter('id'))],
             'category' => ['required', Rule::in([1,2,3,4])],
             'thumbnail' => 'image|mimes:jpeg,jpg,png',
             'images' => 'array',
             'images.*' => 'image|mimes:jpeg,jpg,png',
             'originalImagesIds' => 'required|array',
-            'originalImagesIds.*' => 'integer'
+            'originalImagesIds.*' => 'integer',
+            'fetchedAt' => 'required|date'
         ];
     }
 
     public function messages()
     {
         return [
+            'id.required' => 'Povinný parametr',
+            'id.integer' => 'Nevalidní hodnota parametru',
             'title.unique' => 'Galerie s daným názvem již existuje',
             'title.required' => 'Povinné pole',
             'title.max' => 'Název galerie nemůže být delší než 64 znaků',
@@ -51,6 +55,8 @@ class GalleryUpdateRequest extends FormRequest
             'originalImagesIds.required' => 'Povinné pole',
             'originalImagesIds.array' => 'Nevalidní hodnota',
             'originalImagesIds.*' => 'Nevalidní hodnota',
+            'fetchedAt.required' => 'Povinné pole',
+            'fetchedAt.date_format' => 'Nevalidní hodnota',
         ];
     }
 }

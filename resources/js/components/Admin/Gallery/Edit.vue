@@ -190,7 +190,8 @@ export default {
             category: null,
             thumbnail: null,
             images: [],
-            originalImagesIds: []
+            originalImagesIds: [],
+            fetchedAt: null
         }));
 
         onMounted(() => {
@@ -207,6 +208,7 @@ export default {
                         }
                         return filtered
                     }, [])
+                    form.fetchedAt = response.data.fetched_at
 
                     thumbnailPreview.value =
                         response.data.images.filter(obj => {
@@ -286,6 +288,10 @@ export default {
                 }).catch(error => {
                 if (error.response.data.errors) {
                     form.onFail(error.response.data.errors)
+                } else if (error.response.data.code === 'DATA_CHANGED') {
+                    showException.value = true
+                    message.value = error.response.data.message
+                    reset()
                 } else {
                     showException.value = true
                     message.value = error.response.data.message
@@ -293,7 +299,7 @@ export default {
             })
         }
 
-        function close(){
+        function close() {
             showException.value = false
         }
 

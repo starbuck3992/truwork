@@ -197,8 +197,9 @@ export default {
         const message = ref()
 
         function showThumbnail(e) {
-            let selectedFile;
-            let typeFile;
+            let selectedFile
+            let typeFile
+
             if (e.target.files === undefined) {
                 selectedFile = e.dataTransfer.files[0]
                 typeFile = e.dataTransfer.files[0].type
@@ -218,6 +219,7 @@ export default {
 
         function showImages(e) {
             let selectedFiles
+
             if (e.target.files === undefined) {
                 selectedFiles = e.dataTransfer.files
             } else {

@@ -20,8 +20,8 @@ class CategorySeeder extends Seeder
                     'slug' => 'kuchyne'
                 ],
                 [
-                    'name' => 'Vestavěnné skříně',
-                    'slug' => 'vestavenne_skrine'
+                    'name' => 'Vestavěné skříně',
+                    'slug' => 'vestavene_skrine'
                 ],
                 [
                     'name' => 'Komerční prostory',

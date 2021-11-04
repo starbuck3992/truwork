@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import Menu from './Menu';
-import Footer from './Footer';
+import Menu from './Menu'
+import Footer from './Footer'
 export default {
     components: {
         Menu,Footer

@@ -2,8 +2,6 @@
 
 namespace App\Http\Resources\PublicResources;
 
-use App\Http\Resources\AdminResources\CategoryResource;
-use App\Http\Resources\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class GalleryIndexResource extends JsonResource

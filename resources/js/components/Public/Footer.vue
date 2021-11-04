@@ -77,14 +77,14 @@
                 <p class="text-base text-gray-400 text-center mt-2">
                     Přihlášen uživatel <span class="text-indigo-600 font-medium hover:text-indigo-700 text-base text-center">Administrator</span>
                 </p>
-                <p>
+                <div>
                     <router-link :to="{ name: 'adminGalleryIndex' }">
                         <p class="text-base text-indigo-600 text-center mt-2">
                             Admin rozhraní
                         </p>
                     </router-link>
                     <Logout class="text-base text-red-900 text-center mt-2"></Logout>
-                </p>
+                </div>
             </div>
             <div v-else>
                 <router-link :to="{ name: 'authLogin' }" class="cursor-pointer">

@@ -1,5 +1,5 @@
-import api from '../../services/api';
-import router from '../../router';
+import api from '../../services/api'
+import router from '../../router'
 
 const user = {
     namespaced: true,
@@ -39,4 +39,4 @@ const user = {
     }
 }
 
-export default user;
+export default user

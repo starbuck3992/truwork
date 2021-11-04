@@ -20,4 +20,4 @@ const loadingModule = {
     }
 }
 
-export default loadingModule;
+export default loadingModule

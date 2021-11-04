@@ -63,12 +63,12 @@
 </template>
 
 <script>
-import anime from 'animejs/lib/anime.es.js';
 import {onMounted, ref} from 'vue'
+import {useRouter, useRoute} from 'vue-router'
 import {Dialog, DialogOverlay, DialogTitle, TransitionChild, TransitionRoot} from '@headlessui/vue'
 import {CheckIcon, XIcon, ChevronRightIcon, ChevronLeftIcon,ZoomInIcon,RewindIcon} from '@heroicons/vue/outline'
-import api from "../../../services/api";
-import {useRouter, useRoute} from "vue-router";
+import anime from 'animejs/lib/anime.es.js'
+import api from '../../../services/api'
 import HeroScene from '../../HeroScene.vue'
 import Exception from '../../Exception.vue'
 
@@ -100,15 +100,16 @@ export default {
     setup() {
         const route = useRoute()
         const router = useRouter()
-        const open = ref(false);
-        const index = ref(null);
-        const image = ref(null);
-        const images = ref([]);
-        const category = ref();
-        const slug = ref();
 
-        const showException = ref(false);
-        const message = ref();
+        const open = ref(false)
+        const index = ref(null)
+        const image = ref(null)
+        const images = ref([])
+        const category = ref()
+        const slug = ref()
+
+        const showException = ref(false)
+        const message = ref()
 
         onMounted(async () => {
                 await api.getGallery(route.params.slug).then(response => {
@@ -128,35 +129,35 @@ export default {
         }
 
         function openSlider(i) {
-            open.value = true;
-            index.value = i;
+            open.value = true
+            index.value = i
         }
 
         function next(){
             let lastIndex = _.findLastIndex(images.value);
-            index.value ++;
+            index.value ++
             if ( lastIndex < index.value ){
-                index.value = 0;
+                index.value = 0
             }
         }
 
         function prev(){
             let lastIndex = _.findLastIndex(images.value);
-            index.value --;
+            index.value --
             if ( 0 > index.value ){
-                index.value = lastIndex;
+                index.value = lastIndex
             }
         }
 
         function onSwipeItem() {
 		return function (direction) {
                 if ( direction === "left" || direction === "top" ){
-                    next();
+                    next()
                 }
                 if ( direction === "right" || direction === "bottom"){
-                    prev();
+                    prev()
                 }
-            };
+            }
         }
 
         return {

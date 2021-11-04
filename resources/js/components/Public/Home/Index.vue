@@ -139,7 +139,7 @@
                             </div> -->
                             <div class="mt-6">
                                 <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">
-                                    Vestavěnné skříně
+                                    Vestavěné skříně
                                 </h2>
                                 <p class="mt-4 text-lg text-gray-500">
                                     Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada
@@ -176,7 +176,7 @@
                             </div> -->
                             <div class="mt-6">
                                 <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">
-                                    Komeční prostory
+                                    Komerční prostory
                                 </h2>
                                 <p class="mt-4 text-lg text-gray-500">
                                     Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada
@@ -184,7 +184,7 @@
                                     arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.
                                 </p>
                                 <div class="mt-6">
-                                    <router-link :to="{ name: 'galleriesIndex', query:{category: 'ostatni'} }"
+                                    <router-link :to="{ name: 'galleriesIndex', query:{category: 'komercni_prostory'} }"
                                                  class="inline-flex px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
                                         Pokračovat na galerii
                                     </router-link>

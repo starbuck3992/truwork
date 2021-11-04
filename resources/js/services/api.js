@@ -1,6 +1,5 @@
-import axios from "axios"
-import store from "../store/index"
-import {onMounted} from "vue";
+import axios from 'axios'
+import store from '../store/index'
 
 export const api = axios.create({
     baseURL: process.env.VUE_APP_API_URL,
