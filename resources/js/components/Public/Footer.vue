@@ -1,33 +1,101 @@
 <template>
-    <footer id="footer" class="relative bg-mycolor clear-both h-40">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
-            <div class="flex justify-center space-x-6 md:order-2">
-                <div v-if="loggedIn">
-                    Přihlášen uživatel <span class="text-indigo-600 font-medium hover:text-indigo-700">{{ user }}</span>
-                    <p>
-                    <router-link :to="{ name: 'adminGalleryIndex' }">
-                        <button type="button" class="inline-flex items-center px-3.5 py-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Admin rozhraní
-                        </button>
-                    </router-link>
-                    <Logout></Logout>
-                    </p>
+<footer id="footer" class="relative bg-mycolor clear-both h-50">
+<h2 id="footer-heading" class="sr-only">Footer</h2>
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+        <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+            <div class="space-y-8 xl:col-span-1">
+            <img class="h-10" src="/storage/images/initialize/logo.png" alt="Company name" />
+            <p class="text-gray-500 text-base">
+                Zakázková výroba na míru.
+            </p>
+            <div class="flex space-x-6">
+                <a class="text-gray-400 hover:text-gray-500">
+                <!-- social icons -->
+                </a>
+            </div>
+            </div>
+            <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
+            <div class="md:grid md:grid-cols-2 md:gap-8">
+                <div>
+                <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                    Adresa
+                </h3>
+                <ul role="list" class="mt-4 space-y-4">
+                    <li>
+                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                        Astur
+                    </a>
+                    </li>
+                </ul>
                 </div>
-                <div v-else class="mt-8 md:mt-0 md:order-1">
-                    <router-link :to="{ name: 'authLogin' }">
-                        <button type="submit" class="mt-2 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-auto">
-                            Přihlásit se
-                        </button>
-                    </router-link>
+                <div class="mt-12 md:mt-0">
+                <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                    Telefon
+                </h3>
+                <ul role="list" class="mt-4 space-y-4">
+                    <li>
+                    <a href="" class="text-base text-gray-500 hover:text-gray-900">
+                        666 666 666
+                    </a>
+                    </li>
+                </ul>
                 </div>
             </div>
-            <div class="mt-8 md:mt-0 md:order-1">
-                <p class="text-center text-base text-gray-400">
-                    &copy; 2021 Truwork, Inc. All rights reserved.
-                </p>
+            <div class="md:grid md:grid-cols-2 md:gap-8">
+                <div>
+                <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                    Telefon
+                </h3>
+                <ul role="list" class="mt-4 space-y-4">
+                    <li>
+                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                        607 238 514
+                    </a>
+                    </li>
+                </ul>
+                </div>
+                <div class="mt-12 md:mt-0">
+                <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                    Email
+                </h3>
+                <ul role="list" class="mt-4 space-y-4">
+                    <li>
+                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                        truwork@truwork.cz
+                    </a>
+                    </li>
+                </ul>
+                </div>
+            </div>
             </div>
         </div>
-    </footer>
+        <div class="mt-12 border-t border-gray-200 pt-8">
+            <p class="text-base text-gray-400 text-center">
+            &copy; 2021 Truwork S.R.O. Všechna práva vyhrazena.
+            </p>
+            <div v-if="loggedIn">
+                <p class="text-base text-gray-400 text-center mt-2">
+                    Přihlášen uživatel <span class="text-indigo-600 font-medium hover:text-indigo-700 text-base text-center">Administrator</span>
+                </p>
+                <p>
+                    <router-link :to="{ name: 'adminGalleryIndex' }">
+                        <p class="text-base text-indigo-600 text-center mt-2">
+                            Admin rozhraní
+                        </p>
+                    </router-link>
+                    <Logout class="text-base text-red-900 text-center mt-2"></Logout>
+                </p>
+            </div>
+            <div v-else>
+                <router-link :to="{ name: 'authLogin' }" class="cursor-pointer">
+                    <p class="text-base text-gray-900 text-center mt-2 cursor-pointer">
+                        Přihlásit se
+                    </p>
+                </router-link>
+            </div>
+        </div>
+    </div>
+</footer>
 </template>
 
 <script>
