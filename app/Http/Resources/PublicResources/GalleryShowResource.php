@@ -3,6 +3,7 @@
 namespace App\Http\Resources\PublicResources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\PublicResources\CategoryResource;
 
 class GalleryShowResource extends JsonResource
 {
@@ -16,7 +17,8 @@ class GalleryShowResource extends JsonResource
     {
         return [
             'title' => $this->title,
-            'images' => ImageResource::collection($this->whenLoaded('images'))
+            'images' => ImageResource::collection($this->whenLoaded('images')),
+            'category'   => new CategoryResource($this->whenLoaded('category')),
         ];
     }
 }

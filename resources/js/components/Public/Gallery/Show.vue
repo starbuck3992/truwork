@@ -1,5 +1,10 @@
 <template>
     <HeroScene :title="category"></HeroScene>
+    <router-link :to="{ name: 'galleriesIndex', query:{category: slug} }">
+        <p class="mt-10 sm:text-sm sm:font-extrabold text-gray-900 ml-10 flex font-medium text-xs">
+            <RewindIcon class="w-8 h-8 sm:w-10 sm:h-10"></RewindIcon><span class="mt-2">Zpět na seznam galerií</span>
+        </p>
+    </router-link>
     <div class="relative bg-mycolor max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 mt-5 ">
         <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
             <li v-for="(image, i) in images" :key="i" class="relative cursor-pointer">
@@ -61,7 +66,7 @@
 import anime from 'animejs/lib/anime.es.js';
 import {onMounted, ref} from 'vue'
 import {Dialog, DialogOverlay, DialogTitle, TransitionChild, TransitionRoot} from '@headlessui/vue'
-import {CheckIcon, XIcon, ChevronRightIcon, ChevronLeftIcon,ZoomInIcon} from '@heroicons/vue/outline'
+import {CheckIcon, XIcon, ChevronRightIcon, ChevronLeftIcon,ZoomInIcon,RewindIcon} from '@heroicons/vue/outline'
 import api from "../../../services/api";
 import {useRouter, useRoute} from "vue-router";
 import HeroScene from '../../HeroScene.vue'
@@ -90,6 +95,7 @@ export default {
         HeroScene,
         Exception,
         ZoomInIcon,
+        RewindIcon,
     },
     setup() {
         const route = useRoute()
@@ -99,6 +105,7 @@ export default {
         const image = ref(null);
         const images = ref([]);
         const category = ref();
+        const slug = ref();
 
         const showException = ref(false);
         const message = ref();
@@ -107,6 +114,8 @@ export default {
                 await api.getGallery(route.params.slug).then(response => {
                     images.value = response.data.images
                     category.value = response.data.title
+                    slug.value = response.data.category.slug
+                    console.log(response)
                     }
                 ).catch(() => (
                     router.push({name: 'homeIndex'})
@@ -163,6 +172,7 @@ export default {
             onSwipeItem,
             index,
             category,
+            slug
         }
     }
 }

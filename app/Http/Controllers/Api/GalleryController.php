@@ -152,7 +152,7 @@ class GalleryController extends Controller
     {
         try {
 
-            return new GalleryShowResource(Gallery::with(['images'])->where('slug', $slug)->firstOrFail());
+            return new GalleryShowResource(Gallery::with(['images','category'])->where('slug', $slug)->firstOrFail());
 
         } catch (Throwable $e) {
 

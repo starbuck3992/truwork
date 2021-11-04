@@ -87,9 +87,11 @@
                             class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-mycolor divide-y-2 divide-gray-50">
                             <div class="pt-5 pb-6">
                                 <div class="flex items-center justify-between">
-                                    <div>
-                                        <img class="h-8 w-auto m-5" src="/storage/images/initialize/logo.png" alt="Workflow" />
-                                    </div>
+                                    <router-link :to="{ name: 'homeIndex', hash: '#home' }">
+                                        <div>
+                                            <img class="h-8 w-auto m-5" src="/storage/images/initialize/logo.png" alt="Workflow" />
+                                        </div>
+                                    </router-link>
                                     <div>
                                         <PopoverButton
                                             class="bg-mycolor rounded-md m-5 p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -176,7 +178,9 @@ export default {
         XIcon,
     },
     setup() {
+        //const open = ref(false);
         return {
+            //open,
             solutions,
             navigation,
         }

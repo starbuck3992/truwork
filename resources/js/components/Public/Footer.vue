@@ -23,7 +23,7 @@
                 <ul role="list" class="mt-4 space-y-4">
                     <li>
                     <a href="#" class="text-base text-gray-500 hover:text-gray-900">
-                        Astur
+                        Jeseník 790 00, Astur 185
                     </a>
                     </li>
                 </ul>
@@ -35,7 +35,7 @@
                 <ul role="list" class="mt-4 space-y-4">
                     <li>
                     <a href="" class="text-base text-gray-500 hover:text-gray-900">
-                        666 666 666
+                        608 333 070
                     </a>
                     </li>
                 </ul>
