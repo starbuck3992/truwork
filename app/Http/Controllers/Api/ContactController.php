@@ -23,7 +23,7 @@ class ContactController extends Controller
                     'phone' => $request->phone,
                     'subject' => $request->subject,
                     'message' => $request->message,
-                    'logo' => asset('storage/images/logo.png'),
+                    'logo' => asset('/storage/images/initialize/logo.png'),
                 ];
 
                 Mail::to('truwork@truwork.cz')

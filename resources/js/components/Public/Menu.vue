@@ -4,9 +4,9 @@
             <Popover class="relative">
                 <div class="flex justify-between items-center max-w-7xl mx-auto py-6 md:justify-start">
                     <div class="flex justify-start lg:w-0 lg:flex-1">
-                        <router-link :to="{ name: 'homeIndex' }">
+                        <router-link :to="{ name: 'homeIndex', hash: '#home' }">
                             <span class="sr-only">Workflow</span>
-                            <img class="h-8 w-auto sm:h-10 m-5" src="/storage/images/logo.png" alt=""/>
+                            <img class="h-8 w-auto sm:h-10 m-5" src="/storage/images/initialize/logo.png" alt=""/>
                         </router-link>
                     </div>
                     <div class="-my-2 md:hidden">
@@ -88,7 +88,7 @@
                             <div class="pt-5 pb-6">
                                 <div class="flex items-center justify-between">
                                     <div>
-                                        <img class="h-8 w-auto m-5" src="storage/images/logo.png" alt="Workflow"/>
+                                        <img class="h-8 w-auto m-5" src="/storage/images/initialize/logo.png" alt="Workflow" />
                                     </div>
                                     <div>
                                         <PopoverButton

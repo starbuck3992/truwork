@@ -1,17 +1,17 @@
 <template>
     <!-- My Slider -->
-    <div class="slider relative shadow-xl sm:overflow-hidden h-screen">
+    <div id="home" class="slider relative shadow-xl sm:overflow-hidden h-screen">
         <div id="slider-items" class="slider-items">
             <!-- My Slider Item -->
             <div class="slider-item">
                 <div class="relative h-full w-full">
                     <img class="h-full w-full object-cover"
-                         src="https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg"
-                         alt="People working on laptops"/>
+                         src="/storage/images/initialize/kitchen1.jpg"
+                         alt="Obrázek kuchyně"/>
                     <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply"/>
                     <div class="absolute inset-0 m-auto h-52">
                         <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-                            <span class="block text-white">TRUWORK 1</span>
+                            <span class="block text-white">TRUWORK</span>
                             <span class="block text-indigo-200">Stolařství</span>
                         </h1>
                         <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
@@ -31,12 +31,12 @@
             <div class="slider-item">
                 <div class="relative h-full w-full">
                     <img class="h-full w-full object-cover"
-                         src="https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg"
-                         alt="People working on laptops"/>
+                         src="/storage/images/initialize/kitchen2.jpg"
+                         alt="Obrázek kuchyně"/>
                     <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply"/>
                     <div class="absolute inset-0 m-auto h-52">
                         <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-                            <span class="block text-white">TRUWORK 2</span>
+                            <span class="block text-white">TRUWORK</span>
                             <span class="block text-indigo-200">Stolařství</span>
                         </h1>
                         <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
@@ -56,12 +56,12 @@
             <div class="slider-item">
                 <div class="relative h-full w-full">
                     <img class="h-full w-full object-cover"
-                         src="https://cdn.pixabay.com/photo/2016/07/26/18/30/kitchen-1543493_960_720.jpg"
+                         src="/storage/images/initialize/kitchen3.jpg"
                          alt="People working on laptops"/>
                     <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply"/>
                     <div class="absolute inset-0 m-auto h-52">
                         <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-                            <span class="block text-white">TRUWORK 3</span>
+                            <span class="block text-white">TRUWORK</span>
                             <span class="block text-indigo-200">Stolařství</span>
                         </h1>
                         <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
@@ -122,7 +122,7 @@
                         <div class="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
                             <img
                                 class="w-full rounded-xl shadow-2xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
-                                src="https://cdn.pixabay.com/photo/2016/04/18/08/50/kitchen-1336160_960_720.jpg"
+                                src="/storage/images/initialize/kitchen2.jpg"
                                 alt="Inbox user interface"/>
                         </div>
                     </div>
@@ -159,7 +159,7 @@
                         <div class="pr-4 -ml-48 sm:pr-6 md:-ml-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
                             <img
                                 class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
-                                src="https://cdn.pixabay.com/photo/2017/07/09/03/19/home-2486092_960_720.jpg"
+                                src="/storage/images/initialize/skrine.jpg"
                                 alt="Customer profile user interface"/>
                         </div>
                     </div>
@@ -196,7 +196,7 @@
                         <div class="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
                             <img
                                 class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
-                                src="https://cdn.pixabay.com/photo/2017/07/09/03/19/home-2486092_960_720.jpg"
+                                src="/storage/images/initialize/prostory.jpg"
                                 alt="Inbox user interface"/>
                         </div>
                     </div>
@@ -284,7 +284,7 @@
                                 <dt><span class="sr-only">Email</span></dt>
                                 <dd class="flex text-base text-indigo-50">
                                     <MailIcon class="flex-shrink-0 w-6 h-6 text-indigo-200" aria-hidden="true"/>
-                                    <span class="ml-3">stolarstvi.adolfovice@seznam.cz</span>
+                                    <span class="ml-3">truwork@truwork.cz</span>
                                 </dd>
                             </dl>
                             <ul role="list" class="mt-8 flex space-x-12">
