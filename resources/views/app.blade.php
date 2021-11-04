@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Truwork') }}</title>
     <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet"/>
+    <link rel="icon" href="/storage/images/initialize/logo-icon.png">
 </head>
 <body>
 <div id="app">
