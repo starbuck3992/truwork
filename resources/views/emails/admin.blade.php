@@ -8,10 +8,10 @@
                 {{ $mail_data['message'] }}
             </div>
             <br/>
-            <p>Jméno : {{ $mail_data['name'] }}</p>
-            <p>Přijmení : {{ $mail_data['surname'] }}</p>
-            <p>Telefon : {{ $mail_data['phone'] }}</p>
-            <p>Email : {{ $mail_data['email'] }}</p>
+            <p><b>Jméno</b> : {{ $mail_data['name'] }}</p>
+            <p><b>Přijmení</b> : {{ $mail_data['surname'] }}</p>
+            <p><b>Telefon</b> : {{ $mail_data['phone'] }}</p>
+            <p><b>Email</b> : {{ $mail_data['email'] }}</p>
         </div>
     </body>
 </html>
