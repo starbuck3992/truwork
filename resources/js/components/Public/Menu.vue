@@ -146,7 +146,7 @@ const solutions = [
     {
         name: 'Vestavěné skříně',
         description: 'Vestavěné skříně na míru.',
-        category: 'vestavenne_skrine',
+        category: 'vestavene_skrine',
         icon: CheckIcon,
     },
     {
