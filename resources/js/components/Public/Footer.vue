@@ -75,7 +75,7 @@
             </p>
             <div v-if="loggedIn">
                 <p class="text-base text-gray-400 text-center mt-2">
-                    Přihlášen uživatel <span class="text-indigo-600 font-medium hover:text-indigo-700 text-base text-center">Administrator</span>
+                    Přihlášen uživatel <span class="text-indigo-600 font-medium hover:text-indigo-700 text-base text-center">{{user}}</span>
                 </p>
                 <div>
                     <router-link :to="{ name: 'adminGalleryIndex' }">
