@@ -109,7 +109,7 @@
                                     Navrhneme a vyrobíme kuchyni přesně podle Vašich představ.
                                 </p>
                                 <div class="mt-6">
-                                    <router-link :to="{ name: 'galleriesIndex', query:{category: 'kuchyne'} }"
+                                    <router-link :to="{ name: 'galleriesIndex', query:{category: 'kuchyne'}, hash: '#hero' }"
                                                  class="inline-flex px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
                                         Pokračovat na galerii
                                     </router-link>
@@ -145,7 +145,7 @@
                                     Vestavěné skříně navrhneme a vyrobíme přesně podle Vašich představ.
                                 </p>
                                 <div class="mt-6">
-                                    <router-link :to="{ name: 'galleriesIndex', query:{category: 'vestavene_skrine'} }"
+                                    <router-link :to="{ name: 'galleriesIndex', query:{category: 'vestavene_skrine'}, hash: '#hero' }"
                                                  class="inline-flex px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
                                         Pokračovat na galerii
                                     </router-link>
@@ -180,7 +180,7 @@
                                     Vybavíme komeční prostory. Školky, školy, obecní úřady, hotely, restaurace a další...
                                 </p>
                                 <div class="mt-6">
-                                    <router-link :to="{ name: 'galleriesIndex', query:{category: 'komercni_prostory'} }"
+                                    <router-link :to="{ name: 'galleriesIndex', query:{category: 'komercni_prostory'}, hash: '#hero' }"
                                                  class="inline-flex px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
                                         Pokračovat na galerii
                                     </router-link>

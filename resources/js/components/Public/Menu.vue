@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-full w-full bg-mycolor">
+    <div class="min-h-full w-full bg-mycolor" id="hero">
         <header id="navbar" class="bg-mycolor fixed inset-x-0 top-0 z-50 w-screen">
             <div class="relative">
                 <div class="flex justify-between items-center max-w-7xl mx-auto py-6 md:justify-start">
@@ -40,7 +40,7 @@
                                             <router-link
                                                 v-for="item in solutions"
                                                 :key="item.name"
-                                                :to="{ name: 'galleriesIndex', query:{category: item.category} }"
+                                                :to="{ name: 'galleriesIndex', query:{category: item.category}, hash: '#hero' }"
                                                 class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
                                                 <div
                                                     class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-600 text-white sm:h-12 sm:w-12">
@@ -105,7 +105,7 @@
                                         <router-link
                                             v-for="item in solutions"
                                             :key="item.name"
-                                            :to="{ name: 'galleriesIndex', query:{category: item.category} }"
+                                            :to="{ name: 'galleriesIndex', query:{category: item.category}, hash: '#hero' }"
                                             class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
                                             <div
                                                 class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-600 text-white">
@@ -129,7 +129,6 @@
 <script>
 import {ref,watch} from 'vue'
 import {useRoute} from 'vue-router'
-import {Popover, PopoverButton, PopoverGroup, PopoverPanel} from '@headlessui/vue'
 import {
     CheckIcon,
     MenuIcon,
@@ -171,10 +170,6 @@ const navigation = [
 
 export default {
     components: {
-        Popover,
-        PopoverButton,
-        PopoverGroup,
-        PopoverPanel,
         ChevronDownIcon,
         MenuIcon,
         XIcon,
