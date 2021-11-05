@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use Illuminate\Bus\Queueable; 
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -22,6 +22,6 @@ class Admin extends Mailable
 
     public function build()
     {
-        return $this->subject($this->mail_data['subject'])->view('emails.admin');
+        return $this->from($this->mail_data['email'])->subject($this->mail_data['subject'])->view('emails.admin');
     }
 }
