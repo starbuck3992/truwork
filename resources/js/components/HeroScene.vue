@@ -1,7 +1,7 @@
 <template>
     <main>
       <!-- Hero card -->
-      <div class="relative mt-30 md:mt-32">
+      <div class="relative mt-28 md:mt-32">
         <div class="relative bg-indigo-100">
           <div class="absolute inset-0">
             <img class="w-full h-full object-cover" src="/storage/images/initialize/kitchen1.jpg" alt="" />
