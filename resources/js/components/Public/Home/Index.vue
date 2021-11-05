@@ -105,9 +105,8 @@
                                     Kuchyně na míru
                                 </h2>
                                 <p class="mt-4 text-lg text-gray-500">
-                                    Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada
-                                    faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem
-                                    arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.
+                                    Pokud budete mít zájem, vypracujeme Vám 3D návrh a cenovou nabídku. Nic pro nás není nemožné. 
+                                    Navrhneme a vyrobíme kuchyni přesně podle Vašich představ.
                                 </p>
                                 <div class="mt-6">
                                     <router-link :to="{ name: 'galleriesIndex', query:{category: 'kuchyne'} }"
@@ -142,9 +141,8 @@
                                     Vestavěné skříně
                                 </h2>
                                 <p class="mt-4 text-lg text-gray-500">
-                                    Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada
-                                    faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem
-                                    arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.
+                                    Pokud budete mít zájem, vypracujeme Vám 3D návrh a cenovou nabídku. Nic pro nás není nemožné. 
+                                    Vestavěné skříně navrhneme a vyrobíme přesně podle Vašich představ.
                                 </p>
                                 <div class="mt-6">
                                     <router-link :to="{ name: 'galleriesIndex', query:{category: 'vestavene_skrine'} }"
@@ -179,9 +177,7 @@
                                     Komerční prostory
                                 </h2>
                                 <p class="mt-4 text-lg text-gray-500">
-                                    Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada
-                                    faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem
-                                    arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.
+                                    Vybavíme komeční prostory. Školky, školy, obecní úřady, hotely, restaurace a další...
                                 </p>
                                 <div class="mt-6">
                                     <router-link :to="{ name: 'galleriesIndex', query:{category: 'komercni_prostory'} }"
