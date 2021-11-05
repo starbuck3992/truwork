@@ -7,7 +7,7 @@
                 <div class="relative h-full w-full">
                     <img class="h-full w-full object-cover"
                          src="/storage/images/initialize/kitchen1.jpg"
-                         alt="Obrázek kuchyně"/>
+                         alt="kuchyně"/>
                     <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply"/>
                     <div class="absolute inset-0 m-auto h-52">
                         <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
@@ -15,7 +15,7 @@
                             <span class="block text-indigo-200">Stolařství</span>
                         </h1>
                         <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
-                            Kuchyně, vestavěné skříně, nábytek na míru, a mnoho dalšího.
+                            Masivní dřevo, špičková řemeslná práce a individuální přístup je to,co dělá kuchyně Truwork naprosto výjimečnými.
                         </p>
                         <div class="mt-10 mx-5 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
                             <a href="#contact-as"
@@ -32,7 +32,7 @@
                 <div class="relative h-full w-full">
                     <img class="h-full w-full object-cover"
                          src="/storage/images/initialize/kitchen2.jpg"
-                         alt="Obrázek kuchyně"/>
+                         alt="kuchyně"/>
                     <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply"/>
                     <div class="absolute inset-0 m-auto h-52">
                         <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
@@ -40,7 +40,7 @@
                             <span class="block text-indigo-200">Stolařství</span>
                         </h1>
                         <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
-                            Kuchyně, vestavěné skříně, nábytek na míru, a mnoho dalšího.
+                            Masivní dřevo, špičková řemeslná práce a individuální přístup je to,co dělá kuchyně Truwork naprosto výjimečnými.
                         </p>
                         <div class="mt-10 mx-5 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
                             <a href="#contact-as"
@@ -57,7 +57,7 @@
                 <div class="relative h-full w-full">
                     <img class="h-full w-full object-cover"
                          src="/storage/images/initialize/kitchen3.jpg"
-                         alt="People working on laptops"/>
+                         alt="kuchyně"/>
                     <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply"/>
                     <div class="absolute inset-0 m-auto h-52">
                         <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
@@ -65,7 +65,7 @@
                             <span class="block text-indigo-200">Stolařství</span>
                         </h1>
                         <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
-                            Kuchyně, vestavěné skříně, nábytek na míru, a mnoho dalšího.
+                            Masivní dřevo, špičková řemeslná práce a individuální přístup je to,co dělá kuchyně Truwork naprosto výjimečnými.
                         </p>
                         <div class="mt-10 mx-5 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
                             <a href="#contact-as"
@@ -81,12 +81,12 @@
     </div>
     <!-- End Slider -->
     <div class="relative bg-mycolor pt-10 pb-32 overflow-hidden">
-        <section id="about-us" class="opacity-0 transition-all duration-4000">
+        <section id="about-us" class="opacity-0 transition-all sm:duration-4000 duration-2000">
             <div class="bg-mycolor">
                 <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
                     <div class="text-center">
-                        <p class="mt-10 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
-                            Stylové kuchyně na zakázku</p>
+                        <h1 class="mt-10 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+                            Stylové kuchyně na zakázku</h1>
                         <p class="max-w-xl mt-5 mx-auto text-xl text-gray-500">Vyrábíme kvalitní kuchyňský nábytek z
                             masivu v tradičním i moderním vzhledu. Každý kus je ručne vyrobeným a lakovaným originálem,
                             který se stane ozdobou každého interiéru. Řemeslná zručnost, preciznost a osobní přístup je
@@ -96,7 +96,7 @@
             </div>
         </section>
         <section id="content">
-            <div id="mykitchens" class="relative mt-10 opacity-0 transition duration-4000">
+            <div id="mykitchens" class="relative mt-10 opacity-0 transition sm:duration-4000 duration-2000">
                 <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
                     <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
                         <div>
@@ -123,12 +123,12 @@
                             <img
                                 class="w-full rounded-xl shadow-2xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
                                 src="/storage/images/initialize/kitchen2.jpg"
-                                alt="Inbox user interface"/>
+                                alt="kuchyně"/>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="mycabinets" class="opacity-0 transition-all duration-4000 mt-24">
+            <div id="mycabinets" class="opacity-0 transition-all sm:duration-4000 duration-2000 mt-24">
                 <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
                     <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-32 lg:max-w-none lg:mx-0 lg:px-0 lg:col-start-2">
                         <div>
@@ -160,12 +160,12 @@
                             <img
                                 class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
                                 src="/storage/images/initialize/skrine.jpg"
-                                alt="Customer profile user interface"/>
+                                alt="vestavěné_skříně"/>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="mycommercial" class="opacity-0 transition-all duration-4000 relative mt-24">
+            <div id="mycommercial" class="opacity-0 transition-all sm:duration-4000 duration-2000 relative mt-24">
                 <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
                     <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
                         <div>
@@ -197,7 +197,7 @@
                             <img
                                 class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
                                 src="/storage/images/initialize/prostory.jpg"
-                                alt="Inbox user interface"/>
+                                alt="komerční_protstory"/>
                         </div>
                     </div>
                 </div>
@@ -205,7 +205,7 @@
         </section>
         <section id="contact-as">
             <div id="myform"
-                 class="opacity-0 transition-all duration-4000 max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 mt-5">
+                 class="opacity-0 transition-all sm:duration-4000 duration-2000 max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 mt-5">
                 <div class="text-center">
                     <p class="mt-10 mb-12 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
                         Kontaktujte nás!</p>
@@ -501,7 +501,7 @@ export default {
             function carousel() {
                 curr = ++curr % total
                 anim()
-                setTimeout(carousel, 4000)
+                setTimeout(carousel, 6000)
             }
 
             function anim() {

@@ -59,7 +59,7 @@
                         {{ user }}
                     </p> -->
                     <p class="text-xs font-medium text-gray-900">
-                      Administrator
+                      {{user}}
                     </p>
                   </div>
                   <div class="ml-2">
@@ -128,7 +128,7 @@
                         {{ user }}
                     </p> -->
                     <p class="text-xs font-medium text-gray-900">
-                      Administrator
+                      {{user}}
                     </p>
                   </div>
                   <div class="ml-2">
@@ -160,8 +160,9 @@
 </template>
 
 <script>
-import {ref} from 'vue'
+import {ref,computed,watch} from 'vue'
 import {useStore} from 'vuex'
+import {useRoute} from 'vue-router'
 import { Dialog, DialogOverlay, TransitionChild, TransitionRoot} from '@headlessui/vue'
 import {
   FolderIcon,
@@ -199,13 +200,18 @@ export default {
     const selected_item = 2
 
       const store = useStore()
-      //const user = computed(() => store.getters['userModule/user'])
+      const user = computed(() => store.getters['userModule/user'])
+      const route = useRoute()
 
+      watch(() => route.path, () => {
+        sidebarOpen.value = false
+      });
+      
     return {
       sidebarOpen,
       open,
       selected_item,
-      //user
+      user
     }
 
   },

@@ -4,7 +4,7 @@
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div class="xl:grid xl:grid-cols-3 xl:gap-8">
             <div class="space-y-8 xl:col-span-1">
-            <img class="h-10" src="/storage/images/initialize/logo.png" alt="Company name" />
+            <img class="h-10" src="/storage/images/initialize/logo.png" alt="logo_truwork" />
             <p class="text-gray-500 text-base">
                 Zakázková výroba na míru.
             </p>
@@ -22,9 +22,9 @@
                 </h3>
                 <ul role="list" class="mt-4 space-y-4">
                     <li>
-                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
-                        Jeseník 790 00, Astur 185
-                    </a>
+                        <p href="#" class="text-base text-gray-500">
+                            Jeseník 790 00, Astur 185
+                        </p>
                     </li>
                 </ul>
                 </div>
@@ -34,9 +34,9 @@
                 </h3>
                 <ul role="list" class="mt-4 space-y-4">
                     <li>
-                    <a href="" class="text-base text-gray-500 hover:text-gray-900">
-                        608 333 070
-                    </a>
+                        <p href="" class="text-base text-gray-500">
+                            608 333 070
+                        </p>
                     </li>
                 </ul>
                 </div>
@@ -48,9 +48,9 @@
                 </h3>
                 <ul role="list" class="mt-4 space-y-4">
                     <li>
-                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
-                        607 238 514
-                    </a>
+                        <p href="#" class="text-base text-gray-500">
+                            607 238 514
+                        </p>
                     </li>
                 </ul>
                 </div>
@@ -60,9 +60,9 @@
                 </h3>
                 <ul role="list" class="mt-4 space-y-4">
                     <li>
-                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
-                        truwork@truwork.cz
-                    </a>
+                        <p class="text-base text-gray-500">
+                            truwork@truwork.cz
+                        </p>
                     </li>
                 </ul>
                 </div>

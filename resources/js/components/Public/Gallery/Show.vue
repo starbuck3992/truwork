@@ -10,7 +10,7 @@
             <li v-for="(image, i) in images" :key="i" class="relative cursor-pointer">
                 <div @click="openSlider(i)"
                      class="relative group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
-                    <img :src="image.path" alt="" class="object-cover pointer-events-none group-hover:opacity-75"/>
+                    <img :src="image.path" :alt="category" class="object-cover pointer-events-none group-hover:opacity-75"/>
                     <ZoomInIcon class="absolute inset-0 opacity-0 group-hover:opacity-70"></ZoomInIcon>
                     <!-- <button type="button" class="absolute inset-0 focus:outline-none">
                         <span class="sr-only">View details for {{ image.name }}</span>
@@ -116,7 +116,6 @@ export default {
                     images.value = response.data.images
                     category.value = response.data.title
                     slug.value = response.data.category.slug
-                    console.log(response)
                     }
                 ).catch(() => (
                     router.push({name: 'homeIndex'})
