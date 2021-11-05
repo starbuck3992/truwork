@@ -13,11 +13,9 @@
     <div>
         <p>Adresa : Jeseník 790 00, Astur 185</p>
         <p>Telefon : 607 238 514</p>
-        <p>Email : truwork@seznam.cz</p>
+        <p>Email : truwork@truwork.cz</p>
     </div>
-    <div width="200px" height="50px">
-        <img src="asset({{ $mail_data['logo'] }})" alt="logo"/>
-    </div>
+    <img src="asset({{ $mail_data['logo'] }})" alt="logo" width="200px" height="50px" />
 </div>
 </body>
 </html>

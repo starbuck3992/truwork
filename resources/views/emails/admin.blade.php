@@ -9,7 +9,7 @@
             </div>
             <br/>
             <p>Jméno : {{ $mail_data['name'] }}</p>
-            <p>Přijmění : {{ $mail_data['surname'] }}</p>
+            <p>Přijmení : {{ $mail_data['surname'] }}</p>
             <p>Telefon : {{ $mail_data['phone'] }}</p>
             <p>Email : {{ $mail_data['email'] }}</p>
         </div>
