@@ -1,5 +1,5 @@
 <template>
-    <div class=" bg-gray-50 flex flex-col justify-center py-5 sm:px-6 lg:px-8">
+    <div class="h-screen bg-gray-50 flex flex-col justify-center py-5 sm:px-6 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-md">
             <img class="mx-auto h-12 w-auto"
                  src="/storage/images/initialize/logo.png"
