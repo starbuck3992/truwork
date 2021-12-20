@@ -5,7 +5,7 @@
             <RewindIcon class="w-8 h-8 sm:w-10 sm:h-10"></RewindIcon><span class="mt-2">Zpět na seznam galerií</span>
         </p>
     </router-link>
-    <div class="relative bg-mycolor max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 mt-5 ">
+    <div class="relative max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 mt-5 ">
         <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
             <li v-for="(image, i) in images" :key="i" class="relative cursor-pointer">
                 <div @click="openSlider(i)"

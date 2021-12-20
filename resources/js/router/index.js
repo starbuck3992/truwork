@@ -5,6 +5,7 @@ import store from '../store'
 import LandingPage from '../components/Public/LandingPage'
 import HomeIndex from '../components/Public/Home/Index'
 import GalleryIndex from '../components/Public/Gallery/Index'
+import GalleryKitchen from '../components/Public/Gallery/Kitchen'
 import GalleryShow from '../components/Public/Gallery/Show'
 
 import Login from '../components/Auth/Login'
@@ -35,6 +36,11 @@ const routes = [
                 path: 'galleries/:slug',
                 name: 'galleriesShow',
                 component: GalleryShow
+            },
+            {
+                path: 'galleries-kitchen',
+                name: 'galleriesKitchen',
+                component: GalleryKitchen
             }
         ]
     },

@@ -11,7 +11,10 @@ module.exports = {
             zIndex: {
                 '75': '75',
                 '100': '100',
-            }
+            },
+            height: {
+                '128': '32rem',
+            },
         },
     },
     variants: {

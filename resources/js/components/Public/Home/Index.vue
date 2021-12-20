@@ -1,6 +1,6 @@
 <template>
   <!-- My Slider -->
-  <div id="home" class="slider relative shadow-xl sm:overflow-hidden h-screen">
+  <div id="home" class="hidden md:block slider relative shadow-xl sm:overflow-hidden h-screen">
     <div id="slider-items" class="slider-items">
       <!-- My Slider Item -->
       <div class="slider-item">
@@ -212,167 +212,17 @@
     </div>
   </div>
   <!-- End Slider -->
-  <div class="relative bg-white pt-10 pb-32 overflow-hidden">
+  <div class="relative bg-white pt-10 overflow-hidden">
     <section id="content">
       <div class="bg-white">
-        <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-          <div class="sm:flex sm:items-baseline sm:justify-between">
-            <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">
-              Něco z naší tvorby
-            </h2>
-            <a
-              href="#"
-              class="
-                hidden
-                text-base
-                font-semibold
-                text-indigo-600
-                hover:text-indigo-500
-                sm:block
-              "
-              >Zobrazit galerie kuchyní<span aria-hidden="true"> &rarr;</span></a
-            >
-          </div>
-
-          <div
-            class="
-              mt-6
-              grid grid-cols-1
-              gap-y-6
-              sm:grid-cols-2 sm:grid-rows-2 sm:gap-x-6
-              lg:gap-8
-            "
-          >
-            <div
-              class="
-                group
-                aspect-w-2 aspect-h-1
-                rounded-lg
-                overflow-hidden
-                sm:aspect-h-1 sm:aspect-w-1 sm:row-span-2
-              "
-            >
-              <img
-                src="https://tailwindui.com/img/ecommerce-images/home-page-03-featured-category.jpg"
-                alt="Two models wearing women's black cotton crewneck tee and off-white cotton crewneck tee."
-                class="object-center object-cover group-hover:opacity-75"
-              />
-              <div
-                aria-hidden="true"
-                class="bg-gradient-to-b from-transparent to-black opacity-50"
-              />
-              <div class="p-6 flex items-end">
-                <div>
-                  <h3 class="font-semibold text-white">
-                    <a href="#">
-                      <span class="absolute inset-0" />
-                      Kuchyně
-                    </a>
-                  </h3>
-                  <p aria-hidden="true" class="mt-1 text-sm text-white">
-                    Prohlédněte si naše kuchyně
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div
-              class="
-                group
-                aspect-w-2 aspect-h-1
-                rounded-lg
-                overflow-hidden
-                sm:relative sm:aspect-none sm:h-full
-              "
-            >
-              <img
-                src="https://tailwindui.com/img/ecommerce-images/home-page-03-category-01.jpg"
-                alt="Wooden shelf with gray and olive drab green baseball caps, next to wooden clothes hanger with sweaters."
-                class="
-                  object-center object-cover
-                  group-hover:opacity-75
-                  sm:absolute sm:inset-0 sm:w-full sm:h-full
-                "
-              />
-              <div
-                aria-hidden="true"
-                class="
-                  bg-gradient-to-b
-                  from-transparent
-                  to-black
-                  opacity-50
-                  sm:absolute sm:inset-0
-                "
-              />
-              <div class="p-6 flex items-end sm:absolute sm:inset-0">
-                <div>
-                  <h3 class="font-semibold text-white">
-                    <a href="#">
-                      <span class="absolute inset-0" />
-                      Detaily
-                    </a>
-                  </h3>
-                  <p aria-hidden="true" class="mt-1 text-sm text-white">
-                    Na detailech si zakládámme. Kliknutím pokračujte na galerii.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div
-              class="
-                group
-                aspect-w-2 aspect-h-1
-                rounded-lg
-                overflow-hidden
-                sm:relative sm:aspect-none sm:h-full
-              "
-            >
-              <img
-                src="https://tailwindui.com/img/ecommerce-images/home-page-03-category-02.jpg"
-                alt="Walnut desk organizer set with white modular trays, next to porcelain mug on wooden desk."
-                class="
-                  object-center object-cover
-                  group-hover:opacity-75
-                  sm:absolute sm:inset-0 sm:w-full sm:h-full
-                "
-              />
-              <div
-                aria-hidden="true"
-                class="
-                  bg-gradient-to-b
-                  from-transparent
-                  to-black
-                  opacity-50
-                  sm:absolute sm:inset-0
-                "
-              />
-              <div class="p-6 flex items-end sm:absolute sm:inset-0">
-                <div>
-                  <h3 class="font-semibold text-white">
-                    <a href="#">
-                      <span class="absolute inset-0" />
-                      Vestavěné Skříně
-                    </a>
-                  </h3>
-                  <p aria-hidden="true" class="mt-1 text-sm text-white">
-                    Vestavěné skříně na míru. Po kliknutí můžete pokračovat na galerii.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-6 sm:hidden">
-            <a
-              href="#"
-              class="
-                block
-                text-sm
-                font-semibold
-                text-indigo-600
-                hover:text-indigo-500
-              "
-              >Zobrazit galerie kuchyní<span aria-hidden="true"> &rarr;</span></a
-            >
+        <div class="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+          <div class="mt-10 lg:grid lg:grid-cols-2 lg:gap-x-8">
+            <a v-for="category in categories" :key="category.name" :href="category.href" class="group relative w-56 h-80 rounded-lg flex flex-col overflow-hidden group-hover:opacity-75 xl:w-auto mb-4 w-full">
+                <span aria-hidden="true" class="absolute inset-0">
+                  <img :src="category.imageSrc" alt="" class="w-full h-full object-center object-cover" />
+                </span>
+                <span class="relative mt-auto text-left text-xl font-bold text-white bg-gray-800 opacity-75 p-2 w-full group-hover:opacity-100">{{ category.name }}</span>
+            </a>
           </div>
         </div>
       </div>
@@ -886,7 +736,46 @@ import Form from "../../../utilities/form";
 import Successful from "../../Successful.vue";
 import Exception from "../../Exception.vue";
 
+const categories = [
+  {
+    name: 'Kuchyně',
+    href: '#',
+    imageSrc: '/storage/images/initialize/kitchen1.jpg',
+    imageAlt: 'Kitchens image.',
+    description: 'Kuchyně na míru.',
+  },
+  {
+    name: 'Skříně',
+    href: '#',
+    imageSrc: '/storage/images/initialize/skrine.jpg',
+    imageAlt: 'Skrine image.',
+    description: 'Vestavěné skříně na míru.',
+  },
+  {
+    name: 'Komerční prostory',
+    href: '#',
+    imageSrc: '/storage/images/initialize/prostory.jpg',
+    imageAlt: 'Commercial image.',
+    description: 'Vybavíme komerční prostory. Školy, školky, Obecní úřady, a další...',
+  },
+  {
+    name: 'Koupelny',
+    href: '#',
+    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg',
+    imageAlt: 'Koupelny image.',
+    description: 'Vybavíme Vaší koupelnu...',
+  },
+  {
+    name: 'Doplňky/Detaily',
+    href: '#',
+    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg',
+    imageAlt: 'Koupelny image.',
+    description: 'Na detailech si zakládáme.',
+  },
+]
+
 export default {
+  
   components: {
     InboxIcon,
     SparklesIcon,
@@ -1010,6 +899,7 @@ export default {
       message,
       submit,
       close,
+      categories,
     };
   },
 };
