@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GalleryDeleteRequest;
+use App\Http\Requests\GalleryEditRequest;
 use App\Http\Requests\GalleryIndexRequest;
+use App\Http\Requests\GalleryShowRequest;
 use App\Http\Requests\GalleryStoreRequest;
 use App\Http\Requests\GalleryUpdateRequest;
 use App\Http\Resources\AdminResources\GalleryEditResource;
@@ -13,13 +15,11 @@ use App\Http\Resources\PublicResources\GalleryShowResource;
 use App\Http\Resources\PublicResources\GalleryIndexResource;
 use App\Models\Gallery;
 use App\Models\Image;
-use http\Env\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Nette\Utils\DateTime;
 use Throwable;
 
 class GalleryController extends Controller
@@ -155,7 +155,7 @@ class GalleryController extends Controller
     {
         try {
 
-            return new GalleryShowResource(Gallery::with(['images','category'])->where('slug', $slug)->firstOrFail());
+            return new GalleryShowResource(Gallery::with(['images', 'category'])->where('slug', $slug)->firstOrFail());
 
         } catch (Throwable $e) {
 
@@ -165,11 +165,11 @@ class GalleryController extends Controller
         }
     }
 
-    public function edit($id)
+    public function edit(GalleryEditRequest $request)
     {
         try {
 
-            return new GalleryEditResource(Gallery::where('id', $id)->with(['category', 'images'])->firstorfail());
+            return new GalleryEditResource(Gallery::where('id', $request->id)->with(['category', 'images'])->firstorfail());
 
         } catch (Throwable $e) {
 
@@ -195,7 +195,7 @@ class GalleryController extends Controller
             $updated_at = Carbon::parse($gallery->updated_at);
             $fetched_at = Carbon::parse($request->fetchedAt);
 
-            if($updated_at > $fetched_at){
+            if ($updated_at > $fetched_at) {
 
                 DB::rollback();
 
@@ -203,6 +203,7 @@ class GalleryController extends Controller
                     'code' => 'DATA_CHANGED',
                     'message' => 'Galerie byla změněna'
                 ], 400);
+
             }
 
             $gallery->user_id = $user;
@@ -317,7 +318,7 @@ class GalleryController extends Controller
             $newImagesIds = $request->originalImagesIds;
             $currentImagesIds = array_column($images, 'id');
 
-            if(empty($newImagesIds)){
+            if (empty($newImagesIds)) {
 
                 $newImagesIds = ['0'];
 

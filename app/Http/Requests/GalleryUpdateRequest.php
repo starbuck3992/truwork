@@ -27,7 +27,8 @@ class GalleryUpdateRequest extends FormRequest
         return [
             'id' => 'required,integer',
             'title' => ['required', 'max:64', Rule::unique('galleries')->ignore($this->route()->parameter('id'))],
-            'category' => ['required', Rule::in([1,2,3,4])],
+            'category' => ['required', Rule::in([1, 2, 3, 4, 5, 6, 7])],
+            'description' => 'max:512',
             'thumbnail' => 'image|mimes:jpeg,jpg,png',
             'images' => 'array',
             'images.*' => 'image|mimes:jpeg,jpg,png',
@@ -47,6 +48,7 @@ class GalleryUpdateRequest extends FormRequest
             'title.max' => 'Název galerie nemůže být delší než 64 znaků',
             'category.required' => 'Povinné pole',
             'category.in' => 'Nevalidní hodnota',
+            'description.max' => 'Popisek galerie nemůže být delší než 512 znaků',
             'thumbnail.image' => 'Soubor musí být obrázek typu: jpeg, jpg nebo png',
             'thumbnail.mimes' => 'Soubor musí být obrázek typu: jpeg, jpg nebo png',
             'images.array' => 'Nevalidní hodnota',

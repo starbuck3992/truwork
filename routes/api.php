@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Api\GalleryController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ContactController;
 
@@ -30,5 +29,3 @@ Route::get('/galleries/{slug}',[GalleryController::class,'show']);
 Route::middleware(['throttle:contact'])->group(function () {
     Route::post('/contact', [ContactController::class, 'contact']);
 });
-
-

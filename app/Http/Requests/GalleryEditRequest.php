@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class GalleryIndexRequest extends FormRequest
+class GalleryEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,15 +25,15 @@ class GalleryIndexRequest extends FormRequest
     public function rules()
     {
         return [
-            'category' => ['required', Rule::in(['kuchyne_klasicke','kuchyne_moderni','kuchyne_bezuchytkove','skrine','komercni_prostory','koupelny','doplnky'])]
+            'id' => 'required,integer'
         ];
     }
 
     public function messages()
     {
         return [
-            'category.required' => 'Povinný parametr',
-            'category.in' => 'Nevalidní hodnota parametru'
+            'id.required' => 'Povinný parametr',
+            'id.integer' => 'Nevalidní hodnota parametru'
         ];
     }
 }

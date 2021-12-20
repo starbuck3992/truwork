@@ -12,10 +12,8 @@ class Gallery extends Model
     protected $guarded = [
         'id',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
-
-    protected $with = ['user'];
 
     public function user()
     {
@@ -36,5 +34,4 @@ class Gallery extends Model
     {
         return 'slug';
     }
-
 }
