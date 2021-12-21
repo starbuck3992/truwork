@@ -88,6 +88,7 @@ class GalleryController extends Controller
                 'user_id' => $user,
                 'category_id' => $request->category,
                 'title' => $request->title,
+                'description' => $request->description,
                 'slug' => $slug
             ]);
 
@@ -207,6 +208,7 @@ class GalleryController extends Controller
 
             $gallery->user_id = $user;
             $gallery->title = $request->title;
+            $gallery->description = $request->description;
             $gallery->category_id = $request->category;
             $gallery->slug = $slug;
             $gallery->save();
