@@ -242,7 +242,7 @@ export default {
         }
 
         function showThumbnail(e) {
-            if (e.target.files[0].type === ('image/jpeg' || 'image/jpg' || 'image/png')) {
+            if (e.target.files[0].type === 'image/jpeg' || 'image/jpg' || 'image/png') {
                 let selectedFile
                 if (e.target.files === undefined) {
                     selectedFile = e.dataTransfer.files[0]

@@ -220,7 +220,7 @@ export default {
                 selectedFile = e.target.files[0]
                 typeFile = e.target.files[0].type
             }
-            if (typeFile === ('image/jpeg' || 'image/jpg' || 'image/png')) {
+            if ( typeFile === 'image/jpeg' || 'image/jpg' || 'image/png' ) {
                 thumbnailPreview.value = URL.createObjectURL(selectedFile)
                 form.thumbnail = selectedFile
             }
