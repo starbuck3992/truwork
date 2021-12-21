@@ -27,7 +27,6 @@ class GalleryStoreRequest extends FormRequest
         return [
             'title' => ['required', 'max:64', Rule::unique('galleries')],
             'category' => ['required', Rule::in([1, 2, 3, 4, 5, 6, 7])],
-            'description' => 'max:512',
             'thumbnail' => 'required|image|mimes:jpeg,jpg,png',
             'images' => 'required|array',
             'images.*' => 'required|image|mimes:jpeg,jpg,png'
@@ -42,7 +41,6 @@ class GalleryStoreRequest extends FormRequest
             'title.max' => 'Název galerie nemůže být delší než 64 znaků',
             'category.required' => 'Povinné pole',
             'category.in' => 'Nevalidní hodnota',
-            'description.max' => 'Popisek galerie nemůže být delší než 512 znaků',
             'thumbnail.required' => 'Povinné pole',
             'thumbnail.image' => 'Soubor musí být obrázek typu: jpeg, jpg nebo png',
             'thumbnail.mimes' => 'Soubor musí být obrázek typu: jpeg, jpg nebo png',
