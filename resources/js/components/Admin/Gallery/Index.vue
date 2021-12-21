@@ -56,14 +56,14 @@
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         <input v-model="inputName" type="text" name="name" id="name"
-                                               placeholder="Zde zadej název" required=""
+                                               placeholder="Název" required=""
                                                class="appearance-none min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400 sm:max-w-xs"/>
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         <input v-model="inputAutor" type="text" name="author" id="author" required=""
                                                class="appearance-none min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400 sm:max-w-xs"
-                                               placeholder="Zadej autora"/>
+                                               placeholder="Autor"/>
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -188,10 +188,14 @@ import Exception from '../../Exception.vue'
 
 const tabs = [
     {name: 'Vše', category: 999},
-    {name: 'Kuchyně', category: 1},
-    {name: 'Vestavěné Skříně', category: 2},
-    {name: 'Komerční prostory', category: 3},
-    {name: 'Ostatní', category: 4},
+    {name: 'Kuchyně klasicke', category: 1},
+    {name: 'Kuchyně moderní', category: 2},
+    {name: 'Kuchyně bezúchytkové', category: 3},
+    {name: 'Skříně', category: 4},
+    {name: 'Komerční prostory', category: 5},
+    {name: 'Koupelny', category: 6},
+    {name: 'Doplňky', category: 7},
+    
 ]
 
 export default {

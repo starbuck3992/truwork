@@ -13,8 +13,7 @@
                         <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
                             <div
                                 class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="title" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Název
-                                    galerie</label>
+                                <label for="title" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Název</label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <div class="max-w-lg flex rounded-md shadow-sm">
                                         <input v-model="form.title" type="text" name="title" id="title"
@@ -26,6 +25,14 @@
                                          v-text="form.errors.get('title')"></div>
                                 </div>
                             </div>
+                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                                <label for="description" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                Popisek
+                                </label>
+                                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                                <textarea id="description" name="description" rows="3" class="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md" />
+                                </div>
+                            </div>
                             <div
                                 class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label
@@ -35,10 +42,13 @@
                                         <select v-model="form.category" id="category" name="category"
                                                 class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
                                                 required>
-                                            <option value="1">Kuchyně</option>
-                                            <option value="2">Vestavěné skříně</option>
-                                            <option value="3">Komerční prostory</option>
-                                            <option value="4">Ostatní</option>
+                                            <option value="1">Klasické kuchyně</option>
+                                            <option value="2">Moderní kuchyně</option>
+                                            <option value="3">Bezúchytkové kuchyně</option>
+                                            <option value="4">Vestavěné skříně</option>
+                                            <option value="5">Komerční prostory</option>
+                                            <option value="6">Koupelny</option>
+                                            <option value="7">Doplňky</option>
                                         </select>
                                         <div class="mt-1 text-sm text-red-600" v-if="form.errors.has('category')"
                                              v-text="form.errors.get('category')"></div>

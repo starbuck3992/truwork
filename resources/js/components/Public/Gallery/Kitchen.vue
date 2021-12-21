@@ -32,10 +32,9 @@
         </div>
 
         <section aria-labelledby="collection-heading" class="-mt-96 relative sm:mt-0">
-          <h2 id="collection-heading" class="sr-only">Collections</h2>
           <div class="max-w-md mx-auto grid grid-cols-1 gap-y-6 px-4 sm:max-w-full sm:px-6 sm:grid-cols-3 sm:gap-y-0 sm:gap-x-6 lg:px-8 lg:gap-x-8">
-            
-              <div class="group relative h-96 bg-white rounded-lg shadow-xl sm:h-auto sm:aspect-w-4 sm:aspect-h-5">
+
+              <router-link :to="{ name: 'galleriesIndex', query:{ category: 'kuchyne_klasicke' } }" class="group relative h-96 bg-white rounded-lg shadow-xl sm:h-auto sm:aspect-w-4 sm:aspect-h-5">
                 <div>
                   <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                     <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
@@ -45,7 +44,7 @@
                   </div>
                   <div class="absolute inset-0 rounded-lg p-6 flex items-end">
                     <div>
-                      <p aria-hidden="true" class="text-sm font-semibold text-white text-4xl">
+                      <p aria-hidden="true" class="font-semibold text-white text-4xl">
                         Klasické
                       </p>
                       <p class="mt-1 text-white text-xl">
@@ -57,9 +56,9 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </router-link>
             
-              <div class="group relative h-96 bg-white rounded-lg shadow-xl sm:h-auto sm:aspect-w-4 sm:aspect-h-5">
+              <router-link :to="{ name: 'galleriesIndex', query:{ category: 'kuchyne_moderni' } }" class="group relative h-96 bg-white rounded-lg shadow-xl sm:h-auto sm:aspect-w-4 sm:aspect-h-5">
                 <div>
                   <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                     <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
@@ -69,7 +68,7 @@
                   </div>
                   <div class="absolute inset-0 rounded-lg p-6 flex items-end">
                     <div>
-                      <p aria-hidden="true" class="text-sm font-semibold text-white text-4xl">
+                      <p aria-hidden="true" class="font-semibold text-white text-4xl">
                         Moderní
                       </p>
                       <p class="mt-1 text-white text-xl">
@@ -81,9 +80,9 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </router-link>
             
-              <div class="group relative h-96 bg-white rounded-lg shadow-xl sm:h-auto sm:aspect-w-4 sm:aspect-h-5">
+              <router-link :to="{ name: 'galleriesIndex', query:{ category: 'kuchyne_bezuchytkove' } }" class="group relative h-96 bg-white rounded-lg shadow-xl sm:h-auto sm:aspect-w-4 sm:aspect-h-5">
                 <div>
                   <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                     <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
@@ -93,7 +92,7 @@
                   </div>
                   <div class="absolute inset-0 rounded-lg p-6 flex items-end">
                     <div>
-                      <p aria-hidden="true" class="text-sm font-semibold text-white text-4xl">
+                      <p aria-hidden="true" class="font-semibold text-white text-4xl">
                         Bezúchytkové
                       </p>
                       <p class="mt-1 text-white text-xl">
@@ -105,7 +104,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </router-link>
             
           </div>
         </section>

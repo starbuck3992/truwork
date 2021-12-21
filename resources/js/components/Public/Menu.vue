@@ -1,7 +1,7 @@
 <template>
   <Disclosure as="header" class="bg-gray-800">
     <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:divide-y lg:divide-gray-700 lg:px-8 pt-10">
-      <div class="relative h-auto flex justify-between pb-16">
+      <div class="relative h-auto flex justify-between md:pb-16">
         <div class="hidden relative z-10 px-2 md:flex lg:px-0">
           <div class="flex-shrink-0 flex items-center">
             <div>
@@ -18,13 +18,29 @@
         </div>
         <div class="relative z-0 flex-1 px-2 flex items-center justify-center sm:absolute sm:inset-0">
           <div class="w-full sm:max-w-xs">
-            <label for="search" class="sr-only">Search</label>
             <div class="relative">
               <div class="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
-                <SearchIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
               </div>
-              <img src="/storage/images/initialize/logo-white.png" alt="Workflow" class="block h-16 w-full pb-2" />
+              <img src="/storage/images/initialize/logo-white.png" alt="Workflow" class="block h-16 w-auto pb-2 m-auto" />
               <p class="text-white text-xl mb-2 sm:pb-8 text-center">Zakázková výroba na míru</p>
+            </div>
+            <div class="relative md:hidden pb-2" @click="showMenu = !showMenu">
+              <table class="justify-center m-auto">
+                <tr>
+                  <td><p class="text-white text-2xl mb-2 text-center">MENU</p></td>
+                  <td>
+                      <svg v-if="!showMenu" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white inline-block align-baseline" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" /></svg>
+                      <svg v-if="showMenu" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white inline-block align-baseline" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  </td>
+                </tr>
+              </table>
+              <!-- <svg xmlns="http://www.w3.org/2000/svg" v-if="showMenu" class="h-6 w-6 justify-center m-auto text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z" />
+              </svg>
+
+              <svg xmlns="http://www.w3.org/2000/svg"  v-if="!showMenu" class="h-6 w-6 justify-center m-auto text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
+              </svg> -->
             </div>
           </div>
         </div>
@@ -37,10 +53,19 @@
         </div>
       </div>
       <nav class="hidden md:py-2 md:flex md:space-x-8 md:justify-center" aria-label="Global">
-        <a v-for="item in navigation" :key="item.name" :href="item.href" :class="[item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'rounded-md py-4 px-3 inline-flex items-center text-base font-medium']" :aria-current="item.current ? 'page' : undefined">
+        <router-link v-for="item in navigation" :key="item.name" :to="{ name: item.href.name, query: item.href.parameters }" :class="[item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'rounded-md py-4 px-3 inline-flex items-center text-base font-medium']" :aria-current="item.current ? 'page' : undefined">
           {{ item.name }}
-        </a>
+        </router-link>
       </nav>
+      <div v-show="showMenu" class="relative md:hidden" id="mobile-menu" x-show="open">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+          <router-link v-for="item in navigation" :key="item.name" :to="{ name: item.href.name, query: item.href.parameters }" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium text-center">
+            {{item.name}}
+          </router-link>
+        </div>
+        
+      </div>
     </div>
   </Disclosure>
 </template>
@@ -58,13 +83,56 @@ import {
 import {ChevronDownIcon} from '@heroicons/vue/solid'
 
 const navigation = [
-    {name: 'Domů', href: '#'},
-    {name: 'Kuchyně', href: '#'},
-    {name: 'Skříně', href: '#'},
-    {name: 'Komerční prostory', href: '#'},
-    {name: 'Koupelny', href: '#'},
-    {name: 'Doplňky/Detaily', href: '#'},
-    {name: 'Kontakt', href: '#'},
+    { name: 'Domů', 
+      href: {
+        name : 'homeIndex',
+        parameters : {},
+      }
+    },
+    { name: 'Kuchyně', 
+      href: {
+        name : 'galleriesKitchen',
+        parameters : {},
+      }
+    },
+    { name: 'Skříně', 
+      href: {
+        name : 'galleriesIndex',
+        parameters : {
+            category: 'skrine'
+          }
+      }
+    },
+    { name: 'Komerční prostory', 
+      href: {
+        name : 'galleriesIndex',
+        parameters : { 
+          category :'komercni_prostory',
+        }
+      }
+    },
+    { name: 'Koupelny', 
+      href: {
+        name : 'galleriesIndex',
+        parameters : { 
+          category: 'koupelny'
+        }
+      }
+    },
+    { name: 'Doplňky/Detaily', 
+      href: {
+        name : 'galleriesIndex',
+        parameters : {
+          category : 'doplnky'
+        },
+      }
+    },
+    { name: 'Kontakt', 
+       href: {
+        name : '',
+        parameters : {},
+      }
+    },
 ]
 
 const social = [
