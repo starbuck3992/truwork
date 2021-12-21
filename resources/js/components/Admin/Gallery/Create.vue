@@ -175,9 +175,8 @@
     </div>
     <Exception :open="showException" :message="message" @close="close"></Exception>
 </template>
-
-
 <script>
+
 import {reactive, ref} from 'vue'
 import {useRouter} from 'vue-router'
 import {XIcon} from '@heroicons/vue/outline'

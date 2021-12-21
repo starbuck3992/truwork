@@ -16,6 +16,7 @@ class GalleryIndexResource extends JsonResource
     {
         return [
             'title' => $this->title,
+            'description' => $this->description,
             'slug' => $this->slug,
             'category'   => new CategoryResource($this->whenLoaded('category')),
             'thumbnail' => ImageResource::collection($this->whenLoaded('images')),
