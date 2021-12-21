@@ -17,6 +17,7 @@ class GalleryEditResource extends JsonResource
     {
         return [
             'title' => $this->title,
+            'description' => $this->description,
             'fetched_at' => Carbon::now(),
             'category'   => new CategoryResource($this->whenLoaded('category')),
             'images' => ImageResource::collection($this->whenLoaded('images')),

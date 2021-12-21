@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\GalleryDeleteRequest;
 use App\Http\Requests\GalleryEditRequest;
 use App\Http\Requests\GalleryIndexRequest;
-use App\Http\Requests\GalleryShowRequest;
 use App\Http\Requests\GalleryStoreRequest;
 use App\Http\Requests\GalleryUpdateRequest;
 use App\Http\Resources\AdminResources\GalleryEditResource;
