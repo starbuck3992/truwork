@@ -217,7 +217,7 @@ export default {
             await api.getAdminGallery(route.params.id).then(response => {
                     form.title = response.data.title
                     form.category = response.data.category.id
-                    form.description = response.data.category.description
+                    form.description = response.data.description
                     form.originalImagesIds = response.data.images.reduce(function (filtered, item) {
                         if (item.thumbnail === 0) {
                             filtered.push(item.id)
@@ -242,7 +242,7 @@ export default {
         }
 
         function showThumbnail(e) {
-            if (e.target.files[0].type === ('image/jpeg' || 'image/jgp' || 'image||png')) {
+            if (e.target.files[0].type === ('image/jpeg' || 'image/jpg' || 'image/png')) {
                 let selectedFile
                 if (e.target.files === undefined) {
                     selectedFile = e.dataTransfer.files[0]
@@ -262,7 +262,7 @@ export default {
                 selectedFiles = e.target.files
             }
             for (let i = 0; i < selectedFiles.length; i++) {
-                if (selectedFiles[i].type === 'image/jpeg' || 'image/jgp' || 'image||png') {
+                if (selectedFiles[i].type === 'image/jpeg' || 'image/jpg' || 'image/png') {
                     let img = {
                         path: URL.createObjectURL(selectedFiles[i]),
                         name: selectedFiles[i].name,
