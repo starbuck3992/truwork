@@ -188,7 +188,7 @@ import Exception from '../../Exception.vue'
 
 const tabs = [
     {name: 'Vše', category: 999},
-    {name: 'Kuchyně klasicke', category: 1},
+    {name: 'Kuchyně klasické', category: 1},
     {name: 'Kuchyně moderní', category: 2},
     {name: 'Kuchyně bezúchytkové', category: 3},
     {name: 'Skříně', category: 4},

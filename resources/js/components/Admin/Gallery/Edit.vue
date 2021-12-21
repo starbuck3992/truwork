@@ -217,6 +217,7 @@ export default {
             await api.getAdminGallery(route.params.id).then(response => {
                     form.title = response.data.title
                     form.category = response.data.category.id
+                    form.description = response.data.category.description
                     form.originalImagesIds = response.data.images.reduce(function (filtered, item) {
                         if (item.thumbnail === 0) {
                             filtered.push(item.id)
