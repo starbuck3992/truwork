@@ -30,7 +30,10 @@
                                 Popisek
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                <textarea id="description" name="description" rows="3" class="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md" />
+                                <textarea v-model="form.description" id="description" name="description" rows="3" class="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md" />
+                                <div class="mt-1 text-sm text-red-600" v-if="form.errors.has('description')"
+                                         v-text="form.errors.get('description')">
+                                </div>
                                 </div>
                             </div>
                             <div
@@ -198,6 +201,7 @@ export default {
 
         const form = reactive(new Form({
             title: null,
+            description: null,
             category: null,
             thumbnail: null,
             images: []
