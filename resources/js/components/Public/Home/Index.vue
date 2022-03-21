@@ -217,7 +217,7 @@
             <div class="bg-white">
                 <div class="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                     <div class="mt-10 lg:grid lg:grid-cols-2 lg:gap-x-8">
-                        <a v-for="category in categories" :key="category.name" :href="category.href"
+                        <router-link v-for="category in categories" :key="category.name" :to="{ name: category.href.name, query: category.href.parameters }"
                            class="group relative w-56 h-80 rounded-lg flex flex-col overflow-hidden group-hover:opacity-75 xl:w-auto mb-4 w-full">
                 <span aria-hidden="true" class="absolute inset-0">
                   <img :src="category.imageSrc" alt="" class="w-full h-full object-center object-cover"/>
@@ -226,7 +226,7 @@
                                 class="relative mt-auto text-left text-xl font-bold text-white bg-gray-800 opacity-75 p-2 w-full group-hover:opacity-100">{{
                                     category.name
                                 }}</span>
-                        </a>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -742,35 +742,58 @@ import Exception from "../../Exception.vue";
 const categories = [
     {
         name: 'Kuchyně',
-        href: '#',
+        href: {
+            name : 'galleriesKitchen',
+            parameters : {}
+        },
         imageSrc: '/storage/images/initialize/kitchen1.jpg',
         imageAlt: 'Kitchens image.',
         description: 'Kuchyně na míru.',
     },
     {
         name: 'Skříně',
-        href: '#',
+        href: {
+            name : 'galleriesIndex',
+            parameters : {
+                category: 'skrine'
+            }
+        },
         imageSrc: '/storage/images/initialize/skrine.jpg',
         imageAlt: 'Skrine image.',
         description: 'Vestavěné skříně na míru.',
     },
     {
         name: 'Komerční prostory',
-        href: '#',
+        href: {
+            name : 'galleriesIndex',
+            parameters : {
+                category: 'komercni_prostory'
+            }
+        },
         imageSrc: '/storage/images/initialize/prostory.jpg',
         imageAlt: 'Commercial image.',
         description: 'Vybavíme komerční prostory. Školy, školky, Obecní úřady, a další...',
     },
     {
         name: 'Koupelny',
-        href: '#',
+        href: {
+            name : 'galleriesIndex',
+            parameters : {
+                category: 'koupelny'
+            }
+        },
         imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg',
         imageAlt: 'Koupelny image.',
         description: 'Vybavíme Vaší koupelnu...',
     },
     {
         name: 'Doplňky/Detaily',
-        href: '#',
+        href: {
+            name : 'galleriesIndex',
+            parameters : {
+                category: 'doplnky'
+            }
+        },
         imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg',
         imageAlt: 'Koupelny image.',
         description: 'Na detailech si zakládáme.',

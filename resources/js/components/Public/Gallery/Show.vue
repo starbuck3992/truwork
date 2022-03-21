@@ -1,8 +1,8 @@
 <template>
     <HeroScene :title="category"></HeroScene>
     <router-link :to="{ name: 'galleriesIndex', query:{category: slug} }">
-        <p class="mt-10 sm:text-sm sm:font-extrabold text-gray-900 ml-10 flex font-medium text-xs">
-            <RewindIcon class="w-8 h-8 sm:w-10 sm:h-10"></RewindIcon><span class="mt-2">Zpět na seznam galerií</span>
+        <p class="mt-10 sm:text-lg sm:font-extrabold text-gray-900 ml-10 flex font-medium text-xs">
+            <ArrowCircleLeftIcon class="w-8 h-8 sm:w-8 sm:h-8"></ArrowCircleLeftIcon><span class="ml-2">Zpět na seznam galerií</span>
         </p>
     </router-link>
     <div class="relative max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 mt-5 ">
@@ -66,20 +66,10 @@
 import {onMounted, ref} from 'vue'
 import {useRouter, useRoute} from 'vue-router'
 import {Dialog, DialogOverlay, DialogTitle, TransitionChild, TransitionRoot} from '@headlessui/vue'
-import {CheckIcon, XIcon, ChevronRightIcon, ChevronLeftIcon,ZoomInIcon,RewindIcon} from '@heroicons/vue/outline'
-import anime from 'animejs/lib/anime.es.js'
+import {CheckIcon, XIcon, ChevronRightIcon, ChevronLeftIcon,ZoomInIcon,RewindIcon, ArrowCircleLeftIcon} from '@heroicons/vue/outline'
 import api from '../../../services/api'
 import HeroScene from '../../HeroScene.vue'
 import Exception from '../../Exception.vue'
-
-
-const animation = anime({
-  targets: '.active',
-  translateX: 250,
-  direction: 'alternate',
-  loop: false,
-  easing: 'linear'
-});
 
 export default {
     components: {
@@ -92,6 +82,7 @@ export default {
         XIcon,
         ChevronRightIcon,
         ChevronLeftIcon,
+        ArrowCircleLeftIcon,
         HeroScene,
         Exception,
         ZoomInIcon,

@@ -5,10 +5,10 @@
         <div class="hidden relative z-10 px-2 md:flex lg:px-0">
           <div class="flex-shrink-0 flex items-center">
             <div>
-                <p class="text-white text-base mb-2">Email :    truwork@truwork.com</p>
+                <p class="text-white text-base mb-2">Email :    truwork@truwork.cz</p>
                 <table>
                   <tr>
-                    <td class="mr-3"><p class="text-white text-base mb-2">Telefon :  607 237 514</p></td><td><img class="h-6 w-6 ml-2 inline-block align-baseline" src="/storage/images/initialize/en-flag.png"></td>
+                    <td class="mr-3"><p class="text-white text-base mb-2">Telefon :  +420 608 333 070</p></td><td><img alt="flag" class="h-6 w-6 ml-2 inline-block align-baseline" src="/storage/images/initialize/en-flag.png"></td>
                   </tr>
                 </table>
                 <p class="text-white text-base mb-2">Telefon :  607 237 514</p>
@@ -57,14 +57,14 @@
           {{ item.name }}
         </router-link>
       </nav>
-      <div v-show="showMenu" class="relative md:hidden" id="mobile-menu" x-show="open">
+      <div v-show="showMenu" class="relative md:hidden" id="mobile-menu">
         <div class="px-2 pt-2 pb-3 space-y-1">
           <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
           <router-link v-for="item in navigation" :key="item.name" :to="{ name: item.href.name, query: item.href.parameters }" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium text-center">
             {{item.name}}
           </router-link>
         </div>
-        
+
       </div>
     </div>
   </Disclosure>
@@ -83,19 +83,19 @@ import {
 import {ChevronDownIcon} from '@heroicons/vue/solid'
 
 const navigation = [
-    { name: 'Domů', 
+    { name: 'Domů',
       href: {
         name : 'homeIndex',
         parameters : {},
       }
     },
-    { name: 'Kuchyně', 
+    { name: 'Kuchyně',
       href: {
         name : 'galleriesKitchen',
         parameters : {},
       }
     },
-    { name: 'Skříně', 
+    { name: 'Skříně',
       href: {
         name : 'galleriesIndex',
         parameters : {
@@ -103,36 +103,30 @@ const navigation = [
           }
       }
     },
-    { name: 'Komerční prostory', 
+    { name: 'Komerční prostory',
       href: {
         name : 'galleriesIndex',
-        parameters : { 
+        parameters : {
           category :'komercni_prostory',
         }
       }
     },
-    { name: 'Koupelny', 
+    { name: 'Koupelny',
       href: {
         name : 'galleriesIndex',
-        parameters : { 
+        parameters : {
           category: 'koupelny'
         }
       }
     },
-    { name: 'Doplňky/Detaily', 
+    { name: 'Doplňky/Detaily',
       href: {
         name : 'galleriesIndex',
         parameters : {
           category : 'doplnky'
         },
       }
-    },
-    { name: 'Kontakt', 
-       href: {
-        name : '',
-        parameters : {},
-      }
-    },
+    }
 ]
 
 const social = [
