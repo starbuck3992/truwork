@@ -1,42 +1,53 @@
-import api from '../../services/api'
-import router from '../../router'
+import Api from "../../services/api";
 
 const user = {
     namespaced: true,
     state: {
-        user: null,
+        user: {
+            name: null,
+        },
     },
     getters: {
         user(state) {
-            return state.user
+            return state.user;
         },
         loggedIn(state) {
-            return !!state.user
+            return !!state.user.name;
         }
     },
     mutations: {
         createSession(state, user) {
-            state.user = user
+            state.user.name = user.name;
         },
         destroySession(state) {
-            state.user = null
+            Object.keys(state.user).forEach(k => state.user[k] = null);
         }
     },
     actions: {
-        login({commit}, payload) {
-            return api.login(payload)
-                .then(response => commit('createSession', response.data.name))
+        async login({commit}, payload) {
+            await Api.get('/sanctum/csrf-cookie');
+            return new Promise((resolve, reject) => {
+                Api.post('/login', payload).then((response) => {
+                    commit('createSession', response.data);
+                    resolve(response)
+                }).catch((error) => {
+                    reject(error)
+                })
+            })
         },
         logout({commit}) {
-            return api.logout()
-                .then(() => {
+            return new Promise((resolve, reject) => {
+                Api.post('/logout').then((response) => {
                     commit('destroySession')
+                    resolve(response)
+                }).catch((error) => {
+                    reject(error)
                 })
-                .finally(() => {
-                    router.push({name: 'homeIndex'})
-                })
+            })
         }
     }
-}
+};
 
-export default user
+export default user;
+
+

@@ -48,7 +48,7 @@
                                         Možnosti
                                     </th>
                                 </tr>
-                                <tr class="hidden sm:contents" >
+                                <tr class="hidden sm:contents">
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 
@@ -61,7 +61,8 @@
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        <input v-model="inputDescription" type="text" name="author" id="author" required=""
+                                        <input v-model="inputDescription" type="text" name="author" id="author"
+                                               required=""
                                                class="appearance-none min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400 sm:max-w-xs"
                                                placeholder="Autor"/>
                                     </th>
@@ -78,7 +79,8 @@
                                     v-show="gallery.category.id === showThisCategory || showThisCategory === 999">
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
-                                            <router-link :to="{ name: 'galleriesShow', params: {slug: gallery.slug } }" target="_blank">
+                                            <router-link :to="{ name: 'galleriesShow', params: {slug: gallery.slug } }"
+                                                         target="_blank">
                                                 <div class="flex-shrink-0">
                                                     <img v-if="gallery.thumbnail[0]" class="max-h-36 max-w-36"
                                                          :src="gallery.thumbnail[0].path" alt=""/>
@@ -95,7 +97,7 @@
                                         </router-link>
                                     </td>
                                     <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {{gallery.user.name}}
+                                        {{ gallery.user.name }}
                                     </td>
                                     <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         <div class="text-sm text-gray-900">{{ gallery.created_at }}</div>
@@ -120,7 +122,7 @@
 
             <!-- Pop Up Delete -->
             <TransitionRoot as="template" :show="open">
-                <Dialog as="div" class="fixed z-10 inset-0 overflow-y-auto" @close="open = false">
+                <Dialog as="div" class="fixed z-10 inset-0 overflow-y-auto" @close="open=false">
                     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                         <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0"
                                          enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100"
@@ -162,7 +164,7 @@
                                     </button>
                                     <button type="button"
                                             class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
-                                            @click="open = false" ref="cancelButtonRef">
+                                            @click="open=false" ref="cancelButtonRef">
                                         Zrušit
                                     </button>
                                 </div>
@@ -174,17 +176,14 @@
             <!-- /Pop Up Delete -->
         </div>
     </div>
-    <Successful :open="showSuccessful" :message="message" @close="close"></Successful>
-    <Exception :open="showException" :message="message" @close="close"></Exception>
 </template>
 
 <script>
-import {onMounted, ref, computed, reactive} from 'vue'
-import {Dialog, DialogOverlay, TransitionChild, TransitionRoot, DialogTitle,} from '@headlessui/vue'
-import {ExclamationIcon,} from '@heroicons/vue/outline'
-import api from '../../../services/api'
-import Successful from '../../Successful.vue'
-import Exception from '../../Exception.vue'
+import {onMounted, ref, computed, reactive} from 'vue';
+import {Dialog, DialogOverlay, TransitionChild, TransitionRoot, DialogTitle,} from '@headlessui/vue';
+import {ExclamationIcon,} from '@heroicons/vue/outline';
+import {useStore} from "vuex";
+import Api from "../../../services/api";
 
 const tabs = [
     {name: 'Vše', category: 999},
@@ -195,7 +194,7 @@ const tabs = [
     {name: 'Komerční prostory', category: 5},
     {name: 'Koupelny', category: 6},
     {name: 'Doplňky', category: 7},
-    
+
 ]
 
 export default {
@@ -206,33 +205,32 @@ export default {
         TransitionRoot,
         ExclamationIcon,
         DialogTitle,
-        Successful,
-        Exception
     },
     setup() {
-        //filter data
-        const inputName = ref('')
-        const inputDescription = ref('')
-        //end filter data
+        const store = useStore();
+
+        const inputName = ref('');
+        const inputDescription = ref('');
+
         const galleryToDelete = reactive({
             index: null,
             id: null
-        })
-        const galleries = ref([])
-        const open = ref(false)
-        const activeItem = ref(0)
-        const showThisCategory = ref(999)
+        });
 
-        const showSuccessful = ref(false)
-        const showException = ref(false)
-        const message = ref()
+        const galleries = ref([]);
+        const open = ref(false);
+        const activeItem = ref(0);
+        const showThisCategory = ref(999);
 
         onMounted(async () => {
-                await api.getAdminGalleries().then(response =>
+                Api.get('/api/admin/galleries').then(response =>
                     galleries.value = response.data
-                ).catch(error => {
-                    showException.value = true
-                    message.value = error.response.data.message
+                ).catch((error) => {
+                    if (error.response) {
+                        store.dispatch('messagesModule/showException', error.response.data.message);
+                    } else {
+                        console.log(error);
+                    }
                 })
             }
         )
@@ -256,20 +254,13 @@ export default {
             galleryToDelete.index = index
         }
 
-        function close() {
-            showSuccessful.value = false
-            showException.value = false
-        }
-
         function deleteGallery() {
-            open.value = false
-            api.deleteGallery(galleryToDelete.id).then((response) => {
-                filteredGalleries.value.splice(galleryToDelete.index, 1)
-                showSuccessful.value = true
-                message.value = response.data.message
+            open.value = false;
+            Api.get(`/api/admin/galleries/${galleryToDelete.id}`).then((response) => {
+                filteredGalleries.value.splice(galleryToDelete.index, 1);
+                store.dispatch('messagesModule/showSuccess', response.data.message);
             }).catch(error => {
-                showException.value = true
-                message.value = error.response.data.message
+                store.dispatch('messagesModule/showException', error.response.data.message);
             })
         }
 
@@ -281,14 +272,10 @@ export default {
             inputName,
             inputDescription,
             filteredGalleries,
-            showSuccessful,
-            showException,
-            message,
-            close,
+            tabs,
             selectItem,
             openPopup,
-            deleteGallery,
-            tabs
+            deleteGallery
         }
     }
 }

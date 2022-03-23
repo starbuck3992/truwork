@@ -49,59 +49,45 @@
             </div>
         </div>
     </div>
-    <Exception :open="showException" :message="message" @close="close"></Exception>
 </template>
 
 <script>
-import {reactive, ref} from 'vue'
-import {useStore} from 'vuex'
-import {useRouter} from 'vue-router'
-import Form from '../../utilities/form'
-import Exception from '../Exception'
+import {reactive} from "vue"
+import {useStore} from "vuex"
+import Form from "../../utilities/form";
+import router from "../../router";
 
 export default {
-    components: {
-        Exception
-    },
     setup() {
-        const store = useStore()
-        const router = useRouter()
-
+        const store = useStore();
         const form =
             reactive(new Form({
-                email: null,
-                password: null,
-                rememberMe: true
-            }))
-
-        const showException = ref(false)
-        const message = ref()
+                email: '',
+                password: '',
+                remember: true
+            }));
 
         async function login() {
-            await store.dispatch('userModule/login', form.objectToFormData())
-                .then(() => {
-                    form.onSuccess()
-                    router.push({name: 'adminGalleryIndex'})
-                }).catch(error => {
-                    if (error.response.data.errors) {
-                        form.onFail(error.response.data.errors)
+            try {
+                await store.dispatch('userModule/login', form.objectToFormData());
+                form.onSuccess();
+                await router.push({name: 'adminGalleryIndex'});
+            } catch (error) {
+                if (error.response) {
+                    if (error.response.status === 422) {
+                        form.onFail(error.response.data.errors);
                     } else {
-                        showException.value = true
-                        message.value = error.response.data.message
+                        await store.dispatch('messagesModule/showException', error.response.data.message);
                     }
-                })
-        }
-
-        function close() {
-            showException.value = false
+                } else {
+                    console.log(error);
+                }
+            }
         }
 
         return {
             form,
-            showException,
-            message,
-            login,
-            close
+            login
         }
     }
 }

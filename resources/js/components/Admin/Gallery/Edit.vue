@@ -169,35 +169,31 @@
             </form>
         </div>
     </div>
-    <Exception :open="showException" :message="message" @close="close"></Exception>
 </template>
 
 
 <script>
-import {onMounted, reactive, ref} from 'vue'
-import {useRoute, useRouter} from 'vue-router'
-import {XIcon} from '@heroicons/vue/outline'
-import api from '../../../services/api'
-import Form from '../../../utilities/form'
-import Exception from '../../Exception.vue'
+import {onMounted, reactive, ref} from 'vue';
+import {useRoute, useRouter} from 'vue-router';
+import {useStore} from "vuex";
+import {XIcon} from '@heroicons/vue/outline';
+import Api from "../../../services/api";
+import Form from '../../../utilities/form';
 
 export default {
     components: {
-        XIcon,
-        Exception
+        XIcon
     },
     setup() {
-        const router = useRouter()
-        const route = useRoute()
+        const router = useRouter();
+        const route = useRoute();
+        const store = useStore();
 
-        const thumbnailUploader = ref(null)
-        const imagesUploader = ref(null)
+        const thumbnailUploader = ref(null);
+        const imagesUploader = ref(null);
 
-        const thumbnailPreview = ref(null)
-        const imagesPreview = ref([])
-
-        const showException = ref(false)
-        const message = ref()
+        const thumbnailPreview = ref(null);
+        const imagesPreview = ref([]);
 
         const form = reactive(new Form({
             title: null,
@@ -210,31 +206,31 @@ export default {
         }));
 
         onMounted(() => {
-            callApi()
+            callApi();
         })
 
         async function callApi() {
-            await api.getAdminGallery(route.params.id).then(response => {
-                    form.title = response.data.title
-                    form.category = response.data.category.id
-                    form.description = response.data.description
+            Api.get(`/api/admin/galleries/${route.params.id}`).then(response => {
+                    form.title = response.data.title;
+                    form.category = response.data.category.id;
+                    form.description = response.data.description;
                     form.originalImagesIds = response.data.images.reduce(function (filtered, item) {
                         if (item.thumbnail === 0) {
-                            filtered.push(item.id)
+                            filtered.push(item.id);
                         }
-                        return filtered
+                        return filtered;
                     }, [])
-                    form.fetchedAt = response.data.fetched_at
+                    form.fetchedAt = response.data.fetched_at;
 
                     thumbnailPreview.value =
                         response.data.images.filter(obj => {
-                            return obj.thumbnail === 1
-                        })[0].path
+                            return obj.thumbnail === 1;
+                        })[0].path;
 
                     imagesPreview.value =
                         response.data.images.filter(obj => {
-                            return obj.thumbnail === 0
-                        })
+                            return obj.thumbnail === 0;
+                        });
                 }
             ).catch(() => (
                 router.push({name: 'adminGalleryIndex'})
@@ -243,23 +239,23 @@ export default {
 
         function showThumbnail(e) {
             if (e.target.files[0].type === 'image/jpeg' || 'image/jpg' || 'image/png') {
-                let selectedFile
+                let selectedFile;
                 if (e.target.files === undefined) {
-                    selectedFile = e.dataTransfer.files[0]
+                    selectedFile = e.dataTransfer.files[0];
                 } else {
-                    selectedFile = e.target.files[0]
+                    selectedFile = e.target.files[0];
                 }
-                thumbnailPreview.value = URL.createObjectURL(selectedFile)
-                form.thumbnail = selectedFile
+                thumbnailPreview.value = URL.createObjectURL(selectedFile);
+                form.thumbnail = selectedFile;
             }
         }
 
         function showImages(e) {
-            let selectedFiles
+            let selectedFiles;
             if (e.target.files === undefined) {
-                selectedFiles = e.dataTransfer.files
+                selectedFiles = e.dataTransfer.files;
             } else {
-                selectedFiles = e.target.files
+                selectedFiles = e.target.files;
             }
             for (let i = 0; i < selectedFiles.length; i++) {
                 if (selectedFiles[i].type === 'image/jpeg' || 'image/jpg' || 'image/png') {
@@ -267,9 +263,9 @@ export default {
                         path: URL.createObjectURL(selectedFiles[i]),
                         name: selectedFiles[i].name,
                         size: selectedFiles[i].size
-                    }
-                    imagesPreview.value.push(img)
-                    form.images.push(selectedFiles[i])
+                    };
+                    imagesPreview.value.push(img);
+                    form.images.push(selectedFiles[i]);
                 }
             }
         }
@@ -293,66 +289,64 @@ export default {
         }
 
         function submit() {
-            api.updateGallery(route.params.id, form.objectToFormData())
+            Api.post(`/api/admin/galleries/edit/${route.params.id}`, form.objectToFormData(), {'Content-Type': 'multipart/form-data'})
                 .then(response => {
-                    form.onSuccess()
-                    resetThumbnail()
-                    resetImages()
-                    thumbnailPreview.value = null
-                    imagesPreview.value = []
-                    router.push({name: 'galleriesShow', params: {slug: response.data.slug}})
+                    form.onSuccess();
+                    resetThumbnail();
+                    resetImages();
+                    thumbnailPreview.value = null;
+                    imagesPreview.value = [];
+                    router.push({name: 'galleriesShow', params: {slug: response.data.slug}});
                 }).catch(error => {
-                if (error.response.data.errors) {
-                    form.onFail(error.response.data.errors)
-                } else if (error.response.data.code === 'DATA_CHANGED') {
-                    showException.value = true
-                    message.value = error.response.data.message
-                    reset()
+                if (error.response) {
+                    if (error.response.data.errors) {
+                        form.onFail(error.response.data.errors);
+                    } else if (error.response.data.code === 'DATA_CHANGED') {
+                        store.dispatch('messagesModule/showException', error.response.data.message);
+                        reset()
+                    } else {
+                        store.dispatch('messagesModule/showException', error.response.data.message);
+                    }
                 } else {
-                    showException.value = true
-                    message.value = error.response.data.message
+                    console.log(error);
                 }
             })
-        }
-
-        function close() {
-            showException.value = false
         }
 
         //Drag AND Drop
         function remove(i) {
             if (i === 'thumb') {
-                form.thumbnail = null
-                thumbnailPreview.value = null
+                form.thumbnail = null;
+                thumbnailPreview.value = null;
             } else {
-                form.images.splice(i, 1)
-                form.originalImagesIds.splice(i, 1)
-                imagesPreview.value.splice(i, 1)
+                form.images.splice(i, 1);
+                form.originalImagesIds.splice(i, 1);
+                imagesPreview.value.splice(i, 1);
             }
         }
 
         function dragover(event) {
-            event.preventDefault()
+            event.preventDefault();
             if (!event.currentTarget.classList.contains('bg-green-300')) {
-                event.currentTarget.classList.remove('bg-white')
-                event.currentTarget.classList.add('bg-green-300')
+                event.currentTarget.classList.remove('bg-white');
+                event.currentTarget.classList.add('bg-green-300');
             }
         }
 
         function dragleave(event) {
-            event.currentTarget.classList.add('bg-white')
-            event.currentTarget.classList.remove('bg-green-300')
+            event.currentTarget.classList.add('bg-white');
+            event.currentTarget.classList.remove('bg-green-300');
         }
 
         function drop(event) {
-            event.preventDefault()
+            event.preventDefault();
             if (event.target.id === 'image') {
-                showImages(event)
+                showImages(event);
             } else {
-                showThumbnail(event)
+                showThumbnail(event);
             }
-            event.currentTarget.classList.add('bg-white')
-            event.currentTarget.classList.remove('bg-green-300')
+            event.currentTarget.classList.add('bg-white');
+            event.currentTarget.classList.remove('bg-green-300');
         }
 
         return {
@@ -361,15 +355,12 @@ export default {
             imagesUploader,
             thumbnailPreview,
             imagesPreview,
-            showException,
-            message,
             resetThumbnail,
             resetImages,
             showThumbnail,
             showImages,
             reset,
             submit,
-            close,
             drop,
             dragleave,
             dragover,

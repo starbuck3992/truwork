@@ -57,7 +57,7 @@
                   </div>
                 </div>
               </router-link>
-            
+
               <router-link :to="{ name: 'galleriesIndex', query:{ category: 'kuchyne_moderni' } }" class="group relative h-96 bg-white rounded-lg shadow-xl sm:h-auto sm:aspect-w-4 sm:aspect-h-5">
                 <div>
                   <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
@@ -81,7 +81,7 @@
                   </div>
                 </div>
               </router-link>
-            
+
               <router-link :to="{ name: 'galleriesIndex', query:{ category: 'kuchyne_bezuchytkove' } }" class="group relative h-96 bg-white rounded-lg shadow-xl sm:h-auto sm:aspect-w-4 sm:aspect-h-5">
                 <div>
                   <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
@@ -105,22 +105,8 @@
                   </div>
                 </div>
               </router-link>
-            
+
           </div>
         </section>
       </div>
 </template>
-
-<script>
-export default {
-    setup () {
-        
-
-        return {}
-    }
-}
-</script>
-
-<style lang="scss" scoped>
-
-</style>

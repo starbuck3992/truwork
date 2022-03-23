@@ -25,15 +25,18 @@
                                          v-text="form.errors.get('title')"></div>
                                 </div>
                             </div>
-                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="description" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                Popisek
+                            <div
+                                class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                                <label for="description"
+                                       class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                    Popisek
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                <textarea v-model="form.description" id="description" name="description" rows="3" class="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md" />
-                                <div class="mt-1 text-sm text-red-600" v-if="form.errors.has('description')"
+                                    <textarea v-model="form.description" id="description" name="description" rows="3"
+                                              class="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md"/>
+                                    <div class="mt-1 text-sm text-red-600" v-if="form.errors.has('description')"
                                          v-text="form.errors.get('description')">
-                                </div>
+                                    </div>
                                 </div>
                             </div>
                             <div
@@ -173,30 +176,29 @@
             </form>
         </div>
     </div>
-    <Exception :open="showException" :message="message" @close="close"></Exception>
 </template>
 <script>
 
-import {reactive, ref} from 'vue'
-import {useRouter} from 'vue-router'
-import {XIcon} from '@heroicons/vue/outline'
-import api from '../../../services/api'
-import Form from '../../../utilities/form'
-import Exception from '../../Exception.vue'
+import {reactive, ref} from 'vue';
+import {useRouter} from 'vue-router';
+import {useStore} from "vuex";
+import {XIcon} from '@heroicons/vue/outline';
+import Api from "../../../services/api";
+import Form from '../../../utilities/form';
 
 export default {
     components: {
-        XIcon,
-        Exception
+        XIcon
     },
     setup() {
-        const router = useRouter()
+        const router = useRouter();
+        const store = useStore();
 
-        const thumbnailUploader = ref(null)
-        const imagesUploader = ref(null)
+        const thumbnailUploader = ref(null);
+        const imagesUploader = ref(null);
 
-        const thumbnailPreview = ref(null)
-        const imagesPreview = ref([])
+        const thumbnailPreview = ref(null);
+        const imagesPreview = ref([]);
 
         const form = reactive(new Form({
             title: null,
@@ -206,37 +208,32 @@ export default {
             images: []
         }))
 
-        const showException = ref(false)
-        const message = ref()
-
         function showThumbnail(e) {
-            let selectedFile
-            let typeFile
+            let selectedFile;
+            let typeFile;
 
             if (e.target.files === undefined) {
-                selectedFile = e.dataTransfer.files[0]
-                typeFile = e.dataTransfer.files[0].type
+                selectedFile = e.dataTransfer.files[0];
+                typeFile = e.dataTransfer.files[0].type;
             } else {
-                selectedFile = e.target.files[0]
-                typeFile = e.target.files[0].type
+                selectedFile = e.target.files[0];
+                typeFile = e.target.files[0].type;
             }
-            if ( typeFile === 'image/jpeg' || 'image/jpg' || 'image/png' ) {
-                thumbnailPreview.value = URL.createObjectURL(selectedFile)
-                form.thumbnail = selectedFile
-            }
-            else
-            {
-              alert('Nahrát lze pouze soubory typu image. jpeg jpg png')
+            if (typeFile === 'image/jpeg' || 'image/jpg' || 'image/png') {
+                thumbnailPreview.value = URL.createObjectURL(selectedFile);
+                form.thumbnail = selectedFile;
+            } else {
+                alert('Nahrát lze pouze soubory typu image. jpeg jpg png');
             }
         }
 
         function showImages(e) {
-            let selectedFiles
+            let selectedFiles;
 
             if (e.target.files === undefined) {
-                selectedFiles = e.dataTransfer.files
+                selectedFiles = e.dataTransfer.files;
             } else {
-                selectedFiles = e.target.files
+                selectedFiles = e.target.files;
             }
             for (let i = 0; i < selectedFiles.length; i++) {
                 if (selectedFiles[i].type === 'image/jpeg' || 'image/jpg' || 'image/png') {
@@ -245,84 +242,78 @@ export default {
                         name: selectedFiles[i].name,
                         size: selectedFiles[i].size
                     }
-                    imagesPreview.value.push(img)
-                    form.images.push(selectedFiles[i])
+                    imagesPreview.value.push(img);
+                    form.images.push(selectedFiles[i]);
                 }
             }
         }
 
         function resetThumbnail() {
-            thumbnailUploader.value.value = null
+            thumbnailUploader.value.value = null;
         }
 
         function resetImages() {
-            imagesUploader.value.value = null
+            imagesUploader.value.value = null;
         }
 
         function reset() {
-            form.reset()
-            resetThumbnail()
-            resetImages()
-            thumbnailPreview.value = null
-            imagesPreview.value = []
+            form.reset();
+            resetThumbnail();
+            resetImages();
+            thumbnailPreview.value = null;
+            imagesPreview.value = [];
         }
 
         function submit() {
-            api.postGallery(form.objectToFormData())
-                .then(response => {
-                    form.onSuccess()
-                    resetThumbnail()
-                    resetImages()
-                    thumbnailPreview.value = null
-                    imagesPreview.value = []
-                    router.push({name: 'galleriesShow', params: {slug: response.data.slug}})
-                }).catch(error => {
-                if (error.response.data.errors) {
-                    form.onFail(error.response.data.errors)
+            Api.post('/api/admin/galleries', form.objectToFormData(), {'Content-Type': 'multipart/form-data'}).then((response) => {
+                reset();
+                router.push({name: 'galleriesShow', params: {slug: response.data.slug}});
+            }).catch(error => {
+                if (error.response) {
+                    if (error.response.data.errors) {
+                        form.onFail(error.response.data.errors);
+                    } else {
+                        store.dispatch('messagesModule/showException', error.response.data.message);
+                    }
                 } else {
-                    showException.value = true
-                    message.value = error.response.data.message
+                    console.log(error);
                 }
             })
-        }
-
-        function close(){
-            showException.value = false
         }
 
         //Drag AND Drop
         function remove(i) {
             if (i === 'thumb') {
-                form.thumbnail = null
-                thumbnailPreview.value = null
+                form.thumbnail = null;
+                thumbnailPreview.value = null;
             } else {
-                form.images.splice(i, 1)
-                imagesPreview.value.splice(i, 1)
+                form.images.splice(i, 1);
+                imagesPreview.value.splice(i, 1);
             }
         }
 
         function dragover(event) {
-            event.preventDefault()
+            event.preventDefault();
             if (!event.currentTarget.classList.contains('bg-green-300')) {
-                event.currentTarget.classList.remove('bg-white')
-                event.currentTarget.classList.add('bg-green-300')
+                event.currentTarget.classList.remove('bg-white');
+                event.currentTarget.classList.add('bg-green-300');
             }
         }
 
         function dragleave(event) {
-            event.currentTarget.classList.add('bg-white')
-            event.currentTarget.classList.remove('bg-green-300')
+            event.currentTarget.classList.add('bg-white');
+            event.currentTarget.classList.remove('bg-green-300');
         }
 
         function drop(event) {
             event.preventDefault()
             if (event.target.id === 'image') {
-                showImages(event)
+                showImages(event);
             } else {
-                showThumbnail(event)
+                showThumbnail(event);
             }
-            event.currentTarget.classList.add('bg-white')
-            event.currentTarget.classList.remove('bg-green-300')
+            event.currentTarget.classList.add('bg-white');
+            event.currentTarget.classList.remove('bg-green-300');
         }
 
         return {
@@ -331,15 +322,12 @@ export default {
             imagesUploader,
             thumbnailPreview,
             imagesPreview,
-            showException,
-            message,
             resetThumbnail,
             resetImages,
             showThumbnail,
             showImages,
             reset,
             submit,
-            close,
             drop,
             dragleave,
             dragover,

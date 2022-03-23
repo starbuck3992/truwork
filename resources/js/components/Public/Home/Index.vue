@@ -6,9 +6,9 @@
             <div class="slider-item">
                 <div class="relative h-full w-full">
                     <img
+                        alt="kuchyně"
                         class="h-full w-full object-cover"
                         src="/storage/images/initialize/kitchen1.jpg"
-                        alt="kuchyně"
                     />
                     <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply"/>
                     <div class="absolute inset-0 m-auto h-52">
@@ -46,7 +46,6 @@
               "
                         >
                             <a
-                                href="#contact-as"
                                 class="
                   flex
                   items-center
@@ -63,6 +62,7 @@
                   hover:bg-indigo-50
                   sm:px-8
                 "
+                                href="#contact-as"
                             >
                                 Kontaktujte nás
                             </a>
@@ -75,9 +75,9 @@
             <div class="slider-item">
                 <div class="relative h-full w-full">
                     <img
+                        alt="kuchyně"
                         class="h-full w-full object-cover"
                         src="/storage/images/initialize/kitchen2.jpg"
-                        alt="kuchyně"
                     />
                     <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply"/>
                     <div class="absolute inset-0 m-auto h-52">
@@ -115,7 +115,6 @@
               "
                         >
                             <a
-                                href="#contact-as"
                                 class="
                   flex
                   items-center
@@ -132,6 +131,7 @@
                   hover:bg-indigo-50
                   sm:px-8
                 "
+                                href="#contact-as"
                             >
                                 Kontaktujte nás
                             </a>
@@ -144,9 +144,9 @@
             <div class="slider-item">
                 <div class="relative h-full w-full">
                     <img
+                        alt="kuchyně"
                         class="h-full w-full object-cover"
                         src="/storage/images/initialize/kitchen3.jpg"
-                        alt="kuchyně"
                     />
                     <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply"/>
                     <div class="absolute inset-0 m-auto h-52">
@@ -184,7 +184,6 @@
               "
                         >
                             <a
-                                href="#contact-as"
                                 class="
                   flex
                   items-center
@@ -201,6 +200,7 @@
                   hover:bg-indigo-50
                   sm:px-8
                 "
+                                href="#contact-as"
                             >
                                 Kontaktujte nás
                             </a>
@@ -217,8 +217,9 @@
             <div class="bg-white">
                 <div class="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                     <div class="mt-10 lg:grid lg:grid-cols-2 lg:gap-x-8">
-                        <router-link v-for="category in categories" :key="category.name" :to="{ name: category.href.name, query: category.href.parameters }"
-                           class="group relative w-56 h-80 rounded-lg flex flex-col overflow-hidden group-hover:opacity-75 xl:w-auto mb-4 w-full">
+                        <router-link v-for="category in categories" :key="category.name"
+                                     :to="{ name: category.href.name, query: category.href.parameters }"
+                                     class="group relative w-56 h-80 rounded-lg flex flex-col overflow-hidden group-hover:opacity-75 xl:w-auto mb-4 w-full">
                 <span aria-hidden="true" class="absolute inset-0">
                   <img :src="category.imageSrc" alt="" class="w-full h-full object-center object-cover"/>
                 </span>
@@ -279,16 +280,16 @@
               "
                         >
                             <div
-                                class="absolute inset-0 pointer-events-none sm:hidden"
                                 aria-hidden="true"
+                                class="absolute inset-0 pointer-events-none sm:hidden"
                             >
                                 <svg
                                     class="absolute inset-0 w-full h-full"
-                                    width="343"
-                                    height="388"
-                                    viewBox="0 0 343 388"
                                     fill="none"
+                                    height="388"
                                     preserveAspectRatio="xMidYMid slice"
+                                    viewBox="0 0 343 388"
+                                    width="343"
                                     xmlns="http://www.w3.org/2000/svg"
                                 >
                                     <path
@@ -299,19 +300,20 @@
                                     <defs>
                                         <linearGradient
                                             id="linear1"
-                                            x1="254.553"
-                                            y1="107.554"
-                                            x2="961.66"
-                                            y2="814.66"
                                             gradientUnits="userSpaceOnUse"
+                                            x1="254.553"
+                                            x2="961.66"
+                                            y1="107.554"
+                                            y2="814.66"
                                         >
-                                            <stop stop-color="#fff" offset="0"/>
+                                            <stop offset="0" stop-color="#fff"/>
                                             <stop offset="1" stop-color="#fff" stop-opacity="0"/>
                                         </linearGradient>
                                     </defs>
                                 </svg>
                             </div>
                             <div
+                                aria-hidden="true"
                                 class="
                   hidden
                   absolute
@@ -323,15 +325,14 @@
                   sm:block
                   lg:hidden
                 "
-                                aria-hidden="true"
                             >
                                 <svg
                                     class="absolute inset-0 w-full h-full"
-                                    width="359"
-                                    height="339"
-                                    viewBox="0 0 359 339"
                                     fill="none"
+                                    height="339"
                                     preserveAspectRatio="xMidYMid slice"
+                                    viewBox="0 0 359 339"
+                                    width="359"
                                     xmlns="http://www.w3.org/2000/svg"
                                 >
                                     <path
@@ -342,19 +343,20 @@
                                     <defs>
                                         <linearGradient
                                             id="linear2"
-                                            x1="192.553"
-                                            y1="28.553"
-                                            x2="899.66"
-                                            y2="735.66"
                                             gradientUnits="userSpaceOnUse"
+                                            x1="192.553"
+                                            x2="899.66"
+                                            y1="28.553"
+                                            y2="735.66"
                                         >
-                                            <stop stop-color="#fff" offset="0"/>
+                                            <stop offset="0" stop-color="#fff"/>
                                             <stop offset="1" stop-color="#fff" stop-opacity="0"/>
                                         </linearGradient>
                                     </defs>
                                 </svg>
                             </div>
                             <div
+                                aria-hidden="true"
                                 class="
                   hidden
                   absolute
@@ -365,15 +367,14 @@
                   pointer-events-none
                   lg:block
                 "
-                                aria-hidden="true"
                             >
                                 <svg
                                     class="absolute inset-0 w-full h-full"
-                                    width="160"
-                                    height="678"
-                                    viewBox="0 0 160 678"
                                     fill="none"
+                                    height="678"
                                     preserveAspectRatio="xMidYMid slice"
+                                    viewBox="0 0 160 678"
+                                    width="160"
                                     xmlns="http://www.w3.org/2000/svg"
                                 >
                                     <path
@@ -384,13 +385,13 @@
                                     <defs>
                                         <linearGradient
                                             id="linear3"
-                                            x1="192.553"
-                                            y1="325.553"
-                                            x2="899.66"
-                                            y2="1032.66"
                                             gradientUnits="userSpaceOnUse"
+                                            x1="192.553"
+                                            x2="899.66"
+                                            y1="325.553"
+                                            y2="1032.66"
                                         >
-                                            <stop stop-color="#fff" offset="0"/>
+                                            <stop offset="0" stop-color="#fff"/>
                                             <stop offset="1" stop-color="#fff" stop-opacity="0"/>
                                         </linearGradient>
                                     </defs>
@@ -404,8 +405,8 @@
                                 <dt><span class="sr-only">Adresa</span></dt>
                                 <dd class="flex text-base text-indigo-50">
                                     <LibraryIcon
-                                        class="flex-shrink-0 w-6 h-6 text-indigo-200"
                                         aria-hidden="true"
+                                        class="flex-shrink-0 w-6 h-6 text-indigo-200"
                                     />
                                     <span class="ml-3"
                                     ><a href="https://mapy.cz/s/hocezopale" target="_blank"
@@ -416,39 +417,39 @@
                                 <dt><span class="sr-only">Telefonní číslo</span></dt>
                                 <dd class="flex text-base text-indigo-50">
                                     <PhoneIcon
-                                        class="flex-shrink-0 w-6 h-6 text-indigo-200"
                                         aria-hidden="true"
+                                        class="flex-shrink-0 w-6 h-6 text-indigo-200"
                                     />
                                     <span class="ml-3">607 238 514</span>
                                 </dd>
                                 <dd class="flex text-base text-indigo-50">
                                     <PhoneIcon
-                                        class="flex-shrink-0 w-6 h-6 text-indigo-200"
                                         aria-hidden="true"
+                                        class="flex-shrink-0 w-6 h-6 text-indigo-200"
                                     />
                                     <span class="ml-3">608 333 070</span>
                                 </dd>
                                 <dt><span class="sr-only">Email</span></dt>
                                 <dd class="flex text-base text-indigo-50">
                                     <MailIcon
-                                        class="flex-shrink-0 w-6 h-6 text-indigo-200"
                                         aria-hidden="true"
+                                        class="flex-shrink-0 w-6 h-6 text-indigo-200"
                                     />
                                     <span class="ml-3">truwork@truwork.cz</span>
                                 </dd>
                             </dl>
-                            <ul role="list" class="mt-8 flex space-x-12">
+                            <ul class="mt-8 flex space-x-12" role="list">
                                 <li>
                                     <a class="text-indigo-200 hover:text-indigo-100" href="#">
                                         <span class="sr-only">Facebook</span>
                                         <svg
-                                            width="24"
+                                            aria-hidden="true"
+                                            class="w-6 h-6"
+                                            fill="none"
                                             height="24"
                                             viewBox="0 0 24 24"
-                                            fill="none"
+                                            width="24"
                                             xmlns="http://www.w3.org/2000/svg"
-                                            class="w-6 h-6"
-                                            aria-hidden="true"
                                         >
                                             <path
                                                 d="M22.258 1H2.242C1.556 1 1 1.556 1 2.242v20.016c0 .686.556 1.242 1.242 1.242h10.776v-8.713h-2.932V11.39h2.932V8.887c0-2.906 1.775-4.489 4.367-4.489 1.242 0 2.31.093 2.62.134v3.037l-1.797.001c-1.41 0-1.683.67-1.683 1.653v2.168h3.362l-.438 3.396h-2.924V23.5h5.733c.686 0 1.242-.556 1.242-1.242V2.242C23.5 1.556 22.944 1 22.258 1"
@@ -463,21 +464,19 @@
                         <!-- Contact form -->
                         <div class="py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12">
                             <form
-                                @submit.prevent="submit"
                                 class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
+                                @submit.prevent="submit"
                             >
                                 <div>
                                     <label
-                                        for="first-name"
                                         class="block text-sm font-medium text-gray-900"
+                                        for="first-name"
                                     >Jméno</label
                                     >
                                     <div class="mt-1">
                                         <input
-                                            v-model="form.name"
-                                            type="text"
-                                            name="first-name"
                                             id="first-name"
+                                            v-model="form.name"
                                             autocomplete="given-name"
                                             class="
                         py-3
@@ -490,27 +489,27 @@
                         border-gray-300
                         rounded-md
                       "
+                                            name="first-name"
                                             required
+                                            type="text"
                                         />
                                     </div>
                                     <div
-                                        class="mt-1 text-sm text-red-600"
                                         v-if="form.errors.has('name')"
+                                        class="mt-1 text-sm text-red-600"
                                         v-text="form.errors.get('name')"
                                     ></div>
                                 </div>
                                 <div>
                                     <label
-                                        for="last-name"
                                         class="block text-sm font-medium text-gray-900"
+                                        for="last-name"
                                     >Příjmení</label
                                     >
                                     <div class="mt-1">
                                         <input
-                                            v-model="form.surname"
-                                            type="text"
-                                            name="last-name"
                                             id="last-name"
+                                            v-model="form.surname"
                                             autocomplete="family-name"
                                             class="
                         py-3
@@ -523,27 +522,27 @@
                         border-gray-300
                         rounded-md
                       "
+                                            name="last-name"
                                             required
+                                            type="text"
                                         />
                                     </div>
                                     <div
-                                        class="mt-1 text-sm text-red-600"
                                         v-if="form.errors.has('surname')"
+                                        class="mt-1 text-sm text-red-600"
                                         v-text="form.errors.get('surname')"
                                     ></div>
                                 </div>
                                 <div>
                                     <label
-                                        for="email"
                                         class="block text-sm font-medium text-gray-900"
+                                        for="email"
                                     >Email</label
                                     >
                                     <div class="mt-1">
                                         <input
-                                            v-model="form.email"
                                             id="email"
-                                            name="email"
-                                            type="email"
+                                            v-model="form.email"
                                             autocomplete="email"
                                             class="
                         py-3
@@ -556,29 +555,30 @@
                         border-gray-300
                         rounded-md
                       "
+                                            name="email"
                                             required
+                                            type="email"
                                         />
                                     </div>
                                     <div
-                                        class="mt-1 text-sm text-red-600"
                                         v-if="form.errors.has('email')"
+                                        class="mt-1 text-sm text-red-600"
                                         v-text="form.errors.get('email')"
                                     ></div>
                                 </div>
                                 <div>
                                     <div class="flex justify-between">
                                         <label
-                                            for="phone"
                                             class="block text-sm font-medium text-gray-900"
+                                            for="phone"
                                         >Telefonní číslo</label
                                         >
                                     </div>
                                     <div class="mt-1">
                                         <input
-                                            v-model="form.phone"
-                                            type="text"
-                                            name="phone"
                                             id="phone"
+                                            v-model="form.phone"
+                                            aria-describedby="phone-optional"
                                             autocomplete="tel"
                                             class="
                         py-3
@@ -591,28 +591,27 @@
                         border-gray-300
                         rounded-md
                       "
-                                            aria-describedby="phone-optional"
+                                            name="phone"
                                             required
+                                            type="text"
                                         />
                                     </div>
                                     <div
-                                        class="mt-1 text-sm text-red-600"
                                         v-if="form.errors.has('phone')"
+                                        class="mt-1 text-sm text-red-600"
                                         v-text="form.errors.get('phone')"
                                     ></div>
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label
-                                        for="subject"
                                         class="block text-sm font-medium text-gray-900"
+                                        for="subject"
                                     >Předmět</label
                                     >
                                     <div class="mt-1">
                                         <input
-                                            v-model="form.subject"
-                                            type="text"
-                                            name="subject"
                                             id="subject"
+                                            v-model="form.subject"
                                             class="
                         py-3
                         px-4
@@ -624,20 +623,22 @@
                         border-gray-300
                         rounded-md
                       "
+                                            name="subject"
                                             required
+                                            type="text"
                                         />
                                     </div>
                                     <div
-                                        class="mt-1 text-sm text-red-600"
                                         v-if="form.errors.has('subject')"
+                                        class="mt-1 text-sm text-red-600"
                                         v-text="form.errors.get('subject')"
                                     ></div>
                                 </div>
                                 <div class="sm:col-span-2">
                                     <div class="flex justify-between">
                                         <label
-                                            for="message"
                                             class="block text-sm font-medium text-gray-900"
+                                            for="message"
                                         >Text</label
                                         >
                                         <span id="message-max" class="text-sm text-gray-500"
@@ -646,10 +647,9 @@
                                     </div>
                                     <div class="mt-1">
                     <textarea
-                        v-model="form.message"
                         id="message"
-                        name="message"
-                        rows="4"
+                        v-model="form.message"
+                        aria-describedby="message-max"
                         class="
                         py-3
                         px-4
@@ -661,25 +661,25 @@
                         border border-gray-300
                         rounded-md
                       "
-                        aria-describedby="message-max"
+                        name="message"
                         required
+                        rows="4"
                     />
                                     </div>
                                     <div
-                                        class="mt-1 text-sm text-red-600"
                                         v-if="form.errors.has('message')"
+                                        class="mt-1 text-sm text-red-600"
                                         v-text="form.errors.get('message')"
                                     ></div>
                                 </div>
                                 <input
-                                    v-model="form.title"
-                                    type="hidden"
                                     id="title"
+                                    v-model="form.title"
                                     name="title"
+                                    type="hidden"
                                 />
                                 <div class="sm:col-span-2 sm:flex sm:justify-end">
                                     <button
-                                        type="submit"
                                         class="
                       mt-2
                       w-full
@@ -702,6 +702,7 @@
                       focus:ring-indigo-500
                       sm:w-auto
                     "
+                                        type="submit"
                                     >
                                         Odeslat
                                     </button>
@@ -713,20 +714,11 @@
             </div>
         </section>
     </div>
-    <Successful
-        :open="showSuccessful"
-        :message="message"
-        @close="close"
-    ></Successful>
-    <Exception
-        :open="showException"
-        :message="message"
-        @close="close"
-    ></Exception>
 </template>
 
 <script>
 import {onMounted, reactive, ref} from "vue";
+import {useStore} from "vuex";
 import {
     InboxIcon,
     SparklesIcon,
@@ -734,17 +726,15 @@ import {
     PhoneIcon,
     LibraryIcon,
 } from "@heroicons/vue/outline";
-import api from "../../../services/api";
+import Api from "../../../services/api";
 import Form from "../../../utilities/form";
-import Successful from "../../Successful.vue";
-import Exception from "../../Exception.vue";
 
 const categories = [
     {
         name: 'Kuchyně',
         href: {
-            name : 'galleriesKitchen',
-            parameters : {}
+            name: 'galleriesKitchen',
+            parameters: {}
         },
         imageSrc: '/storage/images/initialize/kitchen1.jpg',
         imageAlt: 'Kitchens image.',
@@ -753,8 +743,8 @@ const categories = [
     {
         name: 'Skříně',
         href: {
-            name : 'galleriesIndex',
-            parameters : {
+            name: 'galleriesIndex',
+            parameters: {
                 category: 'skrine'
             }
         },
@@ -765,8 +755,8 @@ const categories = [
     {
         name: 'Komerční prostory',
         href: {
-            name : 'galleriesIndex',
-            parameters : {
+            name: 'galleriesIndex',
+            parameters: {
                 category: 'komercni_prostory'
             }
         },
@@ -777,8 +767,8 @@ const categories = [
     {
         name: 'Koupelny',
         href: {
-            name : 'galleriesIndex',
-            parameters : {
+            name: 'galleriesIndex',
+            parameters: {
                 category: 'koupelny'
             }
         },
@@ -789,8 +779,8 @@ const categories = [
     {
         name: 'Doplňky/Detaily',
         href: {
-            name : 'galleriesIndex',
-            parameters : {
+            name: 'galleriesIndex',
+            parameters: {
                 category: 'doplnky'
             }
         },
@@ -807,11 +797,11 @@ export default {
         SparklesIcon,
         MailIcon,
         PhoneIcon,
-        LibraryIcon,
-        Successful,
-        Exception,
+        LibraryIcon
     },
     setup() {
+        const store = useStore();
+
         const form = reactive(
             new Form({
                 title: null,
@@ -823,31 +813,23 @@ export default {
                 message: null,
             })
         );
-        const showSuccessful = ref(false)
-        const showException = ref(false)
-        const message = ref()
 
         function submit() {
-            api
-                .contact(form.objectToFormData())
-                .then((response) => {
-                    form.onSuccess();
-                    showSuccessful.value = true
-                    message.value = response.data.message
-                })
+            Api.post('/api/admin/galleries', form.objectToFormData()).then((response) => {
+                form.onSuccess();
+                store.dispatch('messagesModule/showSuccess', response.data.message);
+            })
                 .catch((error) => {
-                    if (error.response.data.errors) {
-                        form.onFail(error.response.data.errors)
+                    if (error.response) {
+                        if (error.response.status === 422) {
+                            form.onFail(error.response.data.errors);
+                        } else {
+                            store.dispatch('messagesModule/showException', error.response.data.message);
+                        }
                     } else {
-                        showException.value = true
-                        message.value = error.response.data.message
+                        console.log(error);
                     }
-                });
-        }
-
-        function close() {
-            showSuccessful.value = false
-            showException.value = false
+                })
         }
 
         onMounted(() => {
@@ -873,12 +855,8 @@ export default {
 
         return {
             form,
-            showSuccessful,
-            showException,
-            message,
-            submit,
-            close,
             categories,
+            submit
         };
     },
 };
