@@ -1,13 +1,13 @@
 <template>
  <!-- Hero section -->
-      <div class="relative py-4 my-4">
+      <div class="relative pb-4">
         <!-- Background image and overlap -->
         <div aria-hidden="true" class="hidden absolute inset-0 sm:flex sm:flex-col">
           <div class="flex-1 relative w-full bg-gray-800">
             <div class="absolute inset-0 overflow-hidden">
               <img src="/storage/images/initialize/kitchen1.jpg" alt="" class="w-full h-full object-center object-cover">
             </div>
-            <div class="absolute inset-0 bg-gray-900 opacity-50"></div>
+            <div class="absolute inset-0 bg-gray-900 opacity-80"></div>
           </div>
           <div class="w-full bg-white h-32 md:h-40 lg:h-48"></div>
         </div>
@@ -23,11 +23,8 @@
             </div>
             <div class="w-full bg-white h-48"></div>
           </div>
-          <div class="relative py-32">
+          <div class="relative py-20">
             <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">Kuchyně na míru</h1>
-            <div class="mt-4 sm:mt-6">
-              <a href="#" class="inline-block bg-indigo-600 border border-transparent rounded-md py-3 px-8 font-medium text-white hover:bg-indigo-700">Po kliknutí na obrázek budete pokračovat na galerii</a>
-            </div>
           </div>
         </div>
 
@@ -40,7 +37,7 @@
                     <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
                       <img src="/storage/images/initialize/kitchen1.jpg" alt="Woman wearing a comfortable cotton t-shirt." class="w-full h-full object-center object-cover">
                     </div>
-                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50"></div>
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-20"></div>
                   </div>
                   <div class="absolute inset-0 rounded-lg p-6 flex items-end">
                     <div>
@@ -62,9 +59,9 @@
                 <div>
                   <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                     <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                      <img src="/storage/images/initialize/kitchen3.jpg" alt="Man wearing a comfortable and casual cotton t-shirt." class="w-full h-full object-center object-cover">
+                      <img src="/storage/images/initialize/modern.jpg" alt="Man wearing a comfortable and casual cotton t-shirt." class="w-full h-full object-center object-cover">
                     </div>
-                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50"></div>
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-20"></div>
                   </div>
                   <div class="absolute inset-0 rounded-lg p-6 flex items-end">
                     <div>
@@ -86,9 +83,9 @@
                 <div>
                   <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                     <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                      <img src="/storage/images/initialize/kitchen2.jpg" alt="Person sitting at a wooden desk with paper note organizer, pencil and tablet." class="w-full h-full object-center object-cover">
+                      <img src="/storage/images/initialize/kitchen3.jpg" alt="Person sitting at a wooden desk with paper note organizer, pencil and tablet." class="w-full h-full object-center object-cover">
                     </div>
-                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50"></div>
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-20"></div>
                   </div>
                   <div class="absolute inset-0 rounded-lg p-6 flex items-end">
                     <div>

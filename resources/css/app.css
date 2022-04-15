@@ -5,11 +5,15 @@
 /* For slider */
 html{
     scroll-behavior: smooth;
+    min-height: 100vh;
 }
 .height-slide{
     max-height: 100%;
 }
 
+.mybody{
+    min-height: 65vh;
+}
 
 /* Only for navbar */
 #navbar{
@@ -18,6 +22,7 @@ html{
 
 #footer{
     border-top: #c99e68 2px solid;
+    min-height: 35vh;
 }
 
 

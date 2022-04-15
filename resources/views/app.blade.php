@@ -9,10 +9,8 @@
     <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet"/>
     <link rel="icon" href="/storage/images/initialize/logo-icon.png">
 </head>
-<body>
 <div id="app">
     <app></app>
 </div>
 <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
-</body>
 </html>

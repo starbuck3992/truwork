@@ -1,7 +1,9 @@
 <template>
     <div class="min-h-screen max-w-screen overflow-x-hidden overflow-y-hidden">
-        <Menu></Menu>
-        <router-view></router-view>
+        <body class="mybody" >
+            <Menu></Menu>
+            <router-view></router-view>
+        </body>
         <Footer></Footer>
     </div>
 </template>

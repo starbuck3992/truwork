@@ -10,7 +10,7 @@
                         class="h-full w-full object-cover"
                         src="/storage/images/initialize/kitchen1.jpg"
                     />
-                    <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply"/>
+                    <div class="absolute inset-0 bg-gray-400 mix-blend-multiply"/>
                     <div class="absolute inset-0 m-auto h-52">
                         <h1
                             class="
@@ -39,7 +39,6 @@
                         <div
                             class="
                 mt-10
-                mx-5
                 max-w-sm
                 mx-auto
                 sm:max-w-none sm:flex sm:justify-center
@@ -79,7 +78,7 @@
                         class="h-full w-full object-cover"
                         src="/storage/images/initialize/kitchen2.jpg"
                     />
-                    <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply"/>
+                    <div class="absolute inset-0 bg-gray-400 mix-blend-multiply"/>
                     <div class="absolute inset-0 m-auto h-52">
                         <h1
                             class="
@@ -108,7 +107,6 @@
                         <div
                             class="
                 mt-10
-                mx-5
                 max-w-sm
                 mx-auto
                 sm:max-w-none sm:flex sm:justify-center
@@ -148,7 +146,7 @@
                         class="h-full w-full object-cover"
                         src="/storage/images/initialize/kitchen3.jpg"
                     />
-                    <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply"/>
+                    <div class="absolute inset-0 bg-gray-400 mix-blend-multiply"/>
                     <div class="absolute inset-0 m-auto h-52">
                         <h1
                             class="
@@ -177,7 +175,142 @@
                         <div
                             class="
                 mt-10
-                mx-5
+                max-w-sm
+                mx-auto
+                sm:max-w-none sm:flex sm:justify-center
+              "
+                        >
+                            <a
+                                class="
+                  flex
+                  items-center
+                  justify-center
+                  px-2
+                  py-3
+                  border border-transparent
+                  text-base
+                  font-medium
+                  rounded-md
+                  shadow-sm
+                  text-indigo-800
+                  bg-white
+                  hover:bg-indigo-50
+                  sm:px-8
+                "
+                                href="#contact-as"
+                            >
+                                Kontaktujte nás
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Slider Item -->
+            <!-- My Slider Item -->
+            <div class="slider-item">
+                <div class="relative h-full w-full">
+                    <img
+                        alt="kuchyně"
+                        class="h-full w-full object-cover"
+                        src="/storage/images/initialize/kitchen4.jpg"
+                    />
+                    <div class="absolute inset-0 bg-gray-400 mix-blend-multiply"/>
+                    <div class="absolute inset-0 m-auto h-52">
+                        <h1
+                            class="
+                text-center text-4xl
+                font-extrabold
+                tracking-tight
+                sm:text-5xl
+                lg:text-6xl
+              "
+                        >
+                            <span class="block text-white">TRUWORK</span>
+                            <span class="block text-indigo-200">Stolařství</span>
+                        </h1>
+                        <p
+                            class="
+                mt-6
+                max-w-lg
+                mx-auto
+                text-center text-xl text-indigo-200
+                sm:max-w-3xl
+              "
+                        >
+                            Masivní dřevo, špičková řemeslná práce a individuální přístup je
+                            to,co dělá kuchyně Truwork naprosto výjimečnými.
+                        </p>
+                        <div
+                            class="
+                mt-10
+                max-w-sm
+                mx-auto
+                sm:max-w-none sm:flex sm:justify-center
+              "
+                        >
+                            <a
+                                class="
+                  flex
+                  items-center
+                  justify-center
+                  px-2
+                  py-3
+                  border border-transparent
+                  text-base
+                  font-medium
+                  rounded-md
+                  shadow-sm
+                  text-indigo-800
+                  bg-white
+                  hover:bg-indigo-50
+                  sm:px-8
+                "
+                                href="#contact-as"
+                            >
+                                Kontaktujte nás
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Slider Item -->
+            <!-- My Slider Item -->
+            <div class="slider-item">
+                <div class="relative h-full w-full">
+                    <img
+                        alt="kuchyně"
+                        class="h-full w-full object-cover"
+                        src="/storage/images/initialize/kitchen5.jpg"
+                    />
+                    <div class="absolute inset-0 bg-gray-400 mix-blend-multiply"/>
+                    <div class="absolute inset-0 m-auto h-52">
+                        <h1
+                            class="
+                text-center text-4xl
+                font-extrabold
+                tracking-tight
+                sm:text-5xl
+                lg:text-6xl
+              "
+                        >
+                            <span class="block text-white">TRUWORK</span>
+                            <span class="block text-indigo-200">Stolařství</span>
+                        </h1>
+                        <p
+                            class="
+                mt-6
+                max-w-lg
+                mx-auto
+                text-center text-xl text-indigo-200
+                sm:max-w-3xl
+              "
+                        >
+                            Masivní dřevo, špičková řemeslná práce a individuální přístup je
+                            to,co dělá kuchyně Truwork naprosto výjimečnými.
+                        </p>
+                        <div
+                            class="
+                mt-10
                 max-w-sm
                 mx-auto
                 sm:max-w-none sm:flex sm:justify-center
@@ -219,7 +352,7 @@
                     <div class="mt-10 lg:grid lg:grid-cols-2 lg:gap-x-8">
                         <router-link v-for="category in categories" :key="category.name"
                                      :to="{ name: category.href.name, query: category.href.parameters }"
-                                     class="group relative w-56 h-80 rounded-lg flex flex-col overflow-hidden group-hover:opacity-75 xl:w-auto mb-4 w-full">
+                                     class="group relative h-80 rounded-lg flex flex-col overflow-hidden group-hover:opacity-75 xl:w-auto mb-4 w-full">
                 <span aria-hidden="true" class="absolute inset-0">
                   <img :src="category.imageSrc" alt="" class="w-full h-full object-center object-cover"/>
                 </span>
@@ -410,7 +543,7 @@
                                     />
                                     <span class="ml-3"
                                     ><a href="https://mapy.cz/s/hocezopale" target="_blank"
-                                    >Jeseník 790 00, Astur 185</a
+                                    >Adresa : Tovární 219, 790 01 Jesník</a
                                     ></span
                                     >
                                 </dd>
@@ -772,7 +905,7 @@ const categories = [
                 category: 'koupelny'
             }
         },
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg',
+        imageSrc: '/storage/images/initialize/koupelny.jpg',
         imageAlt: 'Koupelny image.',
         description: 'Vybavíme Vaší koupelnu...',
     },
@@ -784,7 +917,7 @@ const categories = [
                 category: 'doplnky'
             }
         },
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg',
+        imageSrc: '/storage/images/initialize/doplnky.jpg',
         imageAlt: 'Koupelny image.',
         description: 'Na detailech si zakládáme.',
     },
@@ -843,7 +976,7 @@ export default {
             function carousel() {
                 curr = ++curr % total;
                 anim();
-                setTimeout(carousel, 6000);
+                setTimeout(carousel, 10000);
             }
 
             function anim() {

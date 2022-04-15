@@ -13,7 +13,7 @@
                      class="relative group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
                     <img :src="image.path" :alt="category"
                          class="object-cover pointer-events-none group-hover:opacity-75"/>
-                    <ZoomInIcon class="absolute inset-0 opacity-0 group-hover:opacity-70"></ZoomInIcon>
+                    <ZoomInIcon class="absolute inset-0 opacity-0 group-hover:opacity-70 w-20 h-20 m-auto"></ZoomInIcon>
                     <!-- <button type="button" class="absolute inset-0 focus:outline-none">
                         <span class="sr-only">View details for {{ image.name }}</span>
                     </button> -->
@@ -50,9 +50,9 @@
                     <div
                         class="inline-block align-middle overflow-hidden transform transition-all m-auto w-full max-h-screen pointer-events: none;">
                         <ChevronLeftIcon @click="prev()"
-                                         class="hidden sm:block absolute left-10 top-1/2 bg-white sm:w-10 sm:h-10 h-3 w-3 z-100"></ChevronLeftIcon>
+                                         class="hidden sm:block absolute left-10 top-1/2 bg-white sm:w-10 sm:h-10 h-3 w-3 z-100 cursor-pointer"></ChevronLeftIcon>
                         <ChevronRightIcon @click="next()"
-                                          class="hidden sm:block absolute right-10 top-1/2 bg-white sm:w-10 sm:h-10 h-3 w-3 z-100"></ChevronRightIcon>
+                                          class="hidden sm:block absolute right-10 top-1/2 bg-white sm:w-10 sm:h-10 h-3 w-3 z-100 cursor-pointer"></ChevronRightIcon>
                         <div v-touch:swipe="onSwipeItem()"
                              class="m-auto height-slide w-full flex justify-center inline-block align-middle">
                             <img v-for="(image, i) in images" :key="i"
