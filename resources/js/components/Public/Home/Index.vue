@@ -543,7 +543,7 @@
                                     />
                                     <span class="ml-3"
                                     ><a href="https://mapy.cz/s/hocezopale" target="_blank"
-                                    >Adresa : Tovární 219, 790 01 Jesník</a
+                                    >Adresa : Tovární 219, 790 01 Jeseník</a
                                     ></span
                                     >
                                 </dd>

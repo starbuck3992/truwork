@@ -12,7 +12,7 @@
                   </tr>
                 </table>
                 <p class="text-white text-base mb-2">Telefon :  607 237 514</p>
-                <p class="text-white text-base mb-2">Adresa : Tovární 219, 790 01 Jesník</p>
+                <p class="text-white text-base mb-2">Adresa : Tovární 219, 790 01 Jeseník</p>
                 <p class="text-white text-base mb-2">IČ: 063 68 123</p>
                 <p class="text-white text-base">DIČ: CZ06368123</p>
             </div>
