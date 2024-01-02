@@ -5,7 +5,7 @@ import router from "../router";
 class Api {
     constructor() {
         let axiosInstance = axios.create({
-            baseURL: process.env.VUE_APP_API_URL,
+            baseURL: import.meta.env.VITE_VUE_APP_API_URL,
             withCredentials: true
         });
         axiosInstance.interceptors.request.use((config) => {

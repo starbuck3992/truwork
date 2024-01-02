@@ -2,7 +2,7 @@
     <div class="h-screen bg-gray-50 flex flex-col justify-center py-5 sm:px-6 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-md">
             <img class="mx-auto h-12 w-auto"
-                 src="/storage/images/initialize/logo.png"
+                 src="https://default-space-bucket.fra1.cdn.digitaloceanspaces.com/truwork/logo.png"
                  alt="logo">
             <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
                 Přihlášení
@@ -54,7 +54,7 @@
 <script>
 import {reactive} from "vue"
 import {useStore} from "vuex"
-import Form from "../../utilities/form";
+import Form from "../../utilities/form.js";
 import router from "../../router";
 
 export default {

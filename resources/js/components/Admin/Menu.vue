@@ -27,7 +27,7 @@
                         </TransitionChild>
                         <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                             <div class="flex-shrink-0 flex items-center px-4">
-                                <img class="h-8 w-auto" src="/storage/images/initialize/logo.png" alt="Workflow"/>
+                                <img class="h-8 w-auto" src="https://default-space-bucket.fra1.cdn.digitaloceanspaces.com/truwork/logo.png" alt="Workflow"/>
                             </div>
                             <nav class="mt-5 px-2 space-y-1">
                                 <router-link @click="selected_item = 1" :to="{ name: 'homeIndex' }"
@@ -104,7 +104,7 @@
                     <div class="flex-1 flex flex-col pt-5 overflow-y-auto">
                         <div class="flex items-center flex-shrink-0 px-4">
                             <router-link :to="{ name: 'homeIndex' }">
-                                <img class="h-auto w-full m-auto" src="/storage/images/initialize/logo.png" alt="Logo"/>
+                                <img class="h-auto w-full m-auto" src="https://default-space-bucket.fra1.cdn.digitaloceanspaces.com/truwork/logo.png" alt="Logo"/>
                             </router-link>
                         </div>
                         <nav class="mt-5 flex-1 px-2 bg-white space-y-1">
@@ -201,7 +201,7 @@ import {
     DocumentAddIcon,
     UserIcon,
 } from '@heroicons/vue/outline'
-import Logout from '../Auth/Logout'
+import Logout from '../Auth/Logout.vue'
 
 export default {
     components: {

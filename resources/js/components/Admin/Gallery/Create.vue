@@ -183,8 +183,8 @@ import {reactive, ref} from 'vue';
 import {useRouter} from 'vue-router';
 import {useStore} from "vuex";
 import {XIcon} from '@heroicons/vue/outline';
-import Api from "../../../services/api";
-import Form from '../../../utilities/form';
+import Api from "../../../services/api.js";
+import Form from '../../../utilities/form.js';
 
 export default {
     components: {

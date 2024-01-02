@@ -2,18 +2,18 @@ import {createWebHistory, createRouter} from 'vue-router';
 import store from '../store';
 
 //Components
-import LandingPage from '../components/Public/LandingPage';
-import HomeIndex from '../components/Public/Home/Index';
-import GalleryIndex from '../components/Public/Gallery/Index';
-import GalleryKitchen from '../components/Public/Gallery/Kitchen';
-import GalleryShow from '../components/Public/Gallery/Show';
+import LandingPage from '../components/Public/LandingPage.vue';
+import HomeIndex from '../components/Public/Home/Index.vue';
+import GalleryIndex from '../components/Public/Gallery/Index.vue';
+import GalleryKitchen from '../components/Public/Gallery/Kitchen.vue';
+import GalleryShow from '../components/Public/Gallery/Show.vue';
 
-import Login from '../components/Auth/Login';
+import Login from '../components/Auth/Login.vue';
 
-import AdminPage from '../components/Admin/AdminPage';
-import AdminGalleryIndex from '../components/Admin/Gallery/Index';
-import AdminGalleryEdit from '../components/Admin/Gallery/Edit';
-import AdminGalleryCreate from '../components/Admin/Gallery/Create';
+import AdminPage from '../components/Admin/AdminPage.vue';
+import AdminGalleryIndex from '../components/Admin/Gallery/Index.vue';
+import AdminGalleryEdit from '../components/Admin/Gallery/Edit.vue';
+import AdminGalleryCreate from '../components/Admin/Gallery/Create.vue';
 
 //Routes
 const routes = [

@@ -5,7 +5,7 @@
         <div aria-hidden="true" class="hidden absolute inset-0 sm:flex sm:flex-col">
           <div class="flex-1 relative w-full bg-gray-800">
             <div class="absolute inset-0 overflow-hidden">
-              <img src="/storage/images/initialize/kitchen1.jpg" alt="" class="w-full h-full object-center object-cover">
+              <img src="https://default-space-bucket.fra1.cdn.digitaloceanspaces.com/truwork/kitchen1.jpg" alt="" class="w-full h-full object-center object-cover">
             </div>
             <div class="absolute inset-0 bg-gray-900 opacity-80"></div>
           </div>
@@ -17,7 +17,7 @@
           <div aria-hidden="true" class="absolute inset-0 flex flex-col sm:hidden">
             <div class="flex-1 relative w-full bg-gray-800">
               <div class="absolute inset-0 overflow-hidden">
-                <img src="/storage/images/initialize/kitchen1.jpg" alt="" class="w-full h-full object-center object-cover">
+                <img src="https://default-space-bucket.fra1.cdn.digitaloceanspaces.com/truwork/kitchen1.jpg" alt="" class="w-full h-full object-center object-cover">
               </div>
               <div class="absolute inset-0 bg-gray-900 opacity-50"></div>
             </div>
@@ -35,7 +35,7 @@
                 <div>
                   <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                     <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                      <img src="/storage/images/initialize/kitchen1.jpg" alt="Woman wearing a comfortable cotton t-shirt." class="w-full h-full object-center object-cover">
+                      <img src="https://default-space-bucket.fra1.cdn.digitaloceanspaces.com/truwork/kitchen1.jpg" alt="Woman wearing a comfortable cotton t-shirt." class="w-full h-full object-center object-cover">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-20"></div>
                   </div>
@@ -59,7 +59,7 @@
                 <div>
                   <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                     <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                      <img src="/storage/images/initialize/modern.jpg" alt="Man wearing a comfortable and casual cotton t-shirt." class="w-full h-full object-center object-cover">
+                      <img src="https://default-space-bucket.fra1.cdn.digitaloceanspaces.com/truwork/modern.jpg" alt="Man wearing a comfortable and casual cotton t-shirt." class="w-full h-full object-center object-cover">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-20"></div>
                   </div>
@@ -83,7 +83,7 @@
                 <div>
                   <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                     <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                      <img src="/storage/images/initialize/kitchen3.jpg" alt="Person sitting at a wooden desk with paper note organizer, pencil and tablet." class="w-full h-full object-center object-cover">
+                      <img src="https://default-space-bucket.fra1.cdn.digitaloceanspaces.com/truwork/kitchen3.jpg" alt="Person sitting at a wooden desk with paper note organizer, pencil and tablet." class="w-full h-full object-center object-cover">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-20"></div>
                   </div>

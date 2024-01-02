@@ -33,7 +33,7 @@
 <script>
 import {computed} from 'vue'
 import {useStore} from 'vuex'
-import Logout from '../Auth/Logout'
+import Logout from '../Auth/Logout.vue'
 
 export default {
     components: {

@@ -23,6 +23,7 @@
         "vuex-persistedstate": "^4.1.0"
     },
     "devDependencies": {
+        "autoprefixer": "^10.4.16",
         "@vitejs/plugin-vue": "^5.0.2",
         "laravel-vite-plugin": "^1.0.1",
         "vite": "^5.0.10"

@@ -8,7 +8,7 @@
                 <p class="text-white text-base mb-2">Email :    truwork@truwork.cz</p>
                 <table>
                   <tr>
-                    <td class="mr-3"><p class="text-white text-base mb-2">Telefon :  +420 608 333 070</p></td><td><img alt="flag" class="h-6 w-6 ml-2 inline-block align-baseline" src="/storage/images/initialize/en-flag.png"></td>
+                    <td class="mr-3"><p class="text-white text-base mb-2">Telefon :  +420 608 333 070</p></td><td><img alt="flag" class="h-6 w-6 ml-2 inline-block align-baseline" src="https://default-space-bucket.fra1.cdn.digitaloceanspaces.com/truwork/en-flag.png"></td>
                   </tr>
                 </table>
                 <p class="text-white text-base mb-2">Telefon :  607 237 514</p>
@@ -23,7 +23,7 @@
             <div class="relative">
               <div class="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
               </div>
-              <img src="/storage/images/initialize/logo-white.png" alt="Workflow" class="block h-16 w-auto pb-2 m-auto" />
+              <img src="https://default-space-bucket.fra1.cdn.digitaloceanspaces.com/truwork/logo-white.png" alt="Workflow" class="block h-16 w-auto pb-2 m-auto" />
               <p class="text-white text-xl mb-2 sm:pb-8 text-center">Zakázková výroba na míru</p>
             </div>
             <div class="relative md:hidden pb-2" @click="showMenu = !showMenu">

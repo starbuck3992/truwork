@@ -1,9 +1,6 @@
 /node_modules
 /public/hot
 /public/storage
-/storage/app/images/galleries
-/storage/app/public/images/galleries
-!/storage/app/public/images/initialize
 /vendor
 /database/seeders/UserSeeder.php
 .env

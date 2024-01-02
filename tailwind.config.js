@@ -1,6 +1,9 @@
 module.exports = {
-    purge: [],
-    darkMode: false, // or 'media' or 'class'
+    content: [
+        './resources/views/**/*.blade.php',
+        './resources/js/**/*{.js,.ts,.vue}',
+    ],
+    darkMode: 'class', // or 'media' or 'class'
     theme: {
         extend: {
             transitionDuration: {
@@ -16,9 +19,6 @@ module.exports = {
                 '128': '32rem',
             },
         },
-    },
-    variants: {
-        extend: {},
     },
     plugins: [
         require('@tailwindcss/forms'),
