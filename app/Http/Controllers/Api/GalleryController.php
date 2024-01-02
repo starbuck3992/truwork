@@ -110,7 +110,7 @@ class GalleryController extends Controller
             $imagesToSave[] = new Image([
                 'user_id' => $user,
                 'original_name' => $thumbnail_file->getClientOriginalName(),
-                'path' => $thumbnail_file->store("images/galleries/$gallery->id", 'public'),
+                'path' => $thumbnail_file->store("images/galleries/$gallery->id"),
                 'extension' => $thumbnail_file->extension(),
                 'size' => $thumbnail_file->getSize(),
                 'thumbnail' => true
@@ -118,7 +118,7 @@ class GalleryController extends Controller
 
             foreach ($request->file('images') as $image) {
 
-                $path = $image->store("images/galleries/$gallery->id", 'public');
+                $path = $image->store("images/galleries/$gallery->id");
 
                 $imagesToSave[] = new Image([
                     'user_id' => $user,
@@ -140,7 +140,7 @@ class GalleryController extends Controller
 
         } catch (Throwable $e) {
 
-            Storage::deleteDirectory("public/images/galleries/$gallery->id");
+            Storage::deleteDirectory("images/galleries/$gallery->id");
 
             DB::rollback();
 
@@ -234,7 +234,7 @@ class GalleryController extends Controller
                 Storage::delete($current_thumbnail_path);
 
                 $thumbnail_file = $request->file('thumbnail');
-                $path = $thumbnail_file->store("images/galleries/$request->id", 'public');
+                $path = $thumbnail_file->store("images/galleries/$request->id");
 
                 $thumbnail->user_id = $user;
                 $thumbnail->original_name = $thumbnail_file->getClientOriginalName();
@@ -280,7 +280,7 @@ class GalleryController extends Controller
 
                 foreach ($request->file('images') as $image) {
 
-                    $path = $image->store("images/galleries/$request->id", 'public');
+                    $path = $image->store("images/galleries/$request->id");
 
                     $imagesToSave[] = new Image([
                         'user_id' => $user,
@@ -304,7 +304,7 @@ class GalleryController extends Controller
 
                 foreach ($imagesPaths as $path) {
 
-                    Storage::delete("public/$path");
+                    Storage::delete($path);
 
                 }
 
@@ -331,7 +331,7 @@ class GalleryController extends Controller
                 $imagesToDelete = array_diff($currentImagesIds, $newImagesIds);
 
                 foreach ($imagesToDelete as $key => $value) {
-                    Storage::delete("public/$originalImagesPaths[$key]");
+                    Storage::delete("$originalImagesPaths[$key]");
                 }
 
                 $gallery->images()->whereIn('id', $imagesToDelete)->delete();
@@ -361,7 +361,7 @@ class GalleryController extends Controller
     {
         try {
 
-            Storage::deleteDirectory("public/images/galleries/$request->id");
+            Storage::deleteDirectory("images/galleries/$request->id");
 
             Gallery::where('id', $request->id)->firstOrFail()->delete();
 
